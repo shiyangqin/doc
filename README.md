@@ -4,6 +4,9 @@
 - 设置pycharm主题为Material Theme UI（超喜欢这个主题）
     - pycharm 的 File -> Settings -> Plugins，搜索Material Theme UI 安装、重启
 
+- Git
+   - [Git](Git/Git.md)
+
 - 编程思想
    - [代码大全](代码大全/代码大全.md)
 
