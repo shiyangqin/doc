@@ -14,3 +14,4 @@
 
 - Linux
    - [linux命令](Linux/linux命令.md)
+   - [supervisor进程管理-安装和使用](Linux/supervisor.md)
