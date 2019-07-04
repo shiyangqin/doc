@@ -41,4 +41,6 @@ git fetch -p
 git config --global credential.helper wincred
 清除掉缓存在git中的用户名和密码
 git credential-manager uninstall
+上面的执行后，缓存清掉了，但再次输入的账号密码没有记录，执行下面语句就可以了，我感觉应该是上面的操作先清楚缓存，在保存账号密码
+git config --global credential.helper store
 ```
