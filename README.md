@@ -11,8 +11,7 @@
    - 编程思想
       - [代码大全](编程思想/代码大全/代码大全.md)
    
-   - 设计模式
-      - [Head First Design Patterns（未完成）](设计模式/Head_First_Design_Patterns.md)
+   - [设计模式（未完成）](设计模式.md)
    
    - 算法
       - [算法导论（未完成）](算法/算法导论.md)
