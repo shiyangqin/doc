@@ -2,14 +2,11 @@
 可以先使用小乌龟，了解基本操作都有哪些，再尝试使用命令行操作
 ### 基础命令
 ```
-git pull  
-git push  
-git status  
-git add main.py  
-git commit -m"update"  
-git diff
-git log
-git reset HEAD main.py
+git pull  拉取
+git push  提交
+git pull origin master  和主分支代码保持同步
+git fetch -p    删除远端已经没有的分支
+
 ```
 
 ### rebase
@@ -28,11 +25,6 @@ git merhettool
 git rebase --continue 		//解决冲突后继续rebase
 git status					//查看工作目录和暂存区的状态
 git push origin 1-qsp -f 	//强推  注意：会将本地仓库强制推送到远端，轻易不要用
-```
-
-### 删除远端已经没有的分支
-```
-git fetch -p
 ```
 
 ### 当突然出现身份验证失败的时候
