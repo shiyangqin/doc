@@ -15,6 +15,7 @@
       - [Head First Design Patterns](设计模式/Head_First_Design_Patterns.md)
    
    - 算法
+      - [算法导论](算法/算法导论.md)
    
    - 数据库
       - [postgresql](数据库/postgresql.md)
