@@ -1,7 +1,6 @@
 # doc
 
-- 设置pycharm主题为Material Theme UI(超喜欢这个主题)
-    - pycharm 的 File -> Settings -> Plugins，搜索Material Theme UI 安装、重启
+- Material Theme UI(超喜欢这个主题，记一下)
 
 - 前辈语录
    - 后端技术是很单纯的，难在集群和构架设计
