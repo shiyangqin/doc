@@ -3,6 +3,10 @@
 - 设置pycharm主题为Material Theme UI(超喜欢这个主题)
     - pycharm 的 File -> Settings -> Plugins，搜索Material Theme UI 安装、重启
 
+- 前辈语录
+   - 后端技术是很单纯的，难在集群和构架设计
+   - 关于个人发展空间，应该先横向发展，当了解到足够多的知识后，在纵向发展，向上提升技术，向下深入底层
+
 - 技术清单
    - 语言基础
    - 后端
