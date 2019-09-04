@@ -1,13 +1,19 @@
-+ 单表：  
++ 单表:
     + 增：  
     ```
-    INSERT INTO table_name（column_name,[...]） VALUES ({ expression | DEFAULT }, [...])
+    insert into table_name(column_name,...) values (default,...)
     ```
     + 删：
+    ```
+    delete from table_name where column_name=value
+    ```
     + 改：
+    ```
+    update table_name set column_name=value where column_name=value
+    ```
     + 查：  
     ```
-    SELECT column_name_s FROM table_name WHERE 条件 GROUP BY column_name HAVING 条件 ORDER BY column_name DESC/ASC OFFSET 忽略行数 LIMIT 查询行数;
+    select column_name_s from table_name where column_name=value group by column_name having column_name=value order by column_name desc/asc offset num limit num;
     ```
 
 # 基础sql知识

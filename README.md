@@ -8,25 +8,25 @@
 
 + 技术清单
    + 基础
-      + [设计模式（未完成）](基础/设计模式.md)
+      + [设计模式：可复用面向对象软件的基础（未完成）](基础/设计模式.md)
       + [算法导论（未完成）](基础/算法导论.md)
-      + [数据结构与算法分析（未完成）](基础/数据结构与算法分析.md)
+      + [数据结构与算法分析——C语言描述（未完成）](基础/数据结构与算法分析/home.md)
 
    + 前端
 
    + 后端
-      + [flask(github链接)](https://github.com/shiyangqin/Qinsy/tree/master/flask)
+      + [flask、PostgreSQL代码实践(github链接)](https://github.com/shiyangqin/Qinsy/tree/master/flask)
 
    + 数据库
-      + [postgresql](数据库/postgresql.md)
+      + [PostgreSQL笔记](数据库/PostgreSQL.md)
 
    + 编程思想
       + [代码大全](编程思想/代码大全/代码大全.md)
 
 + 工具清单
    
-   + [Git](Git/Git.md)
+   + [Git笔记](Git/Git.md)
    
    + Linux
-      + [linux命令](Linux/linux命令.md)
-      + [supervisor进程管理+安装和使用](Linux/supervisor.md)
+      + [linux命令笔记](Linux/linux命令.md)
+      + [supervisor进程管理+安装和使用笔记](Linux/supervisor.md)
