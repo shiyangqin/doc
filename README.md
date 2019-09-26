@@ -8,14 +8,14 @@
 
 + 技术清单
    + 基础
-      + [设计模式：可复用面向对象软件的基础（未开始）](基础/设计模式.md)
-      + [算法导论（未开始）](基础/算法导论.md)
-      + [数据结构与算法分析——C语言描述（进行中）](基础/数据结构与算法分析/home.md)
+      + [算法](基础/算法/home.md)
+      + [数据结构](基础/数据结构/home.md)
+      + [设计模式](基础/设计模式/home.md)
 
    + 前端
 
    + 后端
-      + [flask、PostgreSQL代码实践(github链接)](https://github.com/shiyangqin/Qinsy/tree/master/flask)
+      + [python、flask代码实践(github链接)](https://github.com/shiyangqin/Qinsy/tree/master/python_web_flask)
 
    + 数据库
       + [PostgreSQL笔记](数据库/PostgreSQL.md)
