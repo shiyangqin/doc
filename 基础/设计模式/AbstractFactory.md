@@ -4,6 +4,8 @@
 
 抽象工厂模式提供了一个创建一系列相关或者相互依赖对象的接口，无需指定它们具体的类。
 
+构建简单或复杂对象，以单一步骤或单一方式构建对象，构建过程固定，强调系列产品。
+
 + 适用场景
 
 1. 客户端（应用层）不依赖于产品类实例如何被创建、实现等细节
@@ -35,4 +37,4 @@
 路由器A：小米路由器  
 路由器B：华为路由器
 
-[github链接](https://github.com/shiyangqin/Qinsy/tree/master/design_patterns/Abstract_Factory)
+[github链接](https://github.com/shiyangqin/Qinsy/tree/master/design_patterns/Abstract_Factory_Pattern)
