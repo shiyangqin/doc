@@ -16,7 +16,7 @@
 
 ## 设计模式的设计原则
 
-<img src="img/设计原则.png" />
+<img src="img/设计原则.png" width=600 />
 
 + 单一职责原则
 
@@ -68,7 +68,7 @@
 
 ## 设计模式的分类
 
-<img src="img/设计模式分类.png"/>
+<img src="img/设计模式分类.png" width=800 />
 
 + [Abstract Factory(抽象工厂)——对象创建型模式](AbstractFactory.md)
 
