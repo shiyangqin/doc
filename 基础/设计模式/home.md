@@ -16,7 +16,7 @@
 
 ## 设计模式的设计原则
 
-<img src="img/DesignPatterns1.png" width=600 />
+<img src="img/DesignPatterns1.png" />
 
 + 单一职责原则
 
@@ -68,7 +68,7 @@
 
 ## 设计模式的分类
 
-<img src="img/DesignPatterns2.png" width=800 />
+<img src="img/DesignPatterns2.png" />
 
 + [Simple Factory(简单工厂))——对象创建型模式(不属于23种设计模式)](SimpleFactory.md)
 
