@@ -16,10 +16,10 @@
 
 ## UML类图：
 
-<img src="img/抽象工厂类图.png" width=800 />
+<img src="img/AbstractFactory1.png" width=800 />
 
 ## 实例
 
-<img src="img/抽象工厂实例.png" width=800 />
+<img src="img/AbstractFactory2.png" width=800 />
 
 [github链接](https://github.com/shiyangqin/Qinsy/tree/master/design_patterns/Abstract_Factory_Pattern)
