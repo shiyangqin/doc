@@ -70,6 +70,8 @@
 
 <img src="img/设计模式分类.png" width=800 />
 
++ [Simple Factory(简单工厂))——对象创建型模式(不属于23种设计模式)](SimpleFactory.md)
+
 + [Abstract Factory(抽象工厂)——对象创建型模式](AbstractFactory.md)
 
 + [Builder(生成器)——对象创建型模式](Builder.md)

@@ -14,29 +14,12 @@
 2. 强调一系列相关的产品对象（属于同一产品族）一起使用创建对象需要大量的重复代码
 3. 提供一个产品类的库，所有的产品以同样的接口出现，从而使得客户端不依赖于具体的实现
 
-+ 优点
+## UML类图：
 
-1. 具体产品在应用层的代码隔离，无需关心创建的细节
-2. 将一个系列的产品统一到一起创建
+<img src="img/抽象工厂类图.png" width=800 />
 
-+ 缺点
+## 实例
 
-1. 规定了所有可能被创建的产品集合，产品簇中扩展新的产品困难；
-2. 增加了系统的抽象性和理解难度
-
-+ 结构：
-
-<img src="img/AbstractFactory.png" width=800 />
-
-+ 实例
-
-产品A：手机  
-产品B：路由器  
-
-手机A：小米手机  
-手机B：华为手机
-
-路由器A：小米路由器  
-路由器B：华为路由器
+<img src="img/抽象工厂实例.png" width=800 />
 
 [github链接](https://github.com/shiyangqin/Qinsy/tree/master/design_patterns/Abstract_Factory_Pattern)
