@@ -66,17 +66,21 @@
 
 外观模式（Facade Pattern)和中介者模式（Mediator Pattern）就使用了迪米特法则。
 
+## 类关系
+
+<img src="img/ClassRelationship.png" />
+
 ## 设计模式的分类
 
 <img src="img/DesignPatterns2.png" />
 
 + [Simple Factory(简单工厂))——对象创建型模式(不属于23种设计模式)](SimpleFactory.md)
 
++ [Factory Method(工厂方法))——对象创建型模式](FactoryMethod.md)
+
 + [Abstract Factory(抽象工厂)——对象创建型模式](AbstractFactory.md)
 
 + [Builder(生成器)——对象创建型模式](Builder.md)
-
-+ [Factory Method(工厂方法))——对象创建型模式](FactoryMethod.md)
 
 + [Prototype(原型))——对象创建型模式](Prototype.md)
 

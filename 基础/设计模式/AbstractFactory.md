@@ -18,6 +18,6 @@
 
 <img src="img/AbstractFactory1.png" />
 
-## [实例](https://github.com/shiyangqin/Qinsy/tree/master/design_patterns/Abstract_Factory_Pattern)
+## [实例](https://github.com/shiyangqin/Qinsy/tree/master/Design_Patterns/Abstract_Factory_Pattern)
 
 <img src="img/AbstractFactory2.png" />

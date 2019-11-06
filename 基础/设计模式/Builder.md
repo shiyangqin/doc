@@ -21,6 +21,6 @@
 
 <img src="img/Builder1.png" />
 
-## [实例](https://github.com/shiyangqin/Qinsy/tree/master/design_patterns/Builder_Pattern)
+## [实例](https://github.com/shiyangqin/Qinsy/tree/master/Design_Patterns/Builder_Pattern)
 
 <img src="img/Builder2.png" />
