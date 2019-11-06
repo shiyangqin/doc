@@ -17,5 +17,5 @@
 
 <img src="img/SimpleFactory.png" />
 
-## [实例](https://github.com/shiyangqin/Qinsy/tree/master/design_patterns/Abstract_Factory_Pattern)
+## [实例](https://github.com/shiyangqin/Qinsy/tree/master/Design_Patterns/Simple_Factory_Pattem)
 
