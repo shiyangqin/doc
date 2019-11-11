@@ -20,4 +20,4 @@
 ### [实现](https://github.com/shiyangqin/Qinsy/tree/master/Design_Patterns/Simple_Factory_Pattern)
 
 <img src="img/SimpleFactoryPattern.jpg" width=500 />
-
+ 

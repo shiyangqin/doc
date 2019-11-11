@@ -1,6 +1,6 @@
 # 类关系
 
-<img src="img/ClassRelationship.jpg" />
+<img src="img/ClassRelationship.jpg" width=500 />
 
 # 设计模式
 
