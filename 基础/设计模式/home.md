@@ -4,7 +4,7 @@
 
 # 设计模式
 
-文档主要参考了[w3c-设计模式](https://www.w3cschool.cn/shejimoshi/)和《设计模式-设计模式 - 可复用的面向对象软件元素》
+文档主要参考了[w3c-设计模式](https://www.w3cschool.cn/shejimoshi/)和《设计模式-可复用面向对象软件的基础》
 
 ## 定义
 
@@ -14,7 +14,7 @@
 
 ## 设计模式的设计原则
 
-<img src="img/DesignPatterns1.jpg" />
+<img src="img/DesignPatterns1.jpg" width=500 />
 
 + 开闭原则（Open Close Principle）
 
@@ -46,7 +46,7 @@
 
 ## 创建型
 
-<img src="img/DesignPatterns3.jpg" />
+<img src="img/DesignPatterns3.jpg" width=700 />
 
 + [Factory Pattern](FactoryPattern.md)
 
@@ -60,12 +60,12 @@
 
 ## 结构型
 
-<img src="img/DesignPatterns4.jpg" />
+<img src="img/DesignPatterns4.jpg" width=700 />
 
 ## 行为型
 
-<img src="img/DesignPatterns5.jpg" />
+<img src="img/DesignPatterns5.jpg" width=700 />
 
 ## J2EE模式
 
-<img src="img/DesignPatterns6.jpg" />
+<img src="img/DesignPatterns6.jpg" width=700 />
