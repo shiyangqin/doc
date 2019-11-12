@@ -27,6 +27,5 @@
 getInstance()方法中需要使用同步锁防止多线程同时进入造成instance被多次实例化。
 
 
-### [实现](https://github.com/shiyangqin/Qinsy/tree/master/DesignPatterns/AbstractFactoryPattern)
+### [实现](https://github.com/shiyangqin/Qinsy/tree/master/DesignPatterns/SingletonPattern)
 
-<img src="img/AbstractFactoryPattern.jpg" width=1000 />
