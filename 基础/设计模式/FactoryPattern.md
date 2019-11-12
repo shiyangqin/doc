@@ -26,7 +26,7 @@
 2. 违背“开放 - 关闭原则”，一旦添加新产品就不得不修改工厂类的逻辑，这样就会造成工厂逻辑过于复杂。
 3. 无法形成基于继承的等级结构
 
-### [实现](https://github.com/shiyangqin/Qinsy/tree/master/Design_Patterns/Simple_Factory_Pattern)
+### [实现](https://github.com/shiyangqin/Qinsy/tree/master/DesignPatterns/SimpleFactoryPattern)
 
 <img src="img/SimpleFactoryPattern.jpg" width=500 />
  
@@ -47,6 +47,6 @@
 3. 虽然保证了工厂方法内的对修改关闭，但对于使用工厂方法的类，如果要更换另外一种产品，仍然需要修改实例化的具体工厂类。
 4. 一个具体工厂只能创建一种具体产品
 
-### [实现](https://github.com/shiyangqin/Qinsy/tree/master/Design_Patterns/Factory_Method_Pattern)
+### [实现](https://github.com/shiyangqin/Qinsy/tree/master/DesignPatterns/FactoryMethodPattern)
 
 <img src="img/FactoryMethodPattern.jpg" width=500 />
