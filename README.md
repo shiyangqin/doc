@@ -15,7 +15,7 @@
    + 前端
 
    + 后端
-      + [python、flask代码实践(github链接)](https://github.com/shiyangqin/Qinsy/tree/master/python_web_flask)
+      + [flask代码实践(github链接)](https://github.com/shiyangqin/Qinsy/tree/master/FlaskTest)
 
    + 数据库
       + [PostgreSQL笔记](数据库/PostgreSQL.md)
