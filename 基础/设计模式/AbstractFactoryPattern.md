@@ -1,5 +1,9 @@
 # Abstract Factory Pattern
 
+在抽象工厂模式中，接口是负责创建一个相关对象的工厂，不需要显式指定它们的类。每个生成的工厂都能按照工厂模式提供对象。
+
+## 意图
+
 提供一个接口以创建一系列相关或相互依赖的对象，而无须指定它们具体的类。
 
 ## 优点
@@ -17,7 +21,6 @@
 ## 注意事项
 
 产品族难扩展，产品等级易扩展。
-
 
 ### [实现](https://github.com/shiyangqin/Qinsy/tree/master/DesignPatterns/AbstractFactoryPattern)
 
