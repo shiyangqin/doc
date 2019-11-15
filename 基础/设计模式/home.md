@@ -62,6 +62,22 @@
 
 <img src="img/DesignPatterns4.jpg" width=700 />
 
++ [Adapter Pattern](AdapterPattern.md)
+
++ [Bridge Pattern](BridgePattern.md)
+
++ [Filter、Criteria Pattern](FilterCriteriaPattern.md)
+
++ [Composite Pattern](CompositePattern.md)
+
++ [Decorator Pattern](DecoratorPattern.md)
+
++ [Facade Pattern](FacadePattern.md)
+
++ [Flyweight Pattern](FlyweightPattern.md)
+
++ [Proxy Pattern](ProxyPattern.md)
+
 ## 行为型
 
 <img src="img/DesignPatterns5.jpg" width=700 />
