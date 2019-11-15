@@ -27,4 +27,4 @@
 
 ## [实现](https://github.com/shiyangqin/Qinsy/tree/master/DesignPatterns/BuilderPattern)
 
-<img src="img/BuilderPattern.jpg" width=700 />
+<img src="img/BuilderPattern.jpg" />

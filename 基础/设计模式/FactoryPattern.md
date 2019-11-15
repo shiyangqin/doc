@@ -32,7 +32,7 @@
 
 ### [实现](https://github.com/shiyangqin/Qinsy/tree/master/DesignPatterns/SimpleFactoryPattern)
 
-<img src="img/SimpleFactoryPattern.jpg" width=500 />
+<img src="img/SimpleFactoryPattern.jpg" />
  
 ## 工厂方法
 
@@ -56,4 +56,4 @@
 
 ### [实现](https://github.com/shiyangqin/Qinsy/tree/master/DesignPatterns/FactoryMethodPattern)
 
-<img src="img/FactoryMethodPattern.jpg" width=500 />
+<img src="img/FactoryMethodPattern.jpg" />

@@ -24,4 +24,4 @@
 
 ## [实现](https://github.com/shiyangqin/Qinsy/tree/master/DesignPatterns/AbstractFactoryPattern)
 
-<img src="img/AbstractFactoryPattern.jpg" width=1000 />
+<img src="img/AbstractFactoryPattern.jpg" />
