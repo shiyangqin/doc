@@ -22,6 +22,6 @@
 
 产品族难扩展，产品等级易扩展。
 
-### [实现](https://github.com/shiyangqin/Qinsy/tree/master/DesignPatterns/AbstractFactoryPattern)
+## [实现](https://github.com/shiyangqin/Qinsy/tree/master/DesignPatterns/AbstractFactoryPattern)
 
 <img src="img/AbstractFactoryPattern.jpg" width=1000 />
