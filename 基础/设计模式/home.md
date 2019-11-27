@@ -68,8 +68,6 @@
 
 + [Bridge Pattern](BridgePattern.md)
 
-+ [Filter、Criteria Pattern](FilterCriteriaPattern.md) 
-
 + [Composite Pattern](CompositePattern.md)
 
 + [Decorator Pattern](DecoratorPattern.md)
