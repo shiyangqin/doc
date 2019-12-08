@@ -24,6 +24,6 @@
 1. 注意划分外部状态和内部状态，否则可能会引起线程安全问题。
 2. 这些类必须有一个工厂对象加以控制。
 
-## [实现](https://github.com/shiyangqin/Qinsy/tree/master/DesignPatterns/FlyweightPattern)
+## [实现](https://github.com/shiyangqin/Qinsy/tree/master/design_patterns/flyweight_pattern)
 
 <img src="img/FlyweightPattern.jpg" />

@@ -26,6 +26,6 @@
 
 适配器不是在详细设计时添加的，而是解决正在服役的项目的问题。
 
-## [实现](https://github.com/shiyangqin/Qinsy/tree/master/DesignPatterns/AdapterPattern)
+## [实现](https://github.com/shiyangqin/Qinsy/tree/master/design_patterns/adapter_pattern)
 
 <img src="img/AdapterPattern.jpg" />

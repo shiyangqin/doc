@@ -24,6 +24,6 @@
 定义时为具体类。
 
 
-## [实现](https://github.com/shiyangqin/Qinsy/tree/master/DesignPatterns/CompositePattern)
+## [实现](https://github.com/shiyangqin/Qinsy/tree/master/design_patterns/composite_pattern)
 
 <img src="img/CompositePattern.jpg" />

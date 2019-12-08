@@ -26,6 +26,6 @@
 
 对于两个独立变化的维度，使用桥接模式再适合不过了。
 
-## [实现](https://github.com/shiyangqin/Qinsy/tree/master/DesignPatterns/BridgePattern)
+## [实现](https://github.com/shiyangqin/Qinsy/tree/master/design_patterns/bridge_pattern)
 
 <img src="img/BridgePattern.jpg" />
