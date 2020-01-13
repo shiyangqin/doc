@@ -84,6 +84,4 @@
 
 + [Chain of Responsibility Pattern](ChainOfResponsibilityPattern.md)
 
-## J2EE模式
-
-<img src="img/DesignPatterns6.jpg" width=700 />
++ [Command Pattern](CommandPattern.md)
