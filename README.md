@@ -18,7 +18,7 @@
       + [flask代码实践](https://github.com/shiyangqin/Qinsy/tree/master/flask_test)
 
    + 数据库
-      + [PostgreSQL笔记](数据库/PostgreSQL.md)
+      + [SQL](数据库/SQL.md)
 
    + 编程思想
       + [代码大全](编程思想/代码大全/代码大全.md)
