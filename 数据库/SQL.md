@@ -101,12 +101,12 @@ select a.id,a.name from test as a
 
 order by：排序
 ```
-select a.id,a.name from test as a order by a.id aesc
+select a.id,a.name from test as a order by a.id asc
 select a.id,a.name from test as a order by a.id desc
 select a.id,a.name from test as a order by a.id nulls first
 select a.id,a.name from test as a order by a.id desc nulls last 
 
-aesc：正序，可省略
+asc：正序，可省略
 desc：倒序
 nulls first：空值放在前
 nulls last：空值放在后
