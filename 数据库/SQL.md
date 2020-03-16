@@ -116,7 +116,7 @@ group by：分组
 ```
 select name from test group by name
 
-查询test中所有的name，相同值合并，带有group by的查询，查询字段必须为group by的字段
+查询test中所有的name，相同值合并。带有group by的查询，查询字段必须为group by的字段
 ```
 
 offset，limit：分页
@@ -143,7 +143,7 @@ select id,name from test where id in (1,2)
 like：模糊匹配
 ```
 select id,name from test where name like '%测%'
-查询name值中汉有“测”字的记录
+查询name值中包含“测”字的记录
 ```
 
 inner join：内连接
