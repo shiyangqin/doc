@@ -58,12 +58,6 @@ delete from table_name [WHERE condition]
 例：delete from test_1 where id=1 and name='测试'
 ```
 
-+ delete：删除少量多表中数据
-
-```
-
-```
-
 + drop：删除表
 
 ```
