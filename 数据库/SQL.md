@@ -50,12 +50,18 @@ select <新建表列名> into <新建表名> from <源表名>
 
 ### 删
 
-+ delete：删除少量表中数据
++ delete：删除少量单表中数据
 
 ```
 delete from table_name [WHERE condition]
 
 例：delete from test_1 where id=1 and name='测试'
+```
+
++ delete：删除少量多表中数据
+
+```
+
 ```
 
 + drop：删除表
