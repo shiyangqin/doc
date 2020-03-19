@@ -27,8 +27,5 @@
 
 + 工具清单
    
-   + [Git笔记](Git/Git.md)
-   
    + Linux
-      + [linux命令笔记](Linux/linux命令.md)
       + [supervisor进程管理+安装和使用笔记](Linux/supervisor.md)
