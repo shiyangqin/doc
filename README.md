@@ -6,29 +6,24 @@
 
 # doc
 
-+ 技术清单
-   + 基础
-      + [算法](基础/算法/home.md)
-      + [数据结构](基础/数据结构/home.md)
-      + [设计模式](基础/设计模式/home.md)
++ 基础
+   + [算法](基础/算法/home.md)
+   + [数据结构](基础/数据结构/home.md)
+   + [设计模式](基础/设计模式/home.md)
 
-   + 前端
++ python
+   + [flask代码实践](https://github.com/shiyangqin/Qinsy/tree/master/flask_test)
 
-   + 后端
-      + [flask代码实践](https://github.com/shiyangqin/Qinsy/tree/master/flask_test)
++ 数据库
+   + [SQL](数据库/SQL.md)
+   + [事务的四大特性与隔离级别](数据库/事务的四大特性与隔离级别.md)
+   + [使用er图设计数据库表结构](数据库/使用er图设计创建数据库.md)
 
-   + 数据库
-      + [SQL](数据库/SQL.md)
-      + [事务的四大特性与隔离级别](数据库/事务的四大特性与隔离级别.md)
-      + [使用er图设计数据库表结构](数据库/使用er图设计创建数据库.md)
++ 编程思想
+   + [代码大全](编程思想/代码大全/代码大全.md)
 
-   + 编程思想
-      + [代码大全](编程思想/代码大全/代码大全.md)
-
-+ 工具清单
-   
-   + Linux
-      + [supervisor进程管理+安装和使用笔记](Linux/supervisor.md)
++ Linux
+   + [supervisor进程管理+安装和使用笔记](Linux/supervisor.md)
 
 + GitHub图片无法显示问题解决
 
