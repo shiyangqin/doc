@@ -23,7 +23,7 @@
    + [代码大全](编程思想/代码大全/代码大全.md)
 
 + Linux
-   + [supervisor进程管理+安装和使用笔记](Linux/supervisor.md)
+   + [supervisor安装和使用笔记](Linux/supervisor.md)
 
 + GitHub图片无法显示问题解决
 
