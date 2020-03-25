@@ -25,3 +25,4 @@
 ## [实现](https://github.com/shiyangqin/Qinsy/tree/master/design_patterns/command_pattern)
 
 <img src="img/CommandPattern.jpg" />
+ 

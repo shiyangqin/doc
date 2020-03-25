@@ -44,7 +44,7 @@
 
 ## 设计模式的分类
 
-<img src="img/DesignPatterns2.jpg" width=400 />
+<img src="img/DesignPatterns2.jpg" width=300 />
 
 ## 创建型
 
