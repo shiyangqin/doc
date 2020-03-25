@@ -23,7 +23,9 @@
    + [代码大全](编程思想/代码大全/代码大全.md)
 
 + Linux
-   + [supervisor安装和使用笔记](Linux/supervisor.md)
+   + [Centos7安装Python3.7](Linux/Centos7安装Python3.7.md)
+   + [supervisor](Linux/supervisor.md)
+   + [docker](Linux/docker.md)
 
 + GitHub图片无法显示问题解决
 
@@ -51,5 +53,4 @@
 151.101.184.133    avatars7.githubusercontent.com
 151.101.184.133    avatars8.githubusercontent.com
 # GitHub End
-
 ```
