@@ -1,3 +1,9 @@
++ [Centos7安装Python3.7](#Centos7安装Python3.7)
++ [pip安装psycopy2报错问题解决方案](#pip安装psycopy2报错问题解决方案)
+
+
+### Centos7安装Python3.7
+
 + 安装相关编译工具
 
 ```
@@ -36,4 +42,16 @@ ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip3
 ```
 python3 -V
 pip3 -V
+```
+
+### pip安装psycopy2报错问题解决方案
+```
+pip3 install psycopy2 Error: pg_config executable not found.
+
+解决方案1：
+ pip3 install psycopg2-binary
+
+解决方案2：
+yum install python-devel postgresql-devel
+pip3 install psycopg2
 ```
