@@ -50,6 +50,8 @@ systemctl start docker
 
 ## docker命令
 
+本文档命令并不全，想看详细的文档还是看官方文档较好
+
 官方命令文档：https://docs.docker.com/engine/reference/commandline/docker/
 
 #### info|version
@@ -181,12 +183,6 @@ docker export centos > centos_export.tar
 docker import http://example.com/exampleimage.tgz
 ```
 
-
-
-
-
-
-
 #### 容器生命周期管理
 
 + run
@@ -194,10 +190,78 @@ docker import http://example.com/exampleimage.tgz
 docker run:创建一个新的容器并运行一个命令
 
 --name="nginx-lb": 为容器指定一个名称；
--p: 指定端口映射，格式为：主机(宿主)端口:容器端口
 -d: 后台运行容器，并返回容器ID
 -i: 以交互模式运行容器，通常与-t同时使用
 -t: 为容器重新分配一个伪输入终端，通常与-i同时使用
+-p: 指定端口映射，格式为：主机(宿主)端口:容器端口
+-v: 绑定挂载卷，只读
+-w: 设置工作目录
+--restart: 重新启动策略
+           no-默认策略，在容器退出时不重启容器。
+           on-failure，在容器非正常退出时（退出状态非0），才会重启容器
+           on-failure:3，在容器非正常退出时重启容器，最多重启3次
+           unless-stopped，在容器退出时总是重启容器，但是不考虑在Docker守护进程启动时就已经停止了的容器
+           always：在容器退出时总是重启容器
+
+例：
+docker run -itd -p 443:443 -v /opt:/opt --name mycentos centos:latest /bin/bash
+```
+
++ start/stop/restart
+```
+docker start :启动一个或多个已经被停止的容器
+docker stop :停止一个运行中的容器
+docker restart :重启容器
+
+例：
+docker start mycentos
+docker stop mycentos
+docker restart mycentos
+```
+
++ kill
+```
+docker kill: 杀死一个或多个正在运行的容器
+
+例：
+docker kill mycentos
+```
+
++ rm
+```
+docker rm 删除容器。
+-f: 强制删除正在运行的容器
+-l: 移除容器之间的链接
+-v: 删除与容器关联的卷
+例：
+
+docker rm mycentos
+```
+
++ pause/unpause
+```
+docker pause :暂停容器中所有的进程。
+docker unpause :恢复容器中所有的进程。
+
+例：
+docker pause mycentos
+docker unpause mycentos
+```
+
++ create
+```
+docker create: 创建一个新的容器但不启动它
+语法同run
+```
+
++ exec
+```
+docker exec:在正在运行的容器中运行命令
+-i:即使未连接STDIN也保持打开状态
+-t:分配伪TTY
+
+例：
+docker exec -it mycentos bash
 ```
 
 #### 容器操作
@@ -205,7 +269,122 @@ docker run:创建一个新的容器并运行一个命令
 + ps
 ```
 docker ps:列出容器
+-a:显示所有容器，包括未运行的
+
+
+例：
+docker ps -a
+```
+
++ inspect
+```
+docker inspect: 获取容器/镜像的信息
+
+例：
+docker inspect mycentos
+```
+
++ top
+```
+docker top: :查看容器中运行的进程信息
+
+例：
+docker top mycentos
+```
+
++ attach
+```
+docker attach: 连接到正在运行中的容器。
+
+有缺陷，一般不用，一般使用docker exec -it mycentos bash进入容器，使用CTRL + D退出容器
+```
+
++ events
+```
+docker events : 从服务器获取实时事件
+
+具体用法看官方文档：https://docs.docker.com/engine/reference/commandline/events/
+```
+
++ log
+```
+docker logs : 获取容器的日志
+
+例：
+docker logs mycentos
+```
+
++ wait
+```
+docker wait : 阻塞运行直到容器停止，然后打印出它的退出代码。
+
+例：
+运行docker wait，它将阻塞直到容器退出。
+docker wait mycentos
+
+在另一个终端，停止容器。docker wait上面的命令返回退出代码。
+docker stop mycentos
+
+docker wait会输出0
+```
+
++ export/import
+```
+docker export:将容器的文件系统导出为tar存档
+docker import:从tar存档文件中创建镜像。
+
+例：
+docker export centos > centos_export.tar
+docker import http://example.com/exampleimage.tgz
+```
+
++ port
+```
+docker port: 列出端口映射或容器的特定映射
+
+例：
+docker port mycentos
+```
+
++ commit
+```
+docker commit: 从容器创建一个新的镜像。
 
 例：
 docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                  NAMES
+7b277c456aa7        centos:latest       "/bin/bash"         2 hours ago         Up 12 minutes       0.0.0.0:443->443/tcp   mycentos
+
+docker commit mycentos mycentos 或 docker commit 7b277c456aa7 mycentos
+
+docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+mycentos            latest              998085ae3c1f        6 seconds ago       239MB
+centos              latest              470671670cac        2 months ago        237MB
+```
+
++ cp
+```
+docker cp: 在容器和本地文件系统之间复制文件/文件夹
+
+例：
+将主机/opt/asset文件夹拷贝到容器mycentos的/opt/目录下
+docker cp /opt/asset 7b277c456aa7:/opt/ 或 docker cp /opt/asset mycentos:/opt/
+
+将主机/opt/asset文件夹拷贝到容器mycentos的/opt/asset文件夹下
+docker cp /opt/asset 7b277c456aa7:/opt/asset 或 docker cp /opt/asset mycentos:/opt/asset
+
+将容器mycentos的/opt/asset拷贝到主机的/opt目录中
+docker cp 7b277c456aa7:/opt/asset /opt/ 或 docker cp mycentos:/opt/asset /opt/
+```
+
++ diff
+```
+docker diff: 检查容器文件系统上文件或目录的更改
+A: 文件或目录已添加
+D: 文件或目录已删除
+C: 文件或目录已更改
+
+例：
+docker diff mycentos
 ```
