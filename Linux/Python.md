@@ -49,7 +49,7 @@ pip3 -V
 pip3 install psycopy2 Error: pg_config executable not found.
 
 解决方案1：
- pip3 install psycopg2-binary
+pip3 install psycopg2-binary
 
 解决方案2：
 yum install python-devel postgresql-devel
