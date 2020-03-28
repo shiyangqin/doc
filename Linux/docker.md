@@ -113,7 +113,7 @@ docker images
 + rmi
 ```
 docker rmi:删除本地镜像
-
+-f: 	强制删除
 
 docker images：
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
@@ -235,7 +235,7 @@ docker rm 删除容器。
 -v: 删除与容器关联的卷
 例：
 
-docker rm mycentos
+docker rm -f mycentos
 ```
 
 + pause/unpause
