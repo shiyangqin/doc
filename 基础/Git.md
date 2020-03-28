@@ -4,6 +4,8 @@
 
 ### Git初始化设置
 
+关于git的使用，我一般使用TortoriseGit进行操作，简单快捷易上手。注：有时会因为Git和TortoriseGit版本差异出现问题。
+
 + 设置用户名和邮箱
 ```
 git config --global user.name '用户名'
