@@ -1,18 +1,18 @@
 ### supervisor安装
 ```
+yum install epel-release
 yum install supervisor
+systemctl enable supervisord
 ```
 ### 配置supervisor
 ```
-修改配置文件：
-vim /etc/supervisor/supervisord.conf
-修改最后两行，去掉前面的分号
-[include]
-files = ./*.ini
+配置文件：/etc/supervisord.conf
+
+/etc/supervisord.conf最后引入了/etc/supervisord.d/*.ini
+我们只需要在/etc/supervisord.d/下新建自己的ini文件并进行配置，就可以直接使用了
 
 编写自己的配置文件：
-cd /etc/supervisor
-vim sap.ini
+vim /etc/supervisord.d/sap.ini
 
 sap.ini示例：
 [program:run]
@@ -20,22 +20,17 @@ directory=/opt/acd_response
 command=/bin/python /opt/acd_response/run.py
 autostart=true
 stopwaitsecs=3600
-```
 
-### 启动和关闭
-```
 启动：
-supervisord -c /etc/supervisor/supervisord.conf
-关闭：
-ps -ef|grep super，然后kill -9 杀进程
+supervisord -c /etc/supervisord.conf
 ```
 
 ### 常用命令
 ```
 supervisorctl status：查看所有进程的状态
-supervisorctl stop es/all：停止es/停止所有进程
-supervisorctl start es：启动es/启动所有进程
-supervisorctl restart es: 重启es/重启所有进程
-supervisorctl update ：配置文件修改后可以使用该命令加载新的配置
-supervisorctl reload: 重新启动配置中的所有程序
+supervisorctl start 进程名：启动进程
+supervisorctl stop 进程名：停止进程
+supervisorctl restart 进程名：重启进程
+supervisorctl update ：重新载入配置文件
+supervisorctl shutdown 关闭supervisord
 ```
