@@ -2,7 +2,7 @@
 ```
 yum install supervisor
 ```
-### 配置Supervisor
+### 配置supervisor
 ```
 修改配置文件：
 vim /etc/supervisor/supervisord.conf
