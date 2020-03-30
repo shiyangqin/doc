@@ -2,7 +2,7 @@
 ```
 yum install epel-release
 yum install supervisor
-systemctl enable supervisord
+systemctl enable supervisord 设置开机启动
 ```
 ### 配置supervisor
 ```

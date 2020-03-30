@@ -49,7 +49,7 @@ yum install docker-ce docker-ce-cli containerd.io
 + 启动docker
 
 ```
-systemctl start docker
+systemctl start docker 设置开机启动
 ```
 
 ## docker命令
