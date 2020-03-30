@@ -6,6 +6,8 @@ Nginx是一款自由的、开源的、高性能的HTTP服务器和反向代理�
 
 创建容器：docker run -itd --network=host --name mycentos centos:latest /bin/bash
 
+官方文档：http://nginx.org/en/docs/
+
 ## 使用yum安装
 ```
 yum install -y nginx
@@ -102,12 +104,32 @@ events事件指令是设定Nginx的工作模式及连接数上限
 
 server 块是对虚拟主机的配置，server标志定义虚拟主机开始，
 
-1. listen用于指定虚拟主机的服务端口，
-2. server_name 用来指定IP地址或域名，多个域名之间用空格分开。
-3. index用于设定访问的默认首页地址.。
-4. root指令用于指定虚拟主机的网页根目录，这个目录可以是相对路径，也可以是绝对路径。
-5. charset用于设置网页的默认编码格式。
-6. access_log 用来指定虚拟主机的访问日志存放路径，最后的main 用于指定访问日志的输出格式。
++ listen用于指定虚拟主机的服务端口
++ server_name 用来指定IP地址或域名，多个域名之间用空格分开
++ index用于设定访问的默认首页地址
++ root指令用于指定虚拟主机的网页根目录，这个目录可以是相对路径，也可以是绝对路径
++ charset用于设置网页的默认编码格式
++ access_log 用来指定虚拟主机的访问日志存放路径，最后的main 用于指定访问日志的输出格式
+
+示例：
+```
+http:
+
+server {
+        listen  443;
+        server_name  test;
+
+        ...
+}
+
+https:
+server {
+        listen  443 ssl;
+        server_name  test;
+
+        ...
+}
+```
 
 #### location块
 

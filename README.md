@@ -24,9 +24,9 @@
    + [代码大全](编程思想/代码大全/代码大全.md)
 
 + Linux
+   + [Python](Linux/Python.md)
    + [docker](Linux/docker.md)
    + [nginx](Linux/nginx.md)
    + [supervisor](Linux/supervisor.md)
    + [gunicorn](Linux/gunicorn.md)
-   + [Python](Linux/Python.md)
    + [使用docker+supervisor+nginx+flask+gunicorn部署web项目](Linux/使用docker+supervisor+nginx+flask+gunicorn部署web项目.md)
