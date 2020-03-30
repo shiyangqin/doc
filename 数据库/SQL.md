@@ -13,7 +13,6 @@
 ### 增
 
 + 插入明确的值
-
 ```
 insert into table_name(
     column_name,[,..]
@@ -26,7 +25,6 @@ values(
 ```
 
 + 插入查询的值
-
 ```
 insert into table_name(
     column_name,[,..]
@@ -37,7 +35,6 @@ insert into table_name(
 ```
 
 + 直接拿现有表数据创建一个新表并填充
-
 ```
 select <新建表列名> into <新建表名> from <源表名>
  
@@ -50,16 +47,19 @@ select <新建表列名> into <新建表名> from <源表名>
 
 ### 删
 
-+ delete：删除少量单表中数据
-
++ delete：删除单表中数据
 ```
 delete from table_name [WHERE condition]
 
 例：delete from test_1 where id=1 and name='测试'
 ```
 
-+ drop：删除表
++ delete：删除多表中数据
+```
+PostgreSQL不支持一条delete语句删除多表中的数据，只能多次删，如果有外键关联，删的时候注意先删除底层数据表数据
+```
 
++ drop：删除表
 ```
 drop table table_name
 
@@ -67,7 +67,6 @@ drop table table_name
 ```
 
 + truncate：快速删除表中海量数据，保留表结构
-
 ```
 truncate table table_name
 
