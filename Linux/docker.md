@@ -1,11 +1,14 @@
 + [centos7安装docker](#centos7安装docker)
 + [docker命令](#docker命令)
     + [info|version](#info|version)
-    + [镜像仓库](#镜像仓库)
-    + [本地镜像管理](#本地镜像管理)
-    + [容器生命周期管理](#容器生命周期管理)
-    + [容器操作](#容器操作)
-
+    + 镜像
+        + [镜像仓库](#镜像仓库)
+        + [本地镜像管理](#本地镜像管理)
+    + 容器
+        + [容器生命周期管理](#容器生命周期管理)
+        + [容器操作](#容器操作)
+    + 网络
+        + [网络操作](#网络操作)
 
 ## centos7安装docker
 
@@ -196,6 +199,8 @@ docker run:创建一个新的容器并运行一个命令
 -p: 指定端口映射，格式为：主机(宿主)端口:容器端口
 -v: 绑定挂载卷，只读
 -w: 设置工作目录
+--network：将容器连接到网络，network相关请查看网络操作部分文档
+--network-alias：为容器添加网络别名
 --restart: 重新启动策略
            no-默认策略，在容器退出时不重启容器。
            on-failure，在容器非正常退出时（退出状态非0），才会重启容器
@@ -387,4 +392,86 @@ C: 文件或目录已更改
 
 例：
 docker diff mycentos
+```
+
+#### docker网络操作
+
+客户端和守护程序API都必须至少为 1.21， 才能使用此命令。docker version在客户端上使用命令检查客户端和守护程序API版本。
+
++ docker network connect
+```
+将容器连接到网络
+--alias：为容器添加别名
+--driver-opt：网络的驱动程序选项
+--ip：IPv4地址（例如172.30.100.104）
+--ip6：IPv6地址（例如2001：db8 :: 33）
+
+例：
+启动容器时将其连接到网络：
+docker run -itd --network=multi-host-network --network-alias my_net busybox
+
+将正在运行的容器添加到网络：
+docker network connect multi-host-network container1
+
+将正在运行的容器添加到网络，并为容器创建网络别名：
+docker network connect --alias mysql multi-host-network container2
+```
+
++ docker network create
+```
+创建一个网络
+-d: 驱动程序来管理网络,有2个值供选择：bridge：桥接网络（不给-d参数时，默认是桥接网络）；overlay：覆盖网络
+
+例：
+docker network create overlay my-net
+docker network create -d overlay my-net
+```
+
++ docker network disconnect
+```
+断开容器与网络的连接
+-f: 强制断开容器与网络的连接
+
+例：
+docker network disconnect -f multi-host-network container1
+```
+
++ docker network inspect
+```
+在一个或多个网络上显示详细信息
+-f: 使用给定的Go模板格式化输出
+-v: 详细输出以进行诊断
+
+例：
+docker network inspect host
+```
+
++ docker network ls
+```
+列出网络
+
+例：
+docker network ls
+NETWORK ID          NAME                DRIVER              SCOPE
+b362ee7d74e8        bridge              bridge              local
+24a43bf8e2e7        host                host                local
+ab5585fc37ff        none                null                local
+```
+
++ docker network prune
+```
+删除所有未使用的网络
+--filter： 提供过滤器值（例如'until ='）
+-f: 不提示确认
+
+例：
+docker network prune
+```
+
++ docker network rm
+```
+删除一个或多个网络
+
+例：
+docker network rm my-net
 ```
