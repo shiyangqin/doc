@@ -1,10 +1,9 @@
++ [使用yum安装](#使用yum安装)
++ [配置nginx](#配置nginx)
++ [常用命令](#常用命令)
+
+
 Nginx是一款自由的、开源的、高性能的HTTP服务器和反向代理服务器
-
-本文档是在docker容器中进行，镜像为官方的centos:latest
-
-获取镜像：docker pull centos
-
-创建容器：docker run -itd --network=host --name mycentos centos:latest /bin/bash
 
 官方文档：http://nginx.org/en/docs/
 
@@ -133,3 +132,6 @@ server {
 
 #### location块
 
+
+
+## 常用命令

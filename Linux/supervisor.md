@@ -1,9 +1,15 @@
++ [supervisor安装](#supervisor安装)
++ [配置supervisor](#配置supervisor)
++ [常用命令](#常用命令)
+
+
 ### supervisor安装
 ```
-yum install epel-release
-yum install supervisor
+yum install -y epel-release
+yum install -y supervisor
 systemctl enable supervisord 设置开机启动
 ```
+
 ### 配置supervisor
 ```
 配置文件：/etc/supervisord.conf

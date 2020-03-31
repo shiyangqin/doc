@@ -4,13 +4,10 @@
 
 ### Centos7安装Python3.7
 
-+ 安装相关编译工具
++ 安装相关工具
 
 ```
-yum -y groupinstall "Development tools"
-yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel
-yum install libffi-devel -y
-yum install wget
+yum install -y gcc openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel libffi-devel tk-devel wget curl-devel make
 ```
 
 + 下载并解压安装包
@@ -42,6 +39,15 @@ ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip3
 ```
 python3 -V
 pip3 -V
+
+pip3更新：pip3 install --upgrade pip
+```
+
++ 删除安装包
+
+```
+cd /opt
+rm -rf Python*
 ```
 
 ### pip安装psycopy2报错问题解决方案
