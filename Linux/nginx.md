@@ -132,6 +132,34 @@ server {
 
 #### location块
 
-
+由于location配置过于灵活，所以这里不详细写，只写了个人使用的部分
+```
+location / {
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_pass http://localhost:9001/;
+}
+```
 
 ## 常用命令
+
+```
+  -?,-h         : this help
+  -v            : show version and exit
+  -V            : show version and configure options then exit
+  -t            : test configuration and exit
+  -T            : test configuration, dump it and exit
+  -q            : suppress non-error messages during configuration testing
+  -s signal     : send signal to a master process: stop, quit, reopen, reload
+  -p prefix     : set prefix path
+  -c filename   : set configuration file
+  -g directives : set global directives out of configuration file
+
+例：
+启动：nginx -c /etc/nginx/nginx.conf
+
+重新加载配置文件：nginx -s reload
+
+退出：nginx -s quit
+```

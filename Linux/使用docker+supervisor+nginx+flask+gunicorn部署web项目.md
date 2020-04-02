@@ -6,7 +6,7 @@ flask：微型web框架，可快速编写web应用
 
 ## 安装docker
 
-[请查看docker文档](https://github.com/shiyangqin/doc/blob/master/Linux/docker.md)
+[请查看docker文档](docker.md)
 
 ## 创建容器
 
@@ -18,21 +18,23 @@ flask：微型web框架，可快速编写web应用
 
 进入容器：docker exec -it mycentos bash
 
-更新yum: yum update
+更新yum: yum update -y
+
+安装vim: yum install -y vim
 
 ## 安装python3
 
-[请查看python文档](https://github.com/shiyangqin/doc/blob/master/Linux/Python.md)
+[请查看python文档](Python.md)
 
 ## 安装supervisor
 
-[请查看supervisor文档](https://github.com/shiyangqin/doc/blob/master/Linux/supervisor.md)
+[请查看supervisor文档](supervisor.md)
 
 ## 安装nginx
 
-[请查看nginx文档](https://github.com/shiyangqin/doc/blob/master/Linux/nginx.md)
+[请查看nginx文档](nginx.md)
 
 ## 安装gunicorn
 
-[请查看gunicorn文档](https://github.com/shiyangqin/doc/blob/master/Linux/gunicorn.md)
+[请查看gunicorn文档](gunicorn.md)
 

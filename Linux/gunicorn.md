@@ -9,7 +9,7 @@ gunicorn是一个unix上被广泛使用的高性能的Python WSGI HTTP Server。
 ## 直接使用pip安装
 ```
 pip3 install gunicorn
-pip install gevent  使用gevent做异步时才需要安装
+pip3 install gevent  使用gevent做异步时才需要安装
 ```
 
 安装后执行文件在python安装路径的bin目录下（/usr/local/python3/bin/gunicorn）
