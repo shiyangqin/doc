@@ -95,6 +95,8 @@ docker pull:从镜像仓库中拉取或者更新指定镜像
 
 例：
 docker pull centos
+
+使用命令行无法查询镜像的版本，需要查询时，只能上官网查询：https://hub.docker.com/
 ```
 
 + push

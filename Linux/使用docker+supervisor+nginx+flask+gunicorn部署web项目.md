@@ -10,15 +10,15 @@ flask：微型web框架，可快速编写web应用
 
 ## 创建容器
 
-本文档是在docker容器中进行，镜像为官方的centos:latest
+本文档是在docker容器中进行，镜像为官方的centos:centos7
 
-获取镜像：docker pull centos
+获取镜像：docker pull centos:centos7
 
-创建容器：docker run -itd --network=host --name mycentos centos:latest /bin/bash
+创建容器：docker run -itd --network=host --name mc centos:centos7 /bin/bash
 
-进入容器：docker exec -it mycentos bash
+进入容器：docker exec -it mc bash
 
-更新yum: yum update -y
+如果需要的话可以更新yum: yum update -y
 
 安装vim: yum install -y vim
 
