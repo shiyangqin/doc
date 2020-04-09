@@ -26,6 +26,10 @@ flask：微型web框架，可快速编写web应用
 
 [请查看python文档](Python.md)
 
+## 安装gunicorn
+
+[请查看gunicorn文档](gunicorn.md)
+
 ## 安装supervisor
 
 [请查看supervisor文档](supervisor.md)
@@ -33,8 +37,4 @@ flask：微型web框架，可快速编写web应用
 ## 安装nginx
 
 [请查看nginx文档](nginx.md)
-
-## 安装gunicorn
-
-[请查看gunicorn文档](gunicorn.md)
 
