@@ -93,6 +93,16 @@ update table_name set {
 
 查询是开发人员应用最多的，也是最重要的
 
+distinct：去重
+```
+select distinct name from test
+```
+
+coalesce：当查询的字段为空时，给默认值
+```
+select coalesce(name, '默认名称') from test
+```
+
 as：别名
 ```
 select a.id,a.name from test as a
