@@ -218,3 +218,30 @@ with recursive cte as (
     )
 ) select id from cte
 ```
+
+conflict：表中存在主键或具有唯一性字段的情况下，插入数据时，若主键不存在则插入，存在则进行其他操作
+```
+主键存在时更新其他信息：
+insert into test(
+    id, 
+    name, 
+    r_time
+) values (
+    1,
+    '测试',
+    '2020-04-15 14:22:46'
+) on conflict(id) do update set 
+    name='测试',
+    r_time='2020-04-15 14:22:46'
+
+主键存在时不做其他处理：
+insert into test(
+    id, 
+    name, 
+    r_time
+) values (
+    1,
+    '测试',
+    '2020-04-15 14:22:46'
+) on conflict(id) do nothing
+```
