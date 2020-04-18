@@ -17,7 +17,6 @@
 centos7安装docker官方文档：https://docs.docker.com/install/linux/docker-ce/centos/
 
 + 卸载旧版本
-
 ```
 yum remove docker \
            docker-client \
@@ -30,28 +29,48 @@ yum remove docker \
 ```
 
 + 安装Docker依赖
-
 ```
 yum install -y yum-utils device-mapper-persistent-data lvm2
 ```
 
 + 设置稳定的仓库
-
 ```
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
 + 安装 Docker Engine-Community
-
 ```
-yum install docker-ce docker-ce-cli containerd.io
+yum install -y docker-ce docker-ce-cli containerd.io
 ```
 
 + 启动docker
-
 ```
 systemctl start docker
 systemctl enable docker 设置开机启动
+```
+
++ 查看是否安装成功
+```
+docker version
+```
+
++ 修改镜像源为阿里源
+
+进入地址https://cr.console.aliyun.com/
+
+点击左侧镜像加速器，复制加速器地址
+
+修改配置文件/etc/docker/daemon.json
+```
+{
+  "registry-mirrors": ["https://****"]
+}
+```
+
+重启服务
+```
+systemctl daemon-reload
+systemctl restart docker
 ```
 
 ## docker命令
