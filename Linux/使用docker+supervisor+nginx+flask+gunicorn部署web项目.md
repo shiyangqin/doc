@@ -14,7 +14,7 @@ flask：微型web框架，可快速编写web应用
 
 获取镜像：docker pull centos:centos7
 
-创建容器：docker run -itd --network=host --name mc centos:centos7 /bin/bash
+创建容器：docker run -itd -p 80:80 -p 443:443 --name mc centos:centos7 /bin/bash
 
 进入容器：docker exec -it mc bash
 
