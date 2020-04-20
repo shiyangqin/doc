@@ -46,7 +46,7 @@ yum install -y docker-ce docker-ce-cli containerd.io
 + 启动docker
 ```
 systemctl start docker
-systemctl enable docker 设置开机启动
+systemctl enable docker
 ```
 
 + 查看是否安装成功
