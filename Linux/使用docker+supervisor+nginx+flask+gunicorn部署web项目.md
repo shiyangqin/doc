@@ -10,7 +10,7 @@ flask：微型web框架，可快速编写web应用
 
 ## 创建容器
 
-本文档是在docker容器中进行，镜像为官方的centos:centos7
+本文档是在docker容器中进行，镜像为centos:centos7
 
 获取镜像：docker pull centos:centos7
 
