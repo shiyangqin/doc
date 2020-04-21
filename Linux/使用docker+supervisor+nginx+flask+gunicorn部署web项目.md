@@ -14,7 +14,7 @@ flask：微型web框架，可快速编写web应用
 
 获取镜像：docker pull centos:centos7
 
-创建容器：docker run -itd -p 80:80 -p 443:443 --name mc centos:centos7 /bin/bash
+创建容器：docker run -itd -p 80:80 --name mc centos:centos7 /bin/bash
 
 进入容器：docker exec -it mc bash
 
@@ -38,10 +38,12 @@ flask：微型web框架，可快速编写web应用
 
 [请查看nginx文档](nginx.md)
 
-## 创建flask服务
+## 部署flask服务
+
++ 编写flask服务
 ```
-mkdir /opt/App
-vim /opt/App/run.py
+创建App文件夹：mkdir /opt/App
+编辑run.py文件：vim /opt/App/run.py
 -------------------------------------------------
 # -*- coding: utf-8 -*-
 from flask import Flask
@@ -50,16 +52,10 @@ app = Flask(__name__)
 @app.route('/')
 def hello_world():
    return 'Hello World'
-
-if __name__ == '__main__':
-   app.run(host='0.0.0.0', port=9000, debug=True)
-
 -------------------------------------------------
 ```
 
-## 编辑supervisor和nginx配置文件
-
-nginx配置文件：
++ nginx配置文件：
 ```
 # For more information on configuration, see:
 #   * Official English Documentation: http://nginx.org/en/docs/
@@ -100,7 +96,6 @@ http {
 
     server {
         listen       80;
-        listen       443;
         server_name  my_app;
         root         /opt/App;
 
@@ -157,7 +152,7 @@ http {
 
 ```
 
-supervisor配置文件：
++ supervisor配置文件：
 ```
 [program:nginx]
 directory=/
@@ -173,14 +168,20 @@ stopwaitsecs=3600
 
 ```
 
-## 启动服务
++ 启动服务
 ```
 supervisord -c /etc/supervisord.conf
 ```
 
-查看服务状态
++ 查看服务状态
 ```
 supervisorctl
 ```
 
-验证：打开浏览器，输入服务器IP或IP:443，返回Hello World即部署成功
++ 验证
+
+打开浏览器，输入服务器IP，返回Hello World即部署成功
+
++ 保存容器为镜像
+
+docker commit mc mc
