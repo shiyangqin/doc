@@ -500,3 +500,166 @@ docker network rm my-net
 ## Dockerfile
 
 官方文档：https://docs.docker.com/engine/reference/builder/
+
+Dockerfile 是一个文本文件，其内包含了一条条的 指令(Instruction)，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。
+
++ from 指定基础镜像
+```
+FROM centos:centos7
+```
+
++ run 执行命令
+
+其格式有两种：
+
+shell 格式：RUN <命令>，就像直接在命令行中输入的命令一样。
+```
+RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
+```
+
+exec 格式：RUN ["可执行文件", "参数1", "参数2"]
+```
+错误示范：
+FROM centos:centos7
+
+RUN yum install -y gcc openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel libffi-devel tk-devel wget curl-devel make
+RUN wget -P /opt https://www.python.org/ftp/python/3.7.2/Python-3.7.2.tar.xz
+RUN mkdir /usr/local/python3
+RUN tar -xvJf /opt/Python-3.7.2.tar.xz -C /opt
+RUN /opt/Python-3.7.2/configure --prefix=/usr/local/python3
+RUN make
+RUN make install
+```
+
+Dockerfile 中每一个指令都会建立一层，RUN 也不例外。每一个 RUN 都会新建立一层，而上面的这种写法，创建了7层镜像，这是完全没有意义的，正确的写法是:
+```
+FROM centos:centos7
+
+RUN yum install -y gcc openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel libffi-devel tk-devel wget curl-devel make \
+    && wget -P /opt https://www.python.org/ftp/python/3.7.2/Python-3.7.2.tar.xz \
+    && tar -xvJf /opt/Python-3.7.2.tar.xz -C /opt \
+    && mkdir /usr/local/python3 \
+    && /opt/Python-3.7.2/configure --prefix=/usr/local/python3 \
+    && make \
+    && make install \
+    && ln -s /usr/local/python3/bin/python3 /usr/local/bin/python3 \
+    && ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip3 \
+    && rm -rf /opt/Python*
+```
+
+一定要确保每一层只添加真正需要添加的东西，任何无关的东西都应该清理掉。
+
+运行：  
+```
+docker build -t dockerfile:test .
+```
+
++ COPY 复制文件
+
+格式：COPY <源路径>... <目标路径>
+
+```
+COPY package.json /usr/src/app/
+```
+
+<源路径> 可以是多个，甚至可以是通配符，其通配符规则要满足 Go 的 filepath.Match 规则，如：
+```
+COPY hom* /mydir/
+COPY hom?.txt /mydir/
+```
+
+注意在运行命令最后的“.”，“.”表示上下文路径为当前目录
+
+这就引入了上下文的概念。当构建的时候，用户会指定构建镜像上下文的路径，docker build 命令得知这个路径后，会将路径下的所有内容打包，然后上传给 Docker 引擎。这样 Docker 引擎收到这个上下文包后，展开就会获得构建镜像所需的一切文件。
+
+如果在 Dockerfile 中这么写：
+```
+COPY ./package.json /app/
+```
+
+这并不是要复制执行 docker build 命令所在的目录下的 package.json，也不是复制 Dockerfile 所在目录下的 package.json，而是复制 上下文（context） 目录下的 package.json。
+
++ ADD 更高级的复制文件
+
+ADD 指令和 COPY 的格式和性质基本一致。但是在 COPY 基础上增加了一些功能。
+
+<源路径> 可以是一个 URL，这种情况下，Docker 引擎会试图去下载这个链接的文件放到 <目标路径> 去。
+
+如果 <源路径> 为一个 tar 压缩文件的话，压缩格式为 gzip, bzip2 以及 xz 的情况下，ADD 指令将会自动解压缩这个压缩文件到 <目标路径> 去。
+```
+ADD files* /mydir/
+```
+
++ CMD 容器启动命令
+
+CMD 指令的格式和 RUN 相似，也是两种格式：
+
+shell 格式：CMD <命令>
+
+exec 格式：CMD ["可执行文件", "参数1", "参数2"...]
+
++ ENTRYPOINT 入口点
+
+ENTRYPOINT 的格式和 RUN 指令格式一样，分为 exec 格式和 shell 格式。
+
+ENTRYPOINT 的目的和 CMD 一样，都是在指定容器启动程序及参数。ENTRYPOINT 在运行时也可以替代，不过比 CMD 要略显繁琐，需要通过 docker run 的参数 --entrypoint 来指定。
+
++ ENV 设置环境变量
+
+格式有两种：
+
+ENV <key> <value>
+
+ENV <key1>=<value1> <key2>=<value2>...
+
+这个指令很简单，就是设置环境变量而已，无论是后面的其它指令，如 RUN，还是运行时的应用，都可以直接使用这里定义的环境变量
+
++ ARG 构建参数
+
+格式：ARG <参数名>[=<默认值>]
+
+构建参数和 ENV 的效果一样，都是设置环境变量。所不同的是，ARG 所设置的构建环境的环境变量，在将来容器运行时是不会存在这些环境变量的。但是不要因此就使用 ARG 保存密码之类的信息，因为 docker history 还是可以看到所有值的。
+
++ VOLUME 定义匿名卷
+
+格式为：
+
+VOLUME ["<路径1>", "<路径2>"...]
+
+VOLUME <路径>
+
+之前我们说过，容器运行时应该尽量保持容器存储层不发生写操作，对于数据库类需要保存动态数据的应用，其数据库文件应该保存于卷(volume)中
+
++ EXPOSE 声明端口
+
+格式为 EXPOSE <端口1> [<端口2>...]。
+
+EXPOSE 指令是声明运行时容器提供服务端口，这只是一个声明，在运行时并不会因为这个声明应用就会开启这个端口的服务。
+
++ WORKDIR 指定工作目录
+
+格式为 WORKDIR <工作目录路径>。
+
+使用 WORKDIR 指令可以来指定工作目录（或者称为当前目录），以后各层的当前目录就被改为指定的目录，如该目录不存在，WORKDIR 会帮你建立目录。
+
++ USER 指定当前用户
+
+格式：USER <用户名>[:<用户组>]
+
+USER 指令和 WORKDIR 相似，都是改变环境状态并影响以后的层。WORKDIR 是改变工作目录，USER 则是改变之后层的执行 RUN, CMD 以及 ENTRYPOINT 这类命令的身份。
+
++ HEALTHCHECK 健康检查
+
+格式：
+
+HEALTHCHECK [选项] CMD <命令>：设置检查容器健康状况的命令
+
+HEALTHCHECK NONE：如果基础镜像有健康检查指令，使用这行可以屏蔽掉其健康检查指令
+
+HEALTHCHECK 指令是告诉 Docker 应该如何进行判断容器的状态是否正常，这是 Docker 1.12 引入的新指令。
+
++ ONBUILD 为他人做嫁衣裳
+
+格式：ONBUILD <其它指令>。
+
+ONBUILD 是一个特殊的指令，它后面跟的是其它指令，比如 RUN, COPY 等，而这些指令，在当前镜像构建时并不会被执行。只有当以当前镜像为基础镜像，去构建下一级镜像的时候才会被执行。
