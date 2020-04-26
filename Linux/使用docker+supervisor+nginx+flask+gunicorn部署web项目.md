@@ -8,43 +8,10 @@ flask：微型web框架，可快速编写web应用
 
 [请查看docker文档](docker.md)
 
-## 创建容器
+## 编写run文件与其他配置文件
 
-本文档是在docker容器中进行，镜像为centos:centos7
-
-获取镜像：docker pull centos:centos7
-
-创建容器：docker run -itd -p 80:80 --name mc centos:centos7 /bin/bash
-
-进入容器：docker exec -it mc bash
-
-如果需要的话可以更新yum: yum update -y
-
-安装vim: yum install -y vim
-
-## 安装python3
-
-[请查看python文档](Python.md)
-
-## 安装gunicorn
-
-[请查看gunicorn文档](gunicorn.md)
-
-## 安装supervisor
-
-[请查看supervisor文档](supervisor.md)
-
-## 安装nginx
-
-[请查看nginx文档](nginx.md)
-
-## 部署flask服务
-
-+ 编写flask服务
+/opt/dockerfile/run.py
 ```
-创建App文件夹：mkdir /opt/App
-编辑run.py文件：vim /opt/App/run.py
--------------------------------------------------
 # -*- coding: utf-8 -*-
 from flask import Flask
 app = Flask(__name__)
@@ -52,10 +19,24 @@ app = Flask(__name__)
 @app.route('/')
 def hello_world():
    return 'Hello World'
--------------------------------------------------
 ```
 
-+ nginx配置文件：
+/opt/dockerfile/sap.ini
+```
+[program:nginx]
+directory=/
+command=nginx -c /etc/nginx/nginx.conf
+autostart=true
+stopwaitsecs=3600
+
+[program:run]
+directory=/opt/App
+command=/usr/local/python3/bin/gunicorn -k gevent -b 0.0.0.0:9000 -w 1 run:app
+autostart=true
+stopwaitsecs=3600
+```
+
+/opt/dockerfile/nginx.conf
 ```
 # For more information on configuration, see:
 #   * Official English Documentation: http://nginx.org/en/docs/
@@ -148,40 +129,60 @@ http {
 #    }
 
 }
-
-
 ```
 
-+ supervisor配置文件：
+/opt/dockerfile/start.sh
 ```
-[program:nginx]
-directory=/
-command=nginx -c /etc/nginx/nginx.conf
-autostart=true
-stopwaitsecs=3600
-
-[program:run]
-directory=/opt/App
-command=/usr/local/python3/bin/gunicorn -k gevent -b 0.0.0.0:9000 -w 1 run:app
-autostart=true
-stopwaitsecs=3600
-
-```
-
-+ 启动服务
-```
+#!/bin/sh
 supervisord -c /etc/supervisord.conf
+/bin/bash
 ```
 
-+ 查看服务状态
+## 编写Dockerfile
+
+结合其他文档中的服务安装方法，编写Dockerfile：
 ```
-supervisorctl
+FROM centos:centos7
+
+ADD dockerfile/run.py /opt/App/run.py
+ADD dockerfile/start.sh /start.sh
+
+RUN yum install -y gcc openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel libffi-devel tk-devel wget curl-devel make \
+    && wget -P /opt https://www.python.org/ftp/python/3.8.2/Python-3.8.2.tar.xz \
+    && tar -xvJf /opt/Python-3.8.2.tar.xz -C /opt \
+    && mkdir /usr/local/python3 \
+    && /opt/Python-3.8.2/configure --prefix=/usr/local/python3 \
+    && make \
+    && make install \
+    && ln -s /usr/local/python3/bin/python3 /usr/local/bin/python3 \
+    && ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip3 \
+    && rm -rf /opt/Python* \
+    && pip3 install flask \
+    && pip3 install gunicorn \
+    && pip3 install gevent \
+    && yum install -y epel-release \
+    && yum install -y supervisor \
+    && yum install -y nginx \
+    && chmod 777 /start.sh
+
+ADD dockerfile/sap.ini /etc/supervisord.d/sap.ini
+ADD dockerfile/nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
 ```
 
-+ 验证
+在/opt下执行命令
+```
+docker build -t mc:test .
+```
 
-打开浏览器，输入服务器IP，返回Hello World即部署成功
+## 启动容器，验证服务
 
-+ 保存容器为镜像
+启动容器：
+```
+docker run -itd -p 80:80 --name mc mc:test /start.sh
+```
 
-docker commit mc mc
+验证服务：
+
+打开浏览器，输入服务器地址，返回“Hello World”表示成功
