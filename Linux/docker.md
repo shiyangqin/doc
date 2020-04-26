@@ -673,7 +673,7 @@ docker network rm my-net
 
 #### 使用Docker网络进行容器互联
 
-生成容器的镜像请查看[使用docker+supervisor+nginx+flask+gunicorn部署web项目文档](使用docker+supervisor+nginx+flask+gunicorn部署web项目.md)
+生成容器的镜像请查看[使用docker+supervisor+nginx+flask+gunicorn部署web项目](使用docker+supervisor+nginx+flask+gunicorn部署web项目.md)
 
 + 创建网络
 ```
