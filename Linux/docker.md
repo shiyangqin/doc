@@ -9,8 +9,7 @@
         + [容器操作](#容器操作)
 + [Dockerfile](#Dockerfile)
 + [Docker数据卷](#Docker数据卷)
-+ [Docker容器互联](#Docker容器互联)
-    + [Docker网络](#Docker网络)
++ [Docker网络](#Docker网络)
     + [使用Docker网络进行容器互联](#使用Docker网络进行容器互联)
 
 
@@ -299,7 +298,6 @@ docker exec -it mycentos bash
 docker ps:列出容器
 -a:显示所有容器，包括未运行的
 
-
 例：
 docker ps -a
 ```
@@ -540,11 +538,19 @@ EXPOSE 80
 
 ## Docker数据卷
 
-暂未学习
+docker volume命令：
 
-## Docker容器互联
++ docker volume create
 
-#### Docker网络
++ docker volume inspect
+
++ docker volume ls
+
++ docker volume prune
+
++ docker volume rm
+
+## Docker网络
 
 客户端和守护程序API都必须至少为 1.21， 才能使用此命令。docker version在客户端上使用命令检查客户端和守护程序API版本。
 
