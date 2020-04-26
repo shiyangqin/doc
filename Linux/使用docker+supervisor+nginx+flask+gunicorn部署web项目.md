@@ -185,4 +185,4 @@ docker run -itd -p 80:80 --name mc mc:test /start.sh
 
 验证服务：
 
-打开浏览器，输入服务器地址，返回“Hello World”表示成功
+打开浏览器，输入服务器IP地址，返回“Hello World”表示成功
