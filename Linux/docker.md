@@ -7,9 +7,11 @@
     + 容器
         + [容器生命周期管理](#容器生命周期管理)
         + [容器操作](#容器操作)
-    + 网络
-        + [网络操作](#网络操作)
 + [Dockerfile](#Dockerfile)
++ [Docker数据卷](#Docker数据卷)
++ [Docker容器互联](#Docker容器互联)
+    + [Docker网络](#Docker网络)
+    + [使用Docker网络进行容器互联](#使用Docker网络进行容器互联)
 
 
 ## centos7安装docker
@@ -220,7 +222,7 @@ docker run:创建一个新的容器并运行一个命令
 -p: 指定端口映射，格式为：主机(宿主)端口:容器端口
 -v: 绑定挂载卷，只读
 -w: 设置工作目录
---network：将容器连接到网络，network相关请查看网络操作部分文档
+--network：将容器连接到网络
 --network-alias：为容器添加网络别名
 --restart: 重新启动策略
            no-默认策略，在容器退出时不重启容器。
@@ -415,88 +417,6 @@ C: 文件或目录已更改
 docker diff mycentos
 ```
 
-#### 网络操作
-
-客户端和守护程序API都必须至少为 1.21， 才能使用此命令。docker version在客户端上使用命令检查客户端和守护程序API版本。
-
-+ docker network connect
-```
-将容器连接到网络
---alias：为容器添加别名
---driver-opt：网络的驱动程序选项
---ip：IPv4地址（例如172.30.100.104）
---ip6：IPv6地址（例如2001：db8 :: 33）
-
-例：
-启动容器时将其连接到网络：
-docker run -itd --network=multi-host-network --network-alias my_net busybox
-
-将正在运行的容器添加到网络：
-docker network connect multi-host-network container1
-
-将正在运行的容器添加到网络，并为容器创建网络别名：
-docker network connect --alias mysql multi-host-network container2
-```
-
-+ docker network create
-```
-创建一个网络
--d: 驱动程序来管理网络,有2个值供选择：bridge：桥接网络（不给-d参数时，默认是桥接网络）；overlay：覆盖网络
-
-例：
-docker network create overlay my-net
-docker network create -d overlay my-net
-```
-
-+ docker network disconnect
-```
-断开容器与网络的连接
--f: 强制断开容器与网络的连接
-
-例：
-docker network disconnect -f multi-host-network container1
-```
-
-+ docker network inspect
-```
-在一个或多个网络上显示详细信息
--f: 使用给定的Go模板格式化输出
--v: 详细输出以进行诊断
-
-例：
-docker network inspect host
-```
-
-+ docker network ls
-```
-列出网络
-
-例：
-docker network ls
-NETWORK ID          NAME                DRIVER              SCOPE
-b362ee7d74e8        bridge              bridge              local
-24a43bf8e2e7        host                host                local
-ab5585fc37ff        none                null                local
-```
-
-+ docker network prune
-```
-删除所有未使用的网络
---filter： 提供过滤器值（例如'until ='）
--f: 不提示确认
-
-例：
-docker network prune
-```
-
-+ docker network rm
-```
-删除一个或多个网络
-
-例：
-docker network rm my-net
-```
-
 ## Dockerfile
 
 官方文档：https://docs.docker.com/engine/reference/builder/
@@ -663,3 +583,117 @@ HEALTHCHECK 指令是告诉 Docker 应该如何进行判断容器的状态是否
 格式：ONBUILD <其它指令>。
 
 ONBUILD 是一个特殊的指令，它后面跟的是其它指令，比如 RUN, COPY 等，而这些指令，在当前镜像构建时并不会被执行。只有当以当前镜像为基础镜像，去构建下一级镜像的时候才会被执行。
+
+## Docker数据卷
+
+暂未学习
+
+## Docker容器互联
+
+#### Docker网络
+
+客户端和守护程序API都必须至少为 1.21， 才能使用此命令。docker version在客户端上使用命令检查客户端和守护程序API版本。
+
++ docker network connect
+```
+将容器连接到网络
+--alias：为容器添加别名
+--driver-opt：网络的驱动程序选项
+--ip：IPv4地址（例如172.30.100.104）
+--ip6：IPv6地址（例如2001：db8 :: 33）
+
+例：
+启动容器时将其连接到网络：
+docker run -itd --network=multi-host-network --network-alias my_net busybox
+
+将正在运行的容器添加到网络：
+docker network connect multi-host-network container1
+
+将正在运行的容器添加到网络，并为容器创建网络别名：
+docker network connect --alias mysql multi-host-network container2
+```
+
++ docker network create
+```
+创建一个网络
+-d: 驱动程序来管理网络,有2个值供选择：bridge：桥接网络（不给-d参数时，默认是桥接网络）；overlay：覆盖网络
+
+例：
+docker network create -d bridge my-net
+```
+
++ docker network disconnect
+```
+断开容器与网络的连接
+-f: 强制断开容器与网络的连接
+
+例：
+docker network disconnect -f multi-host-network container1
+```
+
++ docker network inspect
+```
+在一个或多个网络上显示详细信息
+-f: 使用给定的Go模板格式化输出
+-v: 详细输出以进行诊断
+
+例：
+docker network inspect host
+```
+
++ docker network ls
+```
+列出网络
+
+例：
+docker network ls
+NETWORK ID          NAME                DRIVER              SCOPE
+b362ee7d74e8        bridge              bridge              local
+24a43bf8e2e7        host                host                local
+ab5585fc37ff        none                null                local
+```
+
++ docker network prune
+```
+删除所有未使用的网络
+--filter： 提供过滤器值（例如'until ='）
+-f: 不提示确认
+
+例：
+docker network prune
+```
+
++ docker network rm
+```
+删除一个或多个网络
+
+例：
+docker network rm my-net
+```
+
+#### 使用Docker网络进行容器互联
+
+生成容器的镜像请查看[使用docker+supervisor+nginx+flask+gunicorn部署web项目文档](使用docker+supervisor+nginx+flask+gunicorn部署web项目.md)
+
++ 创建网络
+```
+docker network create my-net
+```
+
++ 将容器连接到创建的网络
+```
+将运行中的容器添加到网络：
+docker network connect --alias mc1 my-net mc1
+
+生成容器时设置网络：
+docker run -itd --network my-net --network-alias mc2 --name mc2 mc:test
+```
+
++ 验证：
+```
+在mc1中测试是否能够连接到mc2：
+ping mc2
+
+在mc2中访问mc1中的服务(返回“Hello World[”表示成功)：
+curl mc1
+```
