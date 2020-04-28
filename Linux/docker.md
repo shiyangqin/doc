@@ -518,6 +518,18 @@ ADD files* /mydir/
 
 + VOLUME 定义匿名卷
 
+VOLUME ["<路径1>", "<路径2>"...]
+
+VOLUME <路径>
+
+```
+VOLUME /data
+```
+/data 目录就会在运行时自动挂载为匿名卷，可以在运行时可以覆盖这个挂载设置
+```
+docker run -itd -p 80:80 -v mc_data:/data --name mc mc:test /start.sh
+```
+
 + EXPOSE 声明端口
 
 格式为 EXPOSE <端口1> [<端口2>...]。
@@ -538,17 +550,53 @@ EXPOSE 80
 
 ## Docker数据卷
 
-docker volume命令：
+在Docker中，要想实现数据的持久化（所谓Docker的数据持久化即数据不随着容器的结束而结束），需要将数据从宿主机挂载到容器中。docker volume命令就是用于实现数据持久化的一种方式
 
-+ docker volume create
++ docker volume create 创建一个卷
+```
+docker volume create mc_data
+```
 
-+ docker volume inspect
++ docker volume inspect 查看一个或多个数据卷信息
+```
+[root@bogon ~]# docker volume inspect af5c305219cb058bc0a63d001737686e8ce3c177fc8dfef14ab44854a36d291a
+[
+    {
+        "CreatedAt": "2020-04-20T17:13:28+08:00",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker/volumes/af5c305219cb058bc0a63d001737686e8ce3c177fc8dfef14ab44854a36d291a/_data",
+        "Name": "af5c305219cb058bc0a63d001737686e8ce3c177fc8dfef14ab44854a36d291a",
+        "Options": null,
+        "Scope": "local"
+    }
+]
 
-+ docker volume ls
+```
 
-+ docker volume prune
++ docker volume ls 查看现有数据卷列表
+```
+[root@bogon ~]# docker volume ls
+DRIVER              VOLUME NAME
+local               af5c305219cb058bc0a63d001737686e8ce3c177fc8dfef14ab44854a36d291a
+```
 
-+ docker volume rm
++ docker volume prune 删除所有未使用的数据卷
+```
+-y 不提示确认
+
+例：
+docker volume prune
+docker volume -y prune
+```
+
++ docker volume rm 删除一个或多个数据卷
+```
+-f 强制删除
+
+例：
+docker volume rm af5c305219cb058bc0a63d001737686e8ce3c177fc8dfef14ab44854a36d291a
+```
 
 ## Docker网络
 
@@ -643,6 +691,7 @@ docker network create my-net
 + 将容器连接到创建的网络
 ```
 将运行中的容器添加到网络：
+docker run -itd -p 80:80 --name mc mc:test /start.sh
 docker network connect --alias mc1 my-net mc1
 
 生成容器时设置网络：
