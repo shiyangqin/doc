@@ -24,7 +24,7 @@ def hello_world():
 /opt/dockerfile/sap.ini
 ```
 [program:nginx]
-directory=/
+directory=/opt
 command=nginx -c /etc/nginx/nginx.conf
 autostart=true
 stopwaitsecs=3600
