@@ -552,6 +552,8 @@ EXPOSE 80
 
 在Docker中，要想实现数据的持久化（所谓Docker的数据持久化即数据不随着容器的结束而结束），需要将数据从宿主机挂载到容器中。docker volume命令就是用于实现数据持久化的一种方式
 
+docker默认存储数据卷的路径为：/var/lib/docker/volumes/<数据卷名称>/
+
 + docker volume create 创建一个卷
 ```
 docker volume create mc_data
@@ -571,7 +573,6 @@ docker volume create mc_data
         "Scope": "local"
     }
 ]
-
 ```
 
 + docker volume ls 查看现有数据卷列表
