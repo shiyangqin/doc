@@ -71,6 +71,37 @@ sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
 
++ shell
+```
+tee ./docker_deploy.sh <<-'DOCKER'
+#!/bin/bash
+yum remove docker \
+           docker-client \
+           docker-client-latest \
+           docker-common \
+           docker-latest \
+           docker-latest-logrotate \
+           docker-logrotate \
+           docker-engine
+yum install -y yum-utils device-mapper-persistent-data lvm2
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum install -y docker-ce docker-ce-cli containerd.io
+systemctl start docker
+systemctl enable docker
+mkdir -p /etc/docker
+tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://kgajrltn.mirror.aliyuncs.com"]
+}
+EOF
+systemctl daemon-reload
+systemctl restart docker
+DOCKER
+sh ./docker_deploy.sh
+rm -rf docker_deploy.sh
+docker version
+```
+
 ## docker命令
 
 本文档命令并不全，想看详细的文档还是看官方文档较好
