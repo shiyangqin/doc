@@ -24,3 +24,38 @@
    + [supervisor](Linux/supervisor.md)
    + [gunicorn](Linux/gunicorn.md)
    + [使用docker+supervisor+nginx+flask+gunicorn部署web项目](Linux/使用docker+supervisor+nginx+flask+gunicorn部署web项目.md)
+
+### 个人日常所遇问题记录
+
++ pip安装psycopy2报错问题解决方案
+```
+pip3 install psycopy2 Error: pg_config executable not found.
+
+解决方案1：
+pip3 install psycopg2-binary
+
+解决方案2：
+yum install python-devel postgresql-devel
+pip3 install psycopg2
+```
+
++ 在Windows上编写的shell文件上传到linux下执行报错
+```
+Windows上文件格式是dos，linux上是unix，需要手动修改
+
+使用vi/vim可以修改脚本的格式
+
+1、vim 打开文件
+
+2、使用 shift + ：进入命令行模式 
+
+3、输入 set ff 会发现 输出的 fileformat = dos 
+
+4、命令行模式下使用 set ff = unix 即可修复问题
+
+也可以使用命令直接在linux上创建文件然后执行:
+tee ./shell.sh <<-'EOF'
+shell脚本内容
+EOF
+sh ./shell.sh
+```
