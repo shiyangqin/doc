@@ -55,25 +55,9 @@ systemctl enable docker
 docker version
 ```
 
-+ 修改镜像源为阿里源
-
-进入地址https://cr.console.aliyun.com/
-
-点击左侧镜像加速器，复制下方代码，直接粘贴复制到centos执行即可
-```
-sudo mkdir -p /etc/docker
-sudo tee /etc/docker/daemon.json <<-'EOF'
-{
-  "registry-mirrors": ["https://***.com"]
-}
-EOF
-sudo systemctl daemon-reload
-sudo systemctl restart docker
-```
-
 + shell
 ```
-tee ./docker_deploy.sh <<-'DOCKER'
+tee ./docker_deploy.sh <<-'EOF'
 #!/bin/bash
 yum remove docker \
            docker-client \
@@ -88,18 +72,26 @@ yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce
 yum install -y docker-ce docker-ce-cli containerd.io
 systemctl start docker
 systemctl enable docker
-mkdir -p /etc/docker
-tee /etc/docker/daemon.json <<-'EOF'
-{
-  "registry-mirrors": ["https://kgajrltn.mirror.aliyuncs.com"]
-}
 EOF
-systemctl daemon-reload
-systemctl restart docker
-DOCKER
 sh ./docker_deploy.sh
 rm -rf docker_deploy.sh
 docker version
+```
+
++ 修改镜像源为阿里源
+
+进入地址https://cr.console.aliyun.com/
+
+点击左侧镜像加速器，复制下方代码，直接粘贴复制到centos执行即可
+```
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://***.com"]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
 ```
 
 ## docker命令
