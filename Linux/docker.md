@@ -446,122 +446,69 @@ Dockerfile 是一个文本文件，其内包含了一条条的 指令(Instructio
 
 + from 指定基础镜像
 ```
-FROM centos:centos7
+格式：FROM <image>或FROM <image>:<tag>
+例：FROM centos:centos7
 ```
 
 + run 执行命令
-
-其格式有两种：
-
-shell 格式：RUN <命令>，就像直接在命令行中输入的命令一样。
 ```
-RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
+格式为 RUN <command> 或 RUN ["executable", "param1", "param2"]
+例：RUN mkdir /usr/local/python3
 ```
 
-exec 格式：RUN ["可执行文件", "参数1", "参数2"]
-```
-错误示范：
-FROM centos:centos7
-
-RUN yum install -y gcc openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel libffi-devel tk-devel wget curl-devel make
-RUN wget -P /opt https://www.python.org/ftp/python/3.7.2/Python-3.7.2.tar.xz
-RUN mkdir /usr/local/python3
-RUN tar -xvJf /opt/Python-3.7.2.tar.xz -C /opt
-RUN /opt/Python-3.7.2/configure --prefix=/usr/local/python3
-RUN make
-RUN make install
-```
-
-Dockerfile 中每一个指令都会建立一层，RUN 也不例外。每一个 RUN 都会新建立一层，而上面的这种写法，创建了7层镜像，这是完全没有意义的，正确的写法是:
-```
-FROM centos:centos7
-
-RUN yum install -y gcc openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel libffi-devel tk-devel wget curl-devel make \
-    && wget -P /opt https://www.python.org/ftp/python/3.7.2/Python-3.7.2.tar.xz \
-    && tar -xvJf /opt/Python-3.7.2.tar.xz -C /opt \
-    && mkdir /usr/local/python3 \
-    && /opt/Python-3.7.2/configure --prefix=/usr/local/python3 \
-    && make \
-    && make install \
-    && ln -s /usr/local/python3/bin/python3 /usr/local/bin/python3 \
-    && ln -s /usr/local/python3/bin/pip3 /usr/local/bin/pip3 \
-    && rm -rf /opt/Python*
-```
-
-一定要确保每一层只添加真正需要添加的东西，任何无关的东西都应该清理掉。
-
-运行：  
-```
-docker build -t dockerfile:test .
-```
+注：RUN越少越好，多个命令可以用&&连接
 
 + COPY 复制文件
-
-格式：COPY <源路径>... <目标路径>
-
 ```
-COPY package.json /usr/src/app/
+格式：COPY <src> <dest>
+例：COPY ./package.json /usr/src/app/
 ```
-
-<源路径> 可以是多个，甚至可以是通配符，其通配符规则要满足 Go 的 filepath.Match 规则，如：
-```
-COPY hom* /mydir/
-COPY hom?.txt /mydir/
-```
-
-注意在运行命令最后的“.”，“.”表示上下文路径为当前目录
-
-这就引入了上下文的概念。当构建的时候，用户会指定构建镜像上下文的路径，docker build 命令得知这个路径后，会将路径下的所有内容打包，然后上传给 Docker 引擎。这样 Docker 引擎收到这个上下文包后，展开就会获得构建镜像所需的一切文件。
-
-如果在 Dockerfile 中这么写：
-```
-COPY ./package.json /app/
-```
-
-这并不是要复制执行 docker build 命令所在的目录下的 package.json，也不是复制 Dockerfile 所在目录下的 package.json，而是复制 上下文（context） 目录下的 package.json。
 
 + ADD 更高级的复制文件
-
-ADD 指令和 COPY 的格式和性质基本一致。但是在 COPY 基础上增加了一些功能。
-
-<源路径> 可以是一个 URL，这种情况下，Docker 引擎会试图去下载这个链接的文件放到 <目标路径> 去。
-
-如果 <源路径> 为一个 tar 压缩文件的话，压缩格式为 gzip, bzip2 以及 xz 的情况下，ADD 指令将会自动解压缩这个压缩文件到 <目标路径> 去。
 ```
-ADD files* /mydir/
+格式：ADD <src> <dest>
+例：ADD ./package.json /usr/src/app/
 ```
 
-+ CMD 容器启动命令
-
-+ ENTRYPOINT 入口点
+注：ADD 指令是在 COPY 基础上增加了一些功能。<源路径> 可以是一个 URL，这种情况下，Docker 引擎会试图去下载这个链接的文件放到 <目标路径> 去。如果 <源路径> 为一个 tar 压缩文件的话，压缩格式为 gzip, bzip2 以及 xz 的情况下，ADD 指令将会自动解压缩这个压缩文件到 <目标路径> 去。
 
 + ENV 设置环境变量
-
-+ ARG 构建参数
+```
+格式：ENV <key> <value>
+例：ENV POSTGRES_PASSWORD postgres
+```
 
 + VOLUME 定义匿名卷
-
-VOLUME ["<路径1>", "<路径2>"...]
-
-VOLUME <路径>
-
 ```
-VOLUME /data
-```
-/data 目录就会在运行时自动挂载为匿名卷，可以在运行时可以覆盖这个挂载设置
-```
-docker run -itd -p 80:80 -v mc_data:/data --name mc mc:test /start.sh
+格式：VOLUME ["/data"]
+例：VOLUME /data
 ```
 
-+ EXPOSE 声明端口
+注：可以被启动容器时的-v参数覆盖
 
-格式为 EXPOSE <端口1> [<端口2>...]。
-
-EXPOSE 指令是声明运行时容器提供服务端口，这只是一个声明，在运行时并不会因为这个声明应用就会开启这个端口的服务。
-
++ EXPOSE 声明容器暴露的端口号
 ```
-EXPOSE 80
+格式：EXPOSE <port> [<port>...]
+例：EXPOSE 80
 ```
+
+注：可以被启动容器时的-p参数覆盖
+
++ CMD 容器启动命令， 只能有一条
+```
+格式：CMD ["executable","param1","param2"]
+例：CMD ["supervisord", "-n", "-c", "/etc/supervisord.conf"]
+```
+
+注：CMD只能执行有持续前台输出的命令，如果是后台任务，容器会直接退出
+
++ ENTRYPOINT 入口点，只能有一个
+```
+格式：ENTRYPOINT ["executable", "param1", "param2"]
+例：["supervisord", "-c", "/etc/supervisord.conf"]
+```
+
++ ARG 构建参数
 
 + WORKDIR 指定工作目录
 
