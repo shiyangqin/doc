@@ -3,9 +3,17 @@
 
 ### 使用docker部署PostgreSQL
 
-+ 下载官方镜像
++ Dodkerfile
 ```
-docker pull postgres:12.2
+FROM postgres:12.2
+
+ENV POSTGRES_USER postgres
+ENV POSTGRES_PASSWORD postgres
+ENV POSTGRES_DB oa_data
+
+ADD ./pg.sql /docker-entrypoint-initdb.d/
+
+EXPOSE 5432
 ```
 
 + 创建数据卷
@@ -13,25 +21,18 @@ docker pull postgres:12.2
 docker volume create pg_data
 ```
 
++ 构建镜像
+```
+docker build -t pg:test .
+```
+
 + 运行容器
 ```
-docker run -itd -p 5432:5432 -v pg_data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=postgres --name pg postgres:12.2
+docker run -itd -p 5432:5432 -v pg_data:/var/lib/postgresql/data --name pg pg:test
 
 -p: 指定映射端口
 -v: 绑定数据卷
 -e: 设置密码
-```
-
-+ shell
-```
-tee ./pg_deploy.sh <<-'EOF'
-#!/bin/bash
-docker pull postgres:12.2
-docker volume create pg_data
-docker run -itd -p 5432:5432 -v pg_data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=postgres --name pg postgres:12.2
-EOF
-sh ./pg_deploy.sh
-rm -rf pg_deploy.sh
 ```
 
 ### psql命令

@@ -131,21 +131,11 @@ http {
 }
 ```
 
-/opt/dockerfile/start.sh
-```
-#!/bin/sh
-supervisord -c /etc/supervisord.conf
-/bin/bash
-```
-
 ## 编写Dockerfile
 
 结合其他文档中的服务安装方法，编写Dockerfile：
 ```
 FROM centos:centos7
-
-ADD dockerfile/run.py /opt/App/run.py
-ADD dockerfile/start.sh /start.sh
 
 RUN yum install -y gcc openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel libffi-devel tk-devel wget curl-devel make \
     && wget -P /opt https://www.python.org/ftp/python/3.8.2/Python-3.8.2.tar.xz \
@@ -162,11 +152,13 @@ RUN yum install -y gcc openssl-devel bzip2-devel expat-devel gdbm-devel readline
     && pip3 install gevent \
     && yum install -y epel-release \
     && yum install -y supervisor \
-    && yum install -y nginx \
-    && chmod 777 /start.sh
+    && yum install -y nginx
 
+ADD dockerfile/run.py /opt/App/run.py
 ADD dockerfile/sap.ini /etc/supervisord.d/sap.ini
 ADD dockerfile/nginx.conf /etc/nginx/nginx.conf
+
+CMD ["supervisord", "-n", "-c", "/etc/supervisord.conf"]
 
 EXPOSE 80
 ```
@@ -180,7 +172,7 @@ docker build -t mc:test .
 
 启动容器：
 ```
-docker run -itd -p 80:80 --name mc mc:test /start.sh
+docker run -itd -p 80:80 --name mc mc:test
 ```
 
 验证服务：
