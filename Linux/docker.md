@@ -444,7 +444,7 @@ docker diff mycentos
 
 Dockerfile 是一个文本文件，其内包含了一条条的 指令(Instruction)，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。
 
-+ from 指定基础镜像
++ FROM 指定基础镜像
 ```
 格式：FROM <image>或FROM <image>:<tag>
 例：FROM centos:centos7
@@ -462,7 +462,7 @@ Dockerfile 是一个文本文件，其内包含了一条条的 指令(Instructio
 例：WORKDIR /opt
 ```
 
-+ run 执行命令
++ RUN 执行命令
 ```
 格式为 RUN <command> 或 RUN ["executable", "param1", "param2"]
 例：RUN mkdir /usr/local/python3
