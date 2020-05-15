@@ -29,7 +29,7 @@ def hello_world():
 ```ini
 [program:nginx]
 directory=/opt
-command=nginx -c /etc/nginx/nginx.conf
+command=nginx -c /etc/nginx/nginx.conf -g 'daemon off;'
 autostart=true
 stopwaitsecs=3600
 
