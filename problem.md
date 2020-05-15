@@ -2,8 +2,8 @@
 
 + [GitHub图片无法显示问题解决](#GitHub图片无法显示问题解决)
 + [pip安装psycopy2报错问题解决方案](#pip安装psycopy2报错问题解决方案)
-+ [在Windows上编写的shell文件上传到linux下执行报错](在Windows上编写的shell文件上传到linux下执行报错)
-+ [python3.7调用kafka包报错](python3.7调用kafka包报错)
++ [在Windows上编写的shell文件上传到linux下执行报错](#在Windows上编写的shell文件上传到linux下执行报错)
++ [python3.7调用kafka包报错](#python3.7调用kafka包报错)
 
 ___
 
