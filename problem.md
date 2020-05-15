@@ -3,7 +3,7 @@
 + [GitHub图片无法显示问题解决](#GitHub图片无法显示问题解决)
 + [pip安装psycopy2报错问题解决方案](#pip安装psycopy2报错问题解决方案)
 + [在Windows上编写的shell文件上传到linux下执行报错](#在Windows上编写的shell文件上传到linux下执行报错)
-+ [python3.7调用kafka包报错](#python37调用kafka包报错)
++ [python3调用kafka包报错](#python3调用kafka包报错)
 
 ___
 
@@ -70,7 +70,7 @@ EOF
 sh ./shell.sh
 ```
 
-## python3.7调用kafka包报错
+## python3调用kafka包报错
 
 ```txt
 python3.7新增关键字：async、await
@@ -80,5 +80,5 @@ kafka-python 用到了关键字async，产生了冲突
 将kafka-python中的async改名
 
 解决方案2：
-更换python版本
+更换到3.7以下的python版本
 ```
