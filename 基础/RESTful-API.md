@@ -17,3 +17,18 @@ REST全称是Representational State Transfer，直接翻译的意思是"表现�
 5. DELETE：删除资源
 
 简单来说就是url地址中只包含名词表示资源，使用http动词表示动作进行操作资源
+
+## 例
+
+我没有具体用过，只是根据概念想得例子
+
+```txt
+GET     /auth       # 获取账户信息
+POST    /auth       # 新建账户信息
+PUT     /auth       # 更新账户信息（参数为账户的全部信息）
+PATCH   /auth       # 更新账户信息（参数为账户的部分信息）
+DELETE  /auth       # 删除账户信息
+
+GET     /rank               # 获取排行榜信息
+GET     /rank/hotsales      # 获取热销榜
+```
