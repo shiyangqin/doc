@@ -7,7 +7,7 @@
   + [Git/Github](基础/Git.md)
 
 + python
-  + [flask代码实践](https://github.com/shiyangqin/Qinsy/tree/master/flask_test)
+  + [flask代码实践](https://github.com/shiyangqin/OA)
 
 + 数据库
   + [SQL](数据库/SQL.md)
