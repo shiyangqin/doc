@@ -1,5 +1,10 @@
 # 使用docker+supervisor+nginx+flask+gunicorn部署web项目
 
++ [安装docker](#安装docker)
++ [编写run文件与其他配置文件](#编写run文件与其他配置文件)
++ [编写Dockerfile构建镜像](#编写Dockerfile构建镜像)
++ [启动容器](#启动容器)
+
 docker：非常流行的容器技术，本文是用其搭建centos虚拟环境  
 supervisor: 进程管理工具  
 nginx：高性能反向代理服务器  
@@ -136,7 +141,7 @@ http {
 }
 ```
 
-## 编写Dockerfile
+## 编写Dockerfile构建镜像
 
 结合其他文档中的服务安装方法，编写Dockerfile：
 
@@ -175,7 +180,7 @@ EXPOSE 80
 docker build -t mc:test .
 ```
 
-## 启动容器，验证服务
+## 启动容器
 
 启动容器：
 
