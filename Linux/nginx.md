@@ -1,4 +1,4 @@
-# Nginx
+# nginx
 
 + [使用yum安装](#使用yum安装)
 + [配置nginx](#配置nginx)
