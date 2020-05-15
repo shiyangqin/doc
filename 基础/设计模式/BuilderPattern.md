@@ -25,6 +25,6 @@
 
 与工厂模式的区别是：建造者模式更加关注与零件装配的顺序。
 
-## [实现](https://github.com/shiyangqin/Qinsy/tree/master/design_patterns/builder_pattern)
+## [实现](https://github.com/shiyangqin/DesignPatterns/tree/master/builder_pattern)
 
 <img src="img/BuilderPattern.jpg" />

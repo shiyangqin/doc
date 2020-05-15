@@ -23,4 +23,4 @@
 
 可代替继承。
 
-## [实现](https://github.com/shiyangqin/Qinsy/tree/master/design_patterns/decorator_pattern)
+## [实现](https://github.com/shiyangqin/DesignPatterns/tree/master/decorator_pattern)

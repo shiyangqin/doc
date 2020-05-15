@@ -26,6 +26,6 @@
 
 在层次化结构中，可以使用外观模式定义系统中每一层的入口。
 
-## [实现](https://github.com/shiyangqin/Qinsy/tree/master/design_patterns/facade_pattern)
+## [实现](https://github.com/shiyangqin/DesignPatterns/tree/master/facade_pattern)
 
 <img src="img/FacadePattern.jpg" />

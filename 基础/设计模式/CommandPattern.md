@@ -22,7 +22,7 @@
 
 
 
-## [实现](https://github.com/shiyangqin/Qinsy/tree/master/design_patterns/command_pattern)
+## [实现](https://github.com/shiyangqin/DesignPatterns/tree/master/command_pattern)
 
 <img src="img/CommandPattern.jpg" />
  

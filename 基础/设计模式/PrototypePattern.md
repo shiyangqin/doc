@@ -30,4 +30,4 @@
 
 与通过对一个类进行实例化来构造新对象不同的是，原型模式是通过拷贝一个现有对象生成新对象的。
 
-## [实现](https://github.com/shiyangqin/Qinsy/tree/master/design_patterns/prototype_pattern)
+## [实现](https://github.com/shiyangqin/DesignPatterns/tree/master/prototype_pattern)

@@ -25,7 +25,7 @@
 2. 在不明确指定接收者的情况下，向多个对象中的一个提交一个请求。
 3. 可处理一个请求的对象集合应被动态指定。
 
-## [实现](https://github.com/shiyangqin/Qinsy/tree/master/design_patterns/chain_of_responsibility_pattern)
+## [实现](https://github.com/shiyangqin/DesignPatterns/tree/master/chain_of_responsibility_pattern)
 
 <img src="img/ChainOfResponsibilityPattern.jpg" />
  
