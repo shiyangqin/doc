@@ -1,9 +1,10 @@
 # 使用docker+supervisor+nginx+flask+gunicorn部署web项目
 
 + [安装docker](#安装docker)
-+ [编写run文件与其他配置文件](#编写run文件与其他配置文件)
-+ [编写Dockerfile构建镜像](#编写Dockerfile构建镜像)
-+ [启动容器](#启动容器)
++ [部署单纯的测试服务](#部署单纯的测试服务)
+  + [编写run文件与其他配置文件](#编写run文件与其他配置文件)
+  + [编写Dockerfile构建镜像](#编写Dockerfile构建镜像)
+  + [启动容器](#启动容器)
 + [部署带有pg数据库和redis的web项目](#部署带有pg数据库和redis的web项目)
 
 docker：非常流行的容器技术，本文是用其搭建centos虚拟环境  
@@ -16,7 +17,9 @@ flask：微型web框架，可快速编写web应用
 
 [请查看docker文档](docker.md)
 
-## 编写run文件与其他配置文件
+## 部署单纯的测试服务
+
+### 编写run文件与其他配置文件
 
 /opt/dockerfile/run.py
 
@@ -142,7 +145,7 @@ http {
 }
 ```
 
-## 编写Dockerfile构建镜像
+### 编写Dockerfile构建镜像
 
 结合其他文档中的服务安装方法，编写Dockerfile：
 
@@ -181,7 +184,7 @@ EXPOSE 80
 docker build -t mc:test .
 ```
 
-## 启动容器
+### 启动容器
 
 启动容器：
 
@@ -194,5 +197,13 @@ docker run -itd -p 80:80 --name mc mc:test
 打开浏览器，输入服务器IP地址，返回“Hello World”表示成功
 
 ## 部署带有pg数据库和redis的web项目
+
+在上面的基础上增加了一下内容：
+
+1. PG数据库镜像的构建，设置PG数据库的初始化操作
+2. redis
+3. volume的创建和绑定，实现数据持久化
+4. 使用桥接网络进行容器互联
+5. 对过程进行了优化，只需执行启动命令，然后等待部署完成即可
 
 [请查看OA代码库](https://github.com/shiyangqin/OA)
