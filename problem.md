@@ -1,18 +1,21 @@
+# 个人日常所遇问题记录
+
 + [GitHub图片无法显示问题解决](#GitHub图片无法显示问题解决)
 + [pip安装psycopy2报错问题解决方案](#pip安装psycopy2报错问题解决方案)
 + [在Windows上编写的shell文件上传到linux下执行报错](在Windows上编写的shell文件上传到linux下执行报错)
 + [python3.7调用kafka包报错](python3.7调用kafka包报错)
 
 ___
-### GitHub图片无法显示问题解决
+
+## GitHub图片无法显示问题解决
 
 此方法有效，如果失效，自行百度新的地址。2020.3.25
 
-```
+```txt
 打开C:\Windows\System32\drivers\etc\hosts
 在最后添加：
 
-# GitHub Start 
+# GitHub Start
 192.30.253.112    github.com 
 192.30.253.119    gist.github.com
 151.101.184.133    assets-cdn.github.com
@@ -32,8 +35,9 @@ ___
 # GitHub End
 ```
 
-### pip安装psycopy2报错问题解决方案
-```
+## pip安装psycopy2报错问题解决方案
+
+```txt
 pip3 install psycopy2 Error: pg_config executable not found.
 
 解决方案1：
@@ -44,8 +48,9 @@ yum install python-devel postgresql-devel
 pip3 install psycopg2
 ```
 
-### 在Windows上编写的shell文件上传到linux下执行报错
-```
+## 在Windows上编写的shell文件上传到linux下执行报错
+
+```txt
 Windows上文件格式是dos，linux上是unix，需要手动修改
 
 使用vi/vim可以修改脚本的格式
@@ -65,8 +70,9 @@ EOF
 sh ./shell.sh
 ```
 
-### python3.7调用kafka包报错
-```
+## python3.7调用kafka包报错
+
+```txt
 python3.7新增关键字：async、await
 kafka-python 用到了关键字async，产生了冲突
 

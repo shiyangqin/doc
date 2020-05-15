@@ -1,24 +1,26 @@
+# docker
+
 + [centos7安装docker](#centos7安装docker)
 + [docker命令](#docker命令)
-    + [info|version](#info|version)
-    + 镜像
-        + [镜像仓库](#镜像仓库)
-        + [本地镜像管理](#本地镜像管理)
-    + 容器
-        + [容器生命周期管理](#容器生命周期管理)
-        + [容器操作](#容器操作)
+  + [info|version](#info|version)
+  + [镜像仓库](#镜像仓库)
+  + [本地镜像管理](#本地镜像管理)
+  + [容器生命周期管理](#容器生命周期管理)
+  + [容器操作](#容器操作)
 + [Dockerfile](#Dockerfile)
 + [Docker数据卷](#Docker数据卷)
 + [Docker网络](#Docker网络)
-    + [使用Docker网络进行容器互联](#使用Docker网络进行容器互联)
+  + [使用Docker网络进行容器互联](#使用Docker网络进行容器互联)
 
+___
 
 ## centos7安装docker
 
 centos7安装docker官方文档：https://docs.docker.com/install/linux/docker-ce/centos/
 
 + 卸载旧版本
-```
+
+```shell
 yum remove docker \
            docker-client \
            docker-client-latest \
@@ -30,33 +32,39 @@ yum remove docker \
 ```
 
 + 安装Docker依赖
-```
+
+```shell
 yum install -y yum-utils device-mapper-persistent-data lvm2
 ```
 
 + 设置稳定的仓库
-```
+
+```shell
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
 + 安装 Docker Engine-Community
-```
+
+```shell
 yum install -y docker-ce docker-ce-cli containerd.io
 ```
 
 + 启动docker
-```
+
+```shell
 systemctl start docker
 systemctl enable docker
 ```
 
 + 查看是否安装成功
-```
+
+```shell
 docker version
 ```
 
 + shell
-```
+
+```shell
 tee ./docker_deploy.sh <<-'EOF'
 #!/bin/bash
 yum remove docker \
@@ -83,7 +91,8 @@ docker version
 进入地址https://cr.console.aliyun.com/
 
 点击左侧镜像加速器，复制下方代码，直接粘贴复制到centos执行即可
-```
+
+```shell
 sudo mkdir -p /etc/docker
 sudo tee /etc/docker/daemon.json <<-'EOF'
 {
@@ -100,8 +109,9 @@ sudo systemctl restart docker
 
 官方命令文档：https://docs.docker.com/engine/reference/commandline/docker/
 
-#### info|version
-```
+### info|version
+
+```txt
 version:显示 Docker 版本信息。
 info:显示 Docker 系统信息，包括镜像和容器数。
 
@@ -110,10 +120,11 @@ docker version
 docker info
 ```
 
-#### 镜像仓库
+### 镜像仓库
 
 + login/logout
-```
+
+```txt
 docker login : 登陆到一个Docker镜像仓库，如果未指定镜像仓库地址，默认为官方仓库 Docker Hub
 docker logout : 登出一个Docker镜像仓库，如果未指定镜像仓库地址，默认为官方仓库 Docker Hub
 
@@ -123,7 +134,8 @@ docker logout localhost:8080
 ```
 
 + search
-```
+
+```txt
 docker search:从Docker Hub查找镜像
 
 例：
@@ -131,7 +143,8 @@ docker search centos
 ```
 
 + pull
-```
+
+```txt
 docker pull:从镜像仓库中拉取或者更新指定镜像
 
 例：
@@ -141,17 +154,19 @@ docker pull centos
 ```
 
 + push
-```
+
+```txt
 docker push:将本地的镜像上传到镜像仓库,要先登陆到镜像仓库
 
 例：
 docker push myCentos:v1
 ```
 
-#### 本地镜像管理
+### 本地镜像管理
 
 + images
-```
+
+```txt
 docker images：列出本地镜像
 
 例：
@@ -159,7 +174,8 @@ docker images
 ```
 
 + rmi
-```
+
+```txt
 docker rmi:删除本地镜像
 -f: 	强制删除
 
@@ -173,7 +189,8 @@ docker rmi centos:latest
 ```
 
 + tag
-```
+
+```txt
 docker tag:标记本地镜像，将其归入某一仓库。
 
 docker images：
@@ -190,12 +207,14 @@ centos              latest              470671670cac        2 months ago        
 ```
 
 + build
-```
+
+```txt
 docker build:命令用于使用Dockerfile创建镜像。
 ```
 
 + history
-```
+
+```txt
 docker history:查看指定镜像的创建历史。
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
@@ -212,7 +231,8 @@ IMAGE               CREATED             CREATED BY                              
 ```
 
 + save/load
-```
+
+```txt
 docker save:将指定镜像保存成tar存档
 docker load:导入使用docker save命令导出的镜像。
 
@@ -222,7 +242,8 @@ docker load < centos.tar
 ```
 
 + export/import
-```
+
+```txt
 docker export:将容器的文件系统导出为tar存档
 docker import:从tar存档文件中创建镜像。
 
@@ -231,10 +252,11 @@ docker export centos > centos_export.tar
 docker import http://example.com/exampleimage.tgz
 ```
 
-#### 容器生命周期管理
+### 容器生命周期管理
 
 + run
-```
+
+```txt
 docker run:创建一个新的容器并运行一个命令
 
 --name="nginx-lb": 为容器指定一个名称；
@@ -258,7 +280,8 @@ docker run -itd -p 443:443 -v /opt:/opt --name mycentos centos:latest /bin/bash
 ```
 
 + start/stop/restart
-```
+
+```txt
 docker start :启动一个或多个已经被停止的容器
 docker stop :停止一个运行中的容器
 docker restart :重启容器
@@ -270,7 +293,8 @@ docker restart mycentos
 ```
 
 + kill
-```
+
+```txt
 docker kill: 杀死一个或多个正在运行的容器
 
 例：
@@ -278,7 +302,8 @@ docker kill mycentos
 ```
 
 + rm
-```
+
+```txt
 docker rm 删除容器。
 -f: 强制删除正在运行的容器
 -l: 移除容器之间的链接
@@ -289,7 +314,8 @@ docker rm -f mycentos
 ```
 
 + pause/unpause
-```
+
+```txt
 docker pause :暂停容器中所有的进程。
 docker unpause :恢复容器中所有的进程。
 
@@ -299,13 +325,15 @@ docker unpause mycentos
 ```
 
 + create
-```
+
+```txt
 docker create: 创建一个新的容器但不启动它
 语法同run
 ```
 
 + exec
-```
+
+```txt
 docker exec:在正在运行的容器中运行命令
 -i:即使未连接STDIN也保持打开状态
 -t:分配伪TTY
@@ -314,10 +342,11 @@ docker exec:在正在运行的容器中运行命令
 docker exec -it mycentos bash
 ```
 
-#### 容器操作
+### 容器操作
 
 + ps
-```
+
+```txt
 docker ps:列出容器
 -a:显示所有容器，包括未运行的
 
@@ -326,7 +355,8 @@ docker ps -a
 ```
 
 + inspect
-```
+
+```txt
 docker inspect: 获取容器/镜像的信息
 
 例：
@@ -334,7 +364,8 @@ docker inspect mycentos
 ```
 
 + top
-```
+
+```txt
 docker top: :查看容器中运行的进程信息
 
 例：
@@ -342,21 +373,24 @@ docker top mycentos
 ```
 
 + attach
-```
+
+```txt
 docker attach: 连接到正在运行中的容器。
 
 有缺陷，一般不用，一般使用docker exec -it mycentos bash进入容器，使用CTRL + D退出容器
 ```
 
 + events
-```
+
+```txt
 docker events : 从服务器获取实时事件
 
 具体用法看官方文档：https://docs.docker.com/engine/reference/commandline/events/
 ```
 
 + log
-```
+
+```txt
 docker logs : 获取容器的日志
 
 例：
@@ -364,7 +398,8 @@ docker logs mycentos
 ```
 
 + wait
-```
+
+```txt
 docker wait : 阻塞运行直到容器停止，然后打印出它的退出代码。
 
 例：
@@ -378,7 +413,8 @@ docker wait会输出0
 ```
 
 + export/import
-```
+
+```txt
 docker export:将容器的文件系统导出为tar存档
 docker import:从tar存档文件中创建镜像。
 
@@ -388,7 +424,8 @@ docker import http://example.com/exampleimage.tgz
 ```
 
 + port
-```
+
+```txt
 docker port: 列出端口映射或容器的特定映射
 
 例：
@@ -396,7 +433,8 @@ docker port mycentos
 ```
 
 + commit
-```
+
+```txt
 docker commit: 从容器创建一个新的镜像。
 
 例：
@@ -413,7 +451,8 @@ centos              latest              470671670cac        2 months ago        
 ```
 
 + cp
-```
+
+```txt
 docker cp: 在容器和本地文件系统之间复制文件/文件夹
 
 例：
@@ -428,7 +467,8 @@ docker cp 7b277c456aa7:/opt/asset /opt/ 或 docker cp mycentos:/opt/asset /opt/
 ```
 
 + diff
-```
+
+```txt
 docker diff: 检查容器文件系统上文件或目录的更改
 A: 文件或目录已添加
 D: 文件或目录已删除
@@ -445,25 +485,29 @@ docker diff mycentos
 Dockerfile 是一个文本文件，其内包含了一条条的 指令(Instruction)，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。
 
 + FROM 指定基础镜像
-```
+
+```txt
 格式：FROM <image>或FROM <image>:<tag>
 例：FROM centos:centos7
 ```
 
 + USER 指定当前用户
-```
+
+```txt
 格式：USER daemon
 例：USER root
 ```
 
-+ WORKDIR 指定工作目录，为后续的 RUN、CMD、ENTRYPOINT 指令配置工作目录。
-```
++ WORKDIR 指定工作目录，为后续的 RUN、CMD、ENTRYPOINT 指令配置工作目录
+
+```txt
 格式：WORKDIR /path/to/workdir
 例：WORKDIR /opt
 ```
 
 + RUN 执行命令
-```
+
+```txt
 格式为 RUN <command> 或 RUN ["executable", "param1", "param2"]
 例：RUN mkdir /usr/local/python3
 ```
@@ -471,13 +515,15 @@ Dockerfile 是一个文本文件，其内包含了一条条的 指令(Instructio
 注：RUN越少越好，多个命令可以用&&连接
 
 + COPY 复制文件
-```
+
+```txt
 格式：COPY <src> <dest>
 例：COPY ./package.json /usr/src/app/
 ```
 
 + ADD 更高级的复制文件
-```
+
+```txt
 格式：ADD <src> <dest>
 例：ADD ./package.json /usr/src/app/
 ```
@@ -485,7 +531,8 @@ Dockerfile 是一个文本文件，其内包含了一条条的 指令(Instructio
 注：ADD 指令是在 COPY 基础上增加了一些功能。<源路径> 可以是一个 URL，这种情况下，Docker 引擎会试图去下载这个链接的文件放到 <目标路径> 去。如果 <源路径> 为一个 tar 压缩文件的话，压缩格式为 gzip, bzip2 以及 xz 的情况下，ADD 指令将会自动解压缩这个压缩文件到 <目标路径> 去。
 
 + ARG 设置构建参数
-```
+
+```txt
 格式：ARG <key>=<value>
 例：ARG REDIS_SET_PASSWORD=redis
 ```
@@ -493,7 +540,8 @@ Dockerfile 是一个文本文件，其内包含了一条条的 指令(Instructio
 注：ARG设置的参数只在build包括CMD和ENTRYPOINT中有效，在image被创建和container启动之后，无效。
 
 + ENV 设置环境变量
-```
+
+```txt
 格式：ENV <key> <value>
 例：ENV POSTGRES_PASSWORD postgres
 ```
@@ -501,7 +549,8 @@ Dockerfile 是一个文本文件，其内包含了一条条的 指令(Instructio
 注：在Dockerfile中使用，在build docker imag的过程中有效，在image被创建和container启动后作为环境变量依旧也有效，并且可以重写覆盖。
 
 + VOLUME 定义匿名卷
-```
+
+```txt
 格式：VOLUME ["/data"]
 例：VOLUME /data
 ```
@@ -509,7 +558,8 @@ Dockerfile 是一个文本文件，其内包含了一条条的 指令(Instructio
 注：可以被启动容器时的-v参数覆盖
 
 + EXPOSE 声明容器暴露的端口号
-```
+
+```txt
 格式：EXPOSE <port> [<port>...]
 例：EXPOSE 80
 ```
@@ -517,7 +567,8 @@ Dockerfile 是一个文本文件，其内包含了一条条的 指令(Instructio
 注：可以被启动容器时的-p参数覆盖
 
 + CMD 容器启动命令， 只能有一条
-```
+
+```txt
 格式：CMD ["executable","param1","param2"]
 例：CMD ["supervisord", "-n", "-c", "/etc/supervisord.conf"]
 ```
@@ -525,7 +576,8 @@ Dockerfile 是一个文本文件，其内包含了一条条的 指令(Instructio
 注：CMD只能执行有持续前台输出的命令，如果是后台任务，容器会直接退出
 
 + ENTRYPOINT 容器启动命令，只能有一条
-```
+
+```txt
 格式：ENTRYPOINT ["executable", "param1", "param2"]
 例：["supervisord", "-n", "-c", "/etc/supervisord.conf"]
 ```
@@ -543,12 +595,14 @@ Dockerfile 是一个文本文件，其内包含了一条条的 指令(Instructio
 docker默认存储数据卷的路径为：/var/lib/docker/volumes/<数据卷名称>/
 
 + docker volume create 创建一个卷
-```
+
+```txt
 docker volume create mc_data
 ```
 
 + docker volume inspect 查看一个或多个数据卷信息
-```
+
+```txt
 [root@bogon ~]# docker volume inspect af5c305219cb058bc0a63d001737686e8ce3c177fc8dfef14ab44854a36d291a
 [
     {
@@ -564,14 +618,16 @@ docker volume create mc_data
 ```
 
 + docker volume ls 查看现有数据卷列表
-```
+
+```txt
 [root@bogon ~]# docker volume ls
 DRIVER              VOLUME NAME
 local               af5c305219cb058bc0a63d001737686e8ce3c177fc8dfef14ab44854a36d291a
 ```
 
 + docker volume prune 删除所有未使用的数据卷
-```
+
+```txt
 -y 不提示确认
 
 例：
@@ -580,7 +636,8 @@ docker volume -y prune
 ```
 
 + docker volume rm 删除一个或多个数据卷
-```
+
+```txt
 -f 强制删除
 
 例：
@@ -592,7 +649,8 @@ docker volume rm af5c305219cb058bc0a63d001737686e8ce3c177fc8dfef14ab44854a36d291
 客户端和守护程序API都必须至少为 1.21， 才能使用此命令。docker version在客户端上使用命令检查客户端和守护程序API版本。
 
 + docker network connect
-```
+
+```txt
 将容器连接到网络
 --alias：为容器添加别名
 --driver-opt：网络的驱动程序选项
@@ -611,7 +669,8 @@ docker network connect --alias mysql multi-host-network container2
 ```
 
 + docker network create
-```
+
+```txt
 创建一个网络
 -d: 驱动程序来管理网络,有2个值供选择：bridge：桥接网络（不给-d参数时，默认是桥接网络）；overlay：覆盖网络
 
@@ -620,7 +679,8 @@ docker network create -d bridge my-net
 ```
 
 + docker network disconnect
-```
+
+```txt
 断开容器与网络的连接
 -f: 强制断开容器与网络的连接
 
@@ -629,7 +689,8 @@ docker network disconnect -f multi-host-network container1
 ```
 
 + docker network inspect
-```
+
+```txt
 在一个或多个网络上显示详细信息
 -f: 使用给定的Go模板格式化输出
 -v: 详细输出以进行诊断
@@ -639,7 +700,8 @@ docker network inspect host
 ```
 
 + docker network ls
-```
+
+```txt
 列出网络
 
 例：
@@ -651,7 +713,8 @@ ab5585fc37ff        none                null                local
 ```
 
 + docker network prune
-```
+
+```txt
 删除所有未使用的网络
 --filter： 提供过滤器值（例如'until ='）
 -f: 不提示确认
@@ -661,24 +724,27 @@ docker network prune
 ```
 
 + docker network rm
-```
+
+```txt
 删除一个或多个网络
 
 例：
 docker network rm my-net
 ```
 
-#### 使用Docker网络进行容器互联
+### 使用Docker网络进行容器互联
 
 生成容器的镜像请查看[使用docker+supervisor+nginx+flask+gunicorn部署web项目](使用docker+supervisor+nginx+flask+gunicorn部署web项目.md)
 
 + 创建网络
-```
+
+```txt
 docker network create my-net
 ```
 
 + 将容器连接到创建的网络
-```
+
+```txt
 将运行中的容器添加到网络：
 docker run -itd -p 80:80 --name mc mc:test /start.sh
 docker network connect --alias mc1 my-net mc1
@@ -688,7 +754,8 @@ docker run -itd --network my-net --network-alias mc2 --name mc2 mc:test
 ```
 
 + 验证：
-```
+
+```txt
 在mc1中测试是否能够连接到mc2：
 ping mc2
 

@@ -1,14 +1,18 @@
+# Nginx
+
 + [使用yum安装](#使用yum安装)
 + [配置nginx](#配置nginx)
 + [常用命令](#常用命令)
-
 
 Nginx是一款自由的、开源的、高性能的HTTP服务器和反向代理服务器
 
 官方文档：http://nginx.org/en/docs/
 
+___
+
 ## 使用yum安装
-```
+
+```shell
 yum install -y nginx
 ```
 
@@ -16,21 +20,22 @@ yum install -y nginx
 
 配置文件地址：/etc/nginx/nginx.conf
 
-<img src="img/nginx/nginx2.jpg" />
+![nginx](img/nginx/nginx2.jpg)
 
 配置文件解析(图片来源于网络)：
 
-<img src="img/nginx/nginx1.jpg" />
+![nginx](img/nginx/nginx1.jpg)
 
-从图中我们可以看出配置文件主要包含以下几大部分内容：  
-1. main（全局设置）：设置的指令将影响其他所有设置；  
-2. server（主机设置）：指令主要用于指定主机和端口、  
-3. upstream（负载均衡服务器设置）：指令主要用于负载均衡，设置一系列的后端服务器  
+从图中我们可以看出配置文件主要包含以下几大部分内容:
+
+1. main（全局设置）：设置的指令将影响其他所有设置
+2. server（主机设置）：指令主要用于指定主机和端口
+3. upstream（负载均衡服务器设置）：指令主要用于负载均衡，设置一系列的后端服务器
 4. location（URL匹配特定位置的设置）：用于匹配网页位置。  
 
 server继承main，location继承server，upstream既不会继承其他设置也不会被继承。
 
-#### 全局块
+### 全局块
 
 该部分配置主要影响Nginx全局，通常包括下面几个部分：
 
@@ -111,7 +116,8 @@ server 块是对虚拟主机的配置，server标志定义虚拟主机开始，
 + access_log 用来指定虚拟主机的访问日志存放路径，最后的main 用于指定访问日志的输出格式
 
 示例：
-```
+
+```txt
 http:
 
 server {
@@ -133,7 +139,8 @@ server {
 #### location块
 
 由于location配置过于灵活，所以这里不详细写，只写了个人使用的部分
-```
+
+```txt
 location / {
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
@@ -144,7 +151,7 @@ location / {
 
 ## 常用命令
 
-```
+```txt
   -?,-h         : this help
   -v            : show version and exit
   -V            : show version and configure options then exit

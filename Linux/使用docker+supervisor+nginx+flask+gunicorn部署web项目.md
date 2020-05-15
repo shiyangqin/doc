@@ -1,3 +1,5 @@
+# 使用docker+supervisor+nginx+flask+gunicorn部署web项目
+
 docker：非常流行的容器技术，本文是用其搭建centos虚拟环境  
 supervisor: 进程管理工具  
 nginx：高性能反向代理服务器  
@@ -11,7 +13,8 @@ flask：微型web框架，可快速编写web应用
 ## 编写run文件与其他配置文件
 
 /opt/dockerfile/run.py
-```
+
+```python
 # -*- coding: utf-8 -*-
 from flask import Flask
 app = Flask(__name__)
@@ -22,7 +25,8 @@ def hello_world():
 ```
 
 /opt/dockerfile/sap.ini
-```
+
+```ini
 [program:nginx]
 directory=/opt
 command=nginx -c /etc/nginx/nginx.conf
@@ -37,7 +41,8 @@ stopwaitsecs=3600
 ```
 
 /opt/dockerfile/nginx.conf
-```
+
+```conf
 # For more information on configuration, see:
 #   * Official English Documentation: http://nginx.org/en/docs/
 #   * Official Russian Documentation: http://nginx.org/ru/docs/
@@ -134,7 +139,8 @@ http {
 ## 编写Dockerfile
 
 结合其他文档中的服务安装方法，编写Dockerfile：
-```
+
+```Dockerfile
 FROM centos:centos7
 
 RUN yum install -y gcc openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel libffi-devel tk-devel wget curl-devel make \
@@ -164,14 +170,16 @@ EXPOSE 80
 ```
 
 在/opt下执行命令
-```
+
+```shell
 docker build -t mc:test .
 ```
 
 ## 启动容器，验证服务
 
 启动容器：
-```
+
+```shell
 docker run -itd -p 80:80 --name mc mc:test
 ```
 
