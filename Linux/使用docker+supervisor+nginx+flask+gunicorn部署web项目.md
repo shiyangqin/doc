@@ -4,6 +4,7 @@
 + [编写run文件与其他配置文件](#编写run文件与其他配置文件)
 + [编写Dockerfile构建镜像](#编写Dockerfile构建镜像)
 + [启动容器](#启动容器)
++ [部署带有pg数据库和redis的web项目](#部署带有pg数据库和redis的web项目)
 
 docker：非常流行的容器技术，本文是用其搭建centos虚拟环境  
 supervisor: 进程管理工具  
@@ -191,3 +192,7 @@ docker run -itd -p 80:80 --name mc mc:test
 验证服务：
 
 打开浏览器，输入服务器IP地址，返回“Hello World”表示成功
+
+## 部署带有pg数据库和redis的web项目
+
+[请查看OA代码库](https://github.com/shiyangqin/OA)
