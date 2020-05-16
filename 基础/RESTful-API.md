@@ -58,3 +58,5 @@ PUT     /users/id       # 更新指定id的用户信息（参数为账户的全�
 PATCH   /users/id       # 更新指定id的用户信息（参数为账户的部分信息）
 DELETE  /users/id       # 删除指定id的用户信息
 ```
+
+GitHub的[API v3](https://developer.github.com/v3/)是RESTful API的完整实现，可以看一看。
