@@ -48,8 +48,6 @@ DELETE|×|√
 
 ## 例
 
-我没有具体设计过
-
 ```txt
 GET     /users          # 获取全部用户
 GET     /users/id       # 获取指定id的用户
