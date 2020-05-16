@@ -11,13 +11,6 @@ REST全称是Representational State Transfer，直接翻译的意思是"表现�
 
 统一资源标识符，服务器上每一种资源，比如文档、图像、视频片段、程序 都由一个通用资源标识符（Uniform Resource Identifier, 简称"URI"）进行定位。
 
-规范：
-
-1. 不用大写
-2. 用中杠-不用下杠_
-3. 参数列表要encode
-4. URI中的名词表示资源集合，使用复数形式
-
 ## HTTP动词
 
 常用的HTTP动词有下面五个：
@@ -25,7 +18,7 @@ REST全称是Representational State Transfer，直接翻译的意思是"表现�
 1. GET：获取资源（一项或多项）
 2. POST：新建一个资源
 3. PUT：更新资源（客户端提供改变后的完整资源）
-4. PATCH：更新资源（客户端提供改变的属性）
+4. PATCH：更新资源（客户端提供改变的属性，不常用）
 5. DELETE：删除资源
 
 简单来说就是url地址中只包含名词表示资源，使用http动词表示动作进行操作资源
