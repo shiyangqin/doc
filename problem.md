@@ -50,6 +50,8 @@ pip3 install psycopg2
 
 ## 在Windows上编写的shell文件上传到linux下执行报错
 
+vscode创建的没问题，有些软件创建的文件会出现这种错误
+
 ```txt
 Windows上文件格式是dos，linux上是unix，需要手动修改
 
