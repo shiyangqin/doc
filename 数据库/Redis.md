@@ -19,7 +19,7 @@ ECHO message|打印字符串|ECHO "Hello World"
 PING|ping 服务器，验证当前连接是否还可用|PING
 QUIT|关闭连接，退出|QUIT
 SELECT index|选择新的数据库|SELECT 1
-SWAPDB index index|交换同一Redis服务器上的两个DATABASE|SWAPDB 0 1
+SWAPDB index index|交换同一 Redis 服务器上的两个DATABASE|SWAPDB 0 1
 
 ## Keys
 
@@ -27,7 +27,8 @@ SWAPDB index index|交换同一Redis服务器上的两个DATABASE|SWAPDB 0 1
 
 命令|描述|例
 -|-|-
-DEL key [key ...]|删除指定的一批keys|DEL k1 k2 k3
+DEL key [key ...]|删除指定的一批 keys|DEL k1 k2 k3
+DUMP key|序列化给定 key，并返回被序列化的值|DUMP k
 
 ## Hashes
 
@@ -37,18 +38,18 @@ Redis hash 是一个 string 类型的 field 和 value 的映射表
 
 命令|描述|例
 -|-|-
-HSET key field value|设置hash里一个字段的值|HSET k f 'v'
-HMSET key field value [field value ...]|设置hash字段值|HMSET k f1 'v1' f2 'v2'
-HSETNX key field value|当field不存在时，设置hash里一个字段的值|HSETNX k f 'v'f
-HGET key field|获取hash中一个field的值|HGET k f
-HMGET key field [field ...]|获取hash中field的值|HMGET k f1 f2 f3
-HKEYS key|获取hash中所有字段|HKEYS k
-HVALS key|获取hash中所有值|HVALS k
-HGETALL key|获取hash中所有字段和值|HGETALL k
-HLEN key|获取hash中field的数量|HLEN k
-HSTRLEN key field|获取hash中指定field的value的字符串长度|HSTRLEN k f
-HDEL key field [field ...]|删除一个或多个hash的field|HDEL k f
-HEXISTS key field|判断field是否存在于hash中|HEXISTS k f
-HINCRBY key field increment|将hash中指定field的值增加给定数字|HINCRBY k f -5
-HINCRBYFLOAT key field increment|将hash中指定field的值增加给定浮点数|HINCRBYFLOAT k f -3.5
-HSCAN key cursor [MATCH pattern] [COUNT count]|参考 SCAN命令， HSCAN与之类似|略
+HSET key field value|设置 hash 里一个字段的值|HSET k f 'v'
+HMSET key field value [field value ...]|设置 hash 字段值|HMSET k f1 'v1' f2 'v2'
+HSETNX key field value|当 field 不存在时，设置 hash 里一个字段的值|HSETNX k f 'v'f
+HGET key field|获取 hash 中一个 field 的值|HGET k f
+HMGET key field [field ...]|获取 hash中 field 的值|HMGET k f1 f2 f3
+HKEYS key|获取 hash 中所有字段|HKEYS k
+HVALS key|获取 hash 中所有值|HVALS k
+HGETALL key|获取 hash 中所有字段和值|HGETALL k
+HLEN key|获取 hash 中 field 的数量|HLEN k
+HSTRLEN key field|获取 hash 中指定 field 的 value 的字符串长度|HSTRLEN k f
+HDEL key field [field ...]|删除一个或多个 hash 的 field|HDEL k f
+HEXISTS key field|判断 field 是否存在于 hash 中|HEXISTS k f
+HINCRBY key field increment|将 hash 中指定 field 的值增加给定数字|HINCRBY k f -5
+HINCRBYFLOAT key field increment|将 hash 中指定 field 的值增加给定浮点数|HINCRBYFLOAT k f -3.5
+HSCAN key cursor [MATCH pattern] [COUNT count]|参考 SCAN 命令， HSCAN与之类似|略
