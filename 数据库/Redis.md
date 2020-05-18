@@ -1,6 +1,6 @@
 # Redis
 
-[Redis中文官方](Redis中文官方)中的文档已经非常详细了，本文档只是用于熟悉python中的redis函数，用作记录
+[Redis中文官方](Redis中文官方)中的文档已经非常详细了，本文档只是用于熟悉python中的redis函数，用作个人快速查找函数，具体的函数说明请前往官网查看
 
 + [Connection(连接相关操作)](#Connection)
 + [Keys(键相关操作)](#Keys)
@@ -21,29 +21,13 @@ QUIT|关闭连接，退出|QUIT
 SELECT index|选择新的数据库|SELECT 1
 SWAPDB index index|交换同一Redis服务器上的两个DATABASE|SWAPDB 0 1
 
-```txt
-root@6946b28aad4c:/data# redis-cli
-127.0.0.1:6379> auth redis
-OK
-127.0.0.1:6379> echo 'hello world'
-"hello world"
-127.0.0.1:6379> ping
-PONG
-127.0.0.1:6379> select 1
-OK
-127.0.0.1:6379[1]> swapdb 0 1
-OK
-127.0.0.1:6379[1]> quit
-root@6946b28aad4c:/data#
-```
-
 ## Keys
 
 对key进行操作
 
 命令|描述|例
 -|-|-
-DEL key [key ...]删除指定的一批keys
+DEL key [key ...]|删除指定的一批keys|DEL k1 k2 k3
 
 ## Hashes
 
