@@ -20,6 +20,22 @@ QUIT|QUIT|关闭连接，退出|QUIT
 SELECT|SELECT index|选择新的数据库|SELECT 1
 SWAPDB|SWAPDB index index|交换同一Redis服务器上的两个DATABASE|SWAPDB 0 1
 
+```shell
+root@6946b28aad4c:/data# redis-cli
+127.0.0.1:6379> auth redis
+OK
+127.0.0.1:6379> echo 'hello world'
+"hello world"
+127.0.0.1:6379> ping
+PONG
+127.0.0.1:6379> select 1
+OK
+127.0.0.1:6379[1]> swapdb 0 1
+OK
+127.0.0.1:6379[1]> quit
+root@6946b28aad4c:/data#
+```
+
 ## Hashes
 
 Redis hash 是一个 string 类型的 field 和 value 的映射表
