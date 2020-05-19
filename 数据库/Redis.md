@@ -44,7 +44,7 @@ ___
 15|RENAME key newkey<br>将key重命名为newkey|RENAME k nk
 16|RENAMENX key newkey<br>当且仅当 newkey 不存在时，将 key 改名为 newkey|RENAME k nk
 17|RESTORE key ttl serialized-value [REPLACE]<br>反序列化给定的序列化值，并将它和给定的 key 关联|RESTORE k 0 ""
-18|key [BY pattern] [LIMIT offset count] [GET pattern] [ASC\|DESC] [ALPHA] destination|对list、 set 或sorted set进行排序|SORT mylist LIMIT 0 5 ALPHA DESC
+18|key [BY pattern] [LIMIT offset count] [GET pattern] [ASC\|DESC] [ALPHA] destination<br>对list、 set 或sorted set进行排序|SORT mylist LIMIT 0 5 ALPHA DESC
 19|TTL key<br>返回key剩余的过期时间，单位：秒|TTL k
 20|TYPE key<br>返回key所存储的value的数据结构类型|TYPE k
 21|WAIT numslaves timeout<br>阻塞当前客户端|WAIT 2 1000
