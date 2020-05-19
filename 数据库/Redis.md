@@ -1,6 +1,6 @@
 # Redis
 
-[Redis中文官方](Redis中文官方)中的文档已经非常详细了，本文档只是用于熟悉python中的redis函数，用作个人快速查找函数，具体的函数说明请前往官网查看
+[Redis中文官方](http://www.redis.cn/)中的文档已经非常详细了，本文档只是用于熟悉python中的redis函数，用作个人快速查找函数，具体的函数说明请前往官网查看
 
 + [Connection(连接相关操作)](#Connection)
 + [Keys(键相关操作)](#Keys)
