@@ -33,6 +33,22 @@ ___
 4|EXPIRE key seconds<br>设置key的过期秒数|EXPIRE k1 60
 5|EXPIREAT key timestamp<br>给key设置一个时间戳为过期时间|EXPIREAT k1 1293840000
 6|KEYS pattern<br>查找所有符合正则表达式的 key|KEYS t??
+7|MIGRATE host port key destination-db timeout [COPY] [REPLACE]<br>将key从一个实例移到另一个实例|MIGRATE 127.0.0.1 7777 greeting 0 1000
+8|MOVE key db<br>移动一个key到另一个库|MOVE k 1
+9|OBJECT subcommand [arguments [arguments ...]]<br>检查内部的再分配对象|object refcount k<br>object encoding k<br>object idletime k
+10|PERSIST key<br>移除给定key的生存时间|PERSIST k
+11|PEXPIRE key milliseconds<br>以毫秒为单位设置 key 的生存时间|PEXPIRE k 10000
+12|PEXPIREAT key milliseconds-timestamp<br>以毫秒为单位设置 key 的过期 unix 时间戳|PEXPIREAT k 1555555555005
+13|PTTL key<br>以毫秒为单位返回 key 的剩余生存时间|PTTL k
+14|RANDOMKEY<br>从当前数据库返回一个随机的key|RANDOMKEY
+15|RENAME key newkey<br>将key重命名为newkey|RENAME k nk
+16|RENAMENX key newkey<br>当且仅当 newkey 不存在时，将 key 改名为 newkey|RENAME k nk
+17|RESTORE key ttl serialized-value [REPLACE]<br>反序列化给定的序列化值，并将它和给定的 key 关联|RESTORE k 0 ""
+18|key [BY pattern] [LIMIT offset count] [GET pattern] [ASC\|DESC] [ALPHA] destination|对list、 set 或sorted set进行排序|SORT mylist LIMIT 0 5 ALPHA DESC
+19|TTL key<br>返回key剩余的过期时间，单位：秒|TTL k
+20|TYPE key<br>返回key所存储的value的数据结构类型|TYPE k
+21|WAIT numslaves timeout<br>阻塞当前客户端|WAIT 2 1000
+22|SCAN cursor [MATCH pattern] [COUNT count]<br>迭代元素|scan 0
 
 ## Hashes
 
