@@ -73,7 +73,7 @@ Redis Strings 数据类型的相关命令用于管理 redis 字符串值
 14|INCRBYFLOAT key increment<br>将key对应的浮点数加decrement|INCRBYFLOAT k 0.3
 15|MGET key [key ...]<br>MGET key [key ...]|MGET k1 k2 k3
 16|MSET key value [key value ...]<br>设置多个key value|MSET k1 v1 k2 v2 k3 v3
-17|MSETNX key value [key value ...]<br>当key不存在时，设置多个key value
+17|MSETNX key value [key value ...]<br>当key不存在时，设置多个key value|MSETNX key1 "Hello" key2 "there"
 18|PSETEX key milliseconds value<br>设置key value，并且设置key在指定毫秒之后超时过期|PSETEX k 1000
 19|SET key value [EX seconds] [PX milliseconds] [NX\|XX]<br>将键key设定为指定的“字符串”值|SET k "Hello"
 20|SETBIT key offset value<br>设置或者清空key的value(字符串)在offset处的bit值|SETBIT mykey 7 0
