@@ -74,6 +74,13 @@ Redis Strings 数据类型的相关命令用于管理 redis 字符串值
 15|MGET key [key ...]<br>MGET key [key ...]|MGET k1 k2 k3
 16|MSET key value [key value ...]<br>设置多个key value|MSET k1 v1 k2 v2 k3 v3
 17|MSETNX key value [key value ...]<br>当key不存在时，设置多个key value
+18|PSETEX key milliseconds value<br>设置key value，并且设置key在指定毫秒之后超时过期|PSETEX k 1000
+19|SET key value [EX seconds] [PX milliseconds] [NX\|XX]<br>将键key设定为指定的“字符串”值|SET k "Hello"
+20|SETBIT key offset value<br>设置或者清空key的value(字符串)在offset处的bit值|SETBIT mykey 7 0
+21|SETEX key seconds value<br>设置key value，并且设置key在指定秒数之后超时过期|SETEX k 60 v
+22|SETNX key value<br>当key不存在，设置key value|SETNX k v
+23|SETRANGE key offset value<br>覆盖key对应的string的一部分|SETRANGE k 6 "Redis"
+24|STRLEN key<br>获取字符串长度|STRLEN k
 
 ## Hashes
 
