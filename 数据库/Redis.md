@@ -4,6 +4,7 @@
 
 + [Connection(连接相关操作)](#Connection)
 + [Keys(键相关操作)](#Keys)
++ [Strings(字符串相关操作)](#Strings)
 + [Hashes(哈希相关操作)](#Hashes)
 
 ___
@@ -50,11 +51,35 @@ ___
 21|WAIT numslaves timeout<br>阻塞当前客户端|WAIT 2 1000
 22|SCAN cursor [MATCH pattern] [COUNT count]<br>迭代元素|scan 0
 
+## Strings
+
+Redis Strings 数据类型的相关命令用于管理 redis 字符串值
+
+序号|命令|示例
+-|-|-
+1|APPEND key value<br>在key的值上追加一个值|APPEND k v2
+2|BITCOUNT key [start end]<br>统计指定起始和结束位置的字节数|BITCOUNT k 0 0
+3|BITFIELD<br>操作字节|略
+4|BITOP<br>操作字节|略
+5|BITPOS<br>操作字节|略
+6|DECR key<br>对key对应的数字做减1操作|DECR k
+7|DECRBY key decrement<br>将key对应的数字减decrement|DECRBY k 3
+8|GET key<br>返回key的值|GET k
+9|GETBIT key offset<br>返回key对应的string在offset处的bit值|GETBIT k 0
+10|GETRANGE key start end<br>返回value的子串（start和end都在string内）|GETRANGE k 0 3
+11|GETSET key value<br>设置新值，返回旧值|GETSET k 3
+12|INCR key<br>对存储在指定key的数值执行原子的加1操作|INCR k
+13|INCRBY key increment<br>将key对应的数字加decrement|INCRBY k 3
+14|INCRBYFLOAT key increment<br>将key对应的浮点数加decrement|INCRBYFLOAT k 0.3
+15|MGET key [key ...]<br>MGET key [key ...]|MGET k1 k2 k3
+16|MSET key value [key value ...]<br>设置多个key value|MSET k1 v1 k2 v2 k3 v3
+17|MSETNX key value [key value ...]<br>当key不存在时，设置多个key value
+
 ## Hashes
 
 Redis hash 是一个 string 类型的 field 和 value 的映射表
 
-|key field1 value1 field2 value2
+key field1 value1 field2 value2
 
 序号|命令|示例
 -|-|-
