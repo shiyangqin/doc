@@ -55,6 +55,8 @@ ___
 
 Redis Strings 数据类型的相关命令用于管理 redis 字符串值
 
+数据格式：key value
+
 序号|命令|示例
 -|-|-
 1|APPEND key value<br>在key的值上追加一个值|APPEND k v2
@@ -86,7 +88,7 @@ Redis Strings 数据类型的相关命令用于管理 redis 字符串值
 
 Redis hash 是一个 string 类型的 field 和 value 的映射表
 
-key field1 value1 field2 value2
+数据格式：key field1 value1 field2 value2
 
 序号|命令|示例
 -|-|-
