@@ -6,6 +6,7 @@
 + [Keys(键相关操作)](#Keys)
 + [Strings(字符串相关操作)](#Strings)
 + [Hashes(哈希相关操作)](#Hashes)
++ [Lists(列表相关操作)](#Lists)
 
 ___
 
@@ -107,3 +108,25 @@ Redis hash 是一个 string 类型的 field 和 value 的映射表
 13|HINCRBY key field increment<br>将 hash 中指定 field 的值增加给定数字|HINCRBY k f -5
 14|HINCRBYFLOAT key field increment<br>将 hash 中指定 field 的值增加给定浮点数|HINCRBYFLOAT k f -3.5
 15|HSCAN key cursor [MATCH pattern] [COUNT count]<br>参考 SCAN 命令， HSCAN与之类似|略
+
+## Lists
+
+Redis列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）
+
+一个列表最多可以包含 232 - 1 个元素 (4294967295, 每个列表超过40亿个元素)。
+
+数据格式：["1", "2"]
+
+序号|命令|示例
+-|-|-
+1|BLPOP key [key ...] timeout<br>删除并获取列表第一个元素，或阻塞到有一个可用|BLPOP L1 L2 L3 0
+2|BRPOP key [key ...] timeout<br>删除并获取列表最后一个元素，或阻塞到有一个可用|BRPOP L1 L2 L3 0
+3|RPOPLPUSH source destination<br>弹出 source 的尾部元素，放入 destination 列表头部|RPOPLPUSH L1 L2
+4|BRPOPLPUSH source destination timeout<br>RPOPLPUSH的阻塞版本|BRPOPLPUSH L1 L2 0
+5|LINDEX key index<br>获取列表指定位置元素|LINDEX L 0
+6|LINSERT key BEFORE\|AFTER pivot value<br>把 value 插入到列表中在 pivot 的前面或后面|LINSERT L BEFORE "World" "Hello"
+7|LLEN key<br>获取列表长度|LLEN L
+8|LPOP key<br>移除并返回列表第一个元素|LPOP L
+9|LPUSH key value [value ...]<br>在列表头部插入一个或多个值|LPUSH L "hello"
+10|LPUSHX key value<br>当列表存在时，在列表头部插入值|LPUSHX L "Hello"
+11|LRANGE key start stop<br>
