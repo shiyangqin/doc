@@ -2,11 +2,12 @@
 
 [Redis中文官方](http://www.redis.cn/)中的文档已经非常详细了，本文档只是用于熟悉python中的redis函数，用作个人快速查找函数，具体的函数说明请前往官网查看
 
-+ [Connection(连接相关操作)](#Connection)
-+ [Keys(键相关操作)](#Keys)
-+ [Strings(字符串相关操作)](#Strings)
-+ [Hashes(哈希相关操作)](#Hashes)
-+ [Lists(列表相关操作)](#Lists)
++ [Connection(连接)](#Connection)
++ [Keys(键)](#Keys)
++ [Strings(字符串)](#Strings)
++ [Hashes(哈希)](#Hashes)
++ [Lists(列表)](#Lists)
++ [Set(集合)](#Set)
 
 ___
 
@@ -111,11 +112,11 @@ Redis hash 是一个 string 类型的 field 和 value 的映射表
 
 ## Lists
 
-Redis列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）
+Lists 是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部或者尾部
 
 一个列表最多可以包含 232 - 1 个元素 (4294967295, 每个列表超过40亿个元素)。
 
-数据格式：["1", "2"]
+数据格式：["1", "2", "1"]
 
 序号|命令|示例
 -|-|-
@@ -136,3 +137,16 @@ Redis列表是简单的字符串列表，按照插入顺序排序。你可以添
 15|RPOP key<br>移除并返回存于 key 的 list 的最后一个元素|RPOP L
 16|RPUSH key value [value ...]<br>从列表尾部插入元素|RPUSH key value [value ...]
 17|RPUSHX key value<br>当 key 存在并且是一个列表时，将值 value 插入到列表 key 的表尾|RPUSHX mylist "World"
+
+## Set
+
+Set 是 String 类型的无序集合。集合成员唯一，不可重复
+
+Set 是通过哈希表实现的，所以添加，删除，查找的复杂度都是 O(1)
+
+集合中最大的成员数为 232 - 1 (4294967295, 每个集合可存储40多亿个成员)。
+
+格式：["1", "2"]
+
+序号|命令|示例
+-|-|-
