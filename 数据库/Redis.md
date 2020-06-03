@@ -8,6 +8,7 @@
 + [Hashes(哈希)](#Hashes)
 + [Lists(列表)](#Lists)
 + [Set(集合)](#Set)
++ [SortedSet(有序集合)](#SortedSet)
 
 ___
 
@@ -140,7 +141,7 @@ Lists 是简单的字符串列表，按照插入顺序排序。你可以添加�
 
 ## Set
 
-Set 是 String 类型的无序集合。集合成员唯一，不可重复
+Set 是 String 类型的无序集合，且不允许重复的元素
 
 Set 是通过哈希表实现的，所以添加，删除，查找的复杂度都是 O(1)
 
@@ -165,3 +166,18 @@ Set 是通过哈希表实现的，所以添加，删除，查找的复杂度都�
 13|SSCAN key cursor [MATCH pattern] [COUNT count]|参考SCAN
 14|SUNION key [key ...]<br>返回多个集合的并集|SUNION s1 s2 s3
 15|SUNIONSTORE destination key [key ...]<br>将多个set的并集存在destination中|SUNIONSTORE s s1 s2
+
+## SortedSet
+
+Sorted Set 是string类型元素的集合,且不允许重复的元素
+
+每个元素都会关联一个double类型的分数。redis通过分数来为集合中的成员进行从小到大的排序
+
+有序集合的成员是唯一的,但分数(score)却可以重复。
+
+集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是O(1)。 集合中最大的成员数为 232 - 1 (4294967295, 每个集合可存储40多亿个成员)
+
+格式：
+
+序号|命令|示例
+-|-|-
