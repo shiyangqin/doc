@@ -1,6 +1,6 @@
 # Redis
 
-[Redis中文官方](http://www.redis.cn/)中的文档已经非常详细了，本文档只是用于熟悉python中的redis函数，用作个人快速查找函数，具体的函数说明请前往官网查看
+[Redis中文官方](http://www.redis.cn/)中的文档已经非常详细了，本文档只是用于熟悉redis函数，用作个人快速查找函数，具体的函数说明请前往官网查看
 
 + [Connection(连接)](#Connection)
 + [Keys(键)](#Keys)
@@ -150,3 +150,18 @@ Set 是通过哈希表实现的，所以添加，删除，查找的复杂度都�
 
 序号|命令|示例
 -|-|-
+1|SADD key member [member ...]<br>添加一个或多个元素到set里|SADD s "Hello"
+2|SCARD key<br>返回集合元素个数|SCARD s
+3|SDIFF key [key ...]<br>返回一个集合与给定集合的差集的元素|SDIFF s1 s2
+4|SDIFFSTORE destination key [key ...]<br>将一个集合与给定集合的差集的元素放在destination里|SDIFFSTORE s s1 s2
+5|SINTER key [key ...]<br>返回指定所有的集合的成员的交集|SINTER s1 s2
+6|SINTERSTORE destination key [key ...]<br>将指定所有的集合的成员的交集放在destination里|SINTERSTORE s s1 s2
+7|SISMEMBER key member<br>返回 member 是否在集合里|SISMEMBER s "one"
+8|SMEMBERS key<br>返回集合所有元素|SMEMBERS s
+9|SMOVE source destination member<br>将member从source集合移动到destination集合中|SMOVE s1 s2 "two"
+10|SPOP key [count]<br>从存储在key的集合中移除并返回一个或多个随机元素|SPOP myset 3
+11|SRANDMEMBER key [count]<br>返回一个或多个随机元素|SRANDMEMBER myset 2
+12|SREM key member [member ...]<br>在key集合中移除指定的元素|SREM s "one"
+13|SSCAN key cursor [MATCH pattern] [COUNT count]|参考SCAN
+14|SUNION key [key ...]<br>返回多个集合的并集|SUNION s1 s2 s3
+15|SUNIONSTORE destination key [key ...]<br>将多个set的并集存在destination中|SUNIONSTORE s s1 s2
