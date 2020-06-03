@@ -129,4 +129,10 @@ Redis列表是简单的字符串列表，按照插入顺序排序。你可以添
 8|LPOP key<br>移除并返回列表第一个元素|LPOP L
 9|LPUSH key value [value ...]<br>在列表头部插入一个或多个值|LPUSH L "hello"
 10|LPUSHX key value<br>当列表存在时，在列表头部插入值|LPUSHX L "Hello"
-11|LRANGE key start stop<br>
+11|LRANGE key start end<br>从列表钟获取指定返回的元素|LRANGE L 0 0
+12|LREM key count value<br>从列表钟移除第count次出现的元素|LREM L -2 "hello"
+13|LSET key index value<br>设置指定位置元素|LSET L 0 "one"
+14|LTRIM key start stop<br>修剪列表|LTRIM mylist 1 -1
+15|RPOP key<br>移除并返回存于 key 的 list 的最后一个元素|RPOP L
+16|RPUSH key value [value ...]<br>从列表尾部插入元素|RPUSH key value [value ...]
+17|RPUSHX key value<br>当 key 存在并且是一个列表时，将值 value 插入到列表 key 的表尾|RPUSHX mylist "World"
