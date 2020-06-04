@@ -187,7 +187,7 @@ Sorted Set 是string类型元素的集合,且不允许重复的元素
 14|ZREMRANGEBYRANK key start stop<br>移除有序集中，指定排名区间内的所有成员|ZREMRANGEBYRANK zs 0 1
 15|ZREMRANGEBYSCORE key min max<br>移除有序集中所有score值介于min和max之间(包括等于min或max)的成员|ZREMRANGEBYSCORE zs 0 3
 16|ZREVRANGE key start stop [WITHSCORES]<br>返回有序集中，指定区间内的成员且按score值递减排列|ZREVRANGE zs 0 -1 WITHSCORES
-17|ZREVRANGEBYLEX key max min [LIMIT offset count]<br>ZREVRANGEBYLEX 返回指定成员区间内的成员，按成员字典倒序排序, 分数必须相同|ZREVRANGEBYLEX zs + -
+17|ZREVRANGEBYLEX key max min [LIMIT offset count]<br>返回指定成员区间内的成员，按成员字典倒序排序, 分数必须相同|ZREVRANGEBYLEX zs + -
 18|ZREVRANGEBYSCORE key max min [WITHSCORES] [LIMIT offset count]<br>返回有序集合中指定分数区间内的成员，分数由高到低排序|ZREVRANGEBYSCORE myzset +inf -inf
 19|ZREVRANK key member<br>返回有序集合中member的排名|ZREVRANK zs "one"
 20|ZSCAN key cursor [MATCH pattern] [COUNT count]|参考SCAN
