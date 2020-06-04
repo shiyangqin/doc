@@ -8,9 +8,9 @@
 + [Hashes(哈希)](#Hashes)
 + [Lists(列表)](#Lists)
 + [Set(集合)](#Set)
-+ [SortedSet(有序集合)](#SortedSet)
++ [Sorted Set(有序集合)](#SortedSet)
 + [HyperLogLog](#HyperLogLog)
-+ [Pub/Sub(发布订阅)](#Pub/Sub)
++ [Pub/Sub(发布订阅)](#PubSub)
 
 ___
 
@@ -208,4 +208,4 @@ HyperLogLog 用来做基数统计的算法
 2|PFCOUNT key [key ...]<br>返回给定 HyperLogLog 的基数估算值|PFCOUNT hll
 3|PFMERGE destkey sourcekey [sourcekey ...]<br>将多个 HyperLogLog 合并为一个 HyperLogLog|PFMERGE hll hll1 hll2
 
-## Pub/Sub
+## PubSub
