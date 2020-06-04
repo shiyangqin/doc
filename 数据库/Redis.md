@@ -199,7 +199,7 @@ Sorted Set 是string类型元素的集合,且不允许重复的元素
 
 ## HyperLogLog
 
- HyperLogLog 用来做基数统计的算法
+HyperLogLog 用来做基数统计的算法
 
 序号|命令|示例
 -|-|-
