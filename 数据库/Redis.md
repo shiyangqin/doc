@@ -192,6 +192,6 @@ Sorted Set 是string类型元素的集合,且不允许重复的元素
 19|ZREVRANK key member<br>返回有序集合中member的排名|ZREVRANK zs "one"
 20|ZSCAN key cursor [MATCH pattern] [COUNT count]|参考SCAN
 21|ZSCORE key member<br>返回有序集key中，成员member的score值|ZSCORE zs "one"
-22|ZUNIONSTORE destination numkeys key [key ...] [WEIGHTS weight] [SUM|MIN|MAX]<br>计算给定的numkeys个有序集合的并集，并且把结果放到destination中|ZUNIONSTORE out 2 zset1 zset2
+22|ZUNIONSTORE destination numkeys key [key ...] [WEIGHTS weight] [SUM\|MIN\|MAX]<br>计算给定的numkeys个有序集合的并集，并且把结果放到destination中|ZUNIONSTORE out 2 zset1 zset2
 23|BZPOPMAX key [key ...] timeout<br>返回第一个非空key中分数最大的成员和对应的分数|BZPOPMAX zset1 zset2 0
 24|BZPOPMIN key [key ...] timeout<br>返回第一个非空key中分数最小的成员和对应的分数|BZPOPMIN zset1 zset2 0
