@@ -167,7 +167,31 @@ Sorted Set 是string类型元素的集合,且不允许重复的元素
 
 有序集合的成员是唯一的,但分数(score)却可以重复。
 
-集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是O(1)。 集合中最大的成员数为 232 - 1 (4294967295, 每个集合可存储40多亿个成员)
+集合中最大的成员数为 232 - 1 (4294967295, 每个集合可存储40多亿个成员)
 
 序号|命令|示例
 -|-|-
+1|ZADD key score member [score member ...]<br>向有序集合添加一个或多个成员，或者更新已存在成员的分数|ZADD zs 1 1
+2|ZCARD key<br>返回key的有序集元素个数|ZCARD zs
+3|ZCOUNT key min max<br>返回有序集key中，score值在min和max之间(默认包括score值等于min或max)|ZCOUNT myzset 1 3
+4|ZINCRBY key increment member<br>将set中member的score增加increment|ZINCRBY zs -1 '1'
+5|ZINTERSTORE destination numkeys key [key ...]<br>计算给定的numkeys个有序集合的交集，并且把结果放到destination中|ZINTERSTORE zs 2 zs1 zs2
+6|ZLEXCOUNT key min max<br>ZLEXCOUNT 命令用于计算有序集合中指定成员之间的成员数量|ZLEXCOUNT myzset "start" "end"
+7|ZPOPMAX key [count]<br>删除并返回有序集合key中的最多count个具有最高得分的成员|ZPOPMAX myzset 3
+8|ZPOPMIN key [count]<br>删除并返回有序集合key中的最多count个具有最低得分的成员|ZPOPMIN myzset 3
+9|ZRANGE key start stop [WITHSCORES]<br>返回存储在有序集合key中的指定范围的元素|ZRANGE zs 0 -1 WITHSCORES
+10|ZRANGEBYLEX key min max [LIMIT offset count]<br>返回指定成员区间内的成员|ZRANGEBYLEX zs - +
+11|ZRANK key member<br>返回有序集合中member的排名|ZRANK zs "one"
+12|ZREM key member [member ...]<br>移除有序集合中的元素|ZREM zs "one"
+13|ZREMRANGEBYLEX key min max<br>删除名称按字典由低到高排序成员之间所有成员|ZREMRANGEBYLEX zs - +
+14|ZREMRANGEBYRANK key start stop<br>移除有序集中，指定排名区间内的所有成员|ZREMRANGEBYRANK zs 0 1
+15|ZREMRANGEBYSCORE key min max<br>移除有序集中所有score值介于min和max之间(包括等于min或max)的成员|ZREMRANGEBYSCORE zs 0 3
+16|ZREVRANGE key start stop [WITHSCORES]<br>返回有序集中，指定区间内的成员且按score值递减排列|ZREVRANGE zs 0 -1 WITHSCORES
+17|ZREVRANGEBYLEX key max min [LIMIT offset count]<br>ZREVRANGEBYLEX 返回指定成员区间内的成员，按成员字典倒序排序, 分数必须相同|ZREVRANGEBYLEX zs + -
+18|ZREVRANGEBYSCORE key max min [WITHSCORES] [LIMIT offset count]<br>返回有序集合中指定分数区间内的成员，分数由高到低排序|ZREVRANGEBYSCORE myzset +inf -inf
+19|ZREVRANK key member<br>返回有序集合中member的排名|ZREVRANK zs "one"
+20|ZSCAN key cursor [MATCH pattern] [COUNT count]|参考SCAN
+21|ZSCORE key member<br>返回有序集key中，成员member的score值|ZSCORE zs "one"
+22|ZUNIONSTORE destination numkeys key [key ...] [WEIGHTS weight] [SUM|MIN|MAX]<br>计算给定的numkeys个有序集合的并集，并且把结果放到destination中|ZUNIONSTORE out 2 zset1 zset2
+23|BZPOPMAX key [key ...] timeout<br>返回第一个非空key中分数最大的成员和对应的分数|BZPOPMAX zset1 zset2 0
+24|BZPOPMIN key [key ...] timeout<br>返回第一个非空key中分数最小的成员和对应的分数|BZPOPMIN zset1 zset2 0
