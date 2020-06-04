@@ -12,6 +12,7 @@
 + [HyperLogLog](#HyperLogLog)
 + [Pub/Sub(发布订阅)](#PubSub)
 + [Transactions(事务)](#Transactions)
++ [Server(服务)](#Server)
 
 ___
 
@@ -233,3 +234,50 @@ redis 事务
 3|MULTI|标记一个事务块的开始
 4|UNWATCH|刷新一个事务中已被监视的所有key
 5|WATCH key [key ...]|监视一个(或多个) key ，如果在事务执行之前这个(或这些) key 被其他命令所改动，那么事务将被打断
+
+## Server
+
+Redis 服务命令
+
+序号|命令|描述
+-|-|-
+1|BGREWRITEAOF|异步执行一个 AOF（AppendOnly File）文件重写
+2|BGSAVE|在后台异步保存当前数据库的数据到磁盘
+3|CLIENT GETNAME|返回当前连接由CLIENT SETNAME设置的名字
+4|CLIENT ID|返回当前连接的ID
+5|CLIENT KILL [ip:port] [ID client-id]|关闭客户端连接
+6|CLIENT LIST|返回所有连接到服务器的客户端信息和统计数据
+7|CLIENT PAUSE timeout|将所有客户端的访问暂停给定的毫秒数
+8|CLIENT REPLY ON|OFF\|SKIP|禁用redis服务器对当前客户端的回复
+9|CLIENT SETNAME connection-name|为当前连接分配一个名字
+10|CLIENT UNBLOCK client-id [TIMEOUT\|ERROR]|解除客户端的阻塞
+11|COMMAND|以数组的形式返回有关所有Redis命令的详细信息
+12|COMMAND COUNT|返回Redis服务器命令的总数
+13|COMMAND GETKEYS|以array-reply的形式从完整的Redis命令返回key
+14|COMMAND INFO command-name [command-name ...]|以array-reply的形式返回多个Redis命令的详细信息
+15|CONFIG GET parameter|读取redis服务器的配置文件参数
+16|CONFIG RESETSTAT|重置INFO命令统计里面的一些计算器
+17|CONFIG REWRITE|重写服务器启动时指定的redis.conf文件
+18|CONFIG SET parameter value|在服务器运行期间重写某些配置
+19|DBSIZE|返回当前数据里面keys的数量
+20|DEBUG OBJECT key|一个不应该被客户端使用的调试命令,参考 OBJECT 命令
+21|DEBUG SEGFAULT|执行在崩溃的Redis一个无效的内存访问，它是用来模拟在开发过程中的错误
+22|FLUSHALL|删除所有数据库里面的所有数据
+23|FLUSHDB|删除当前数据库里面的所有数据
+24|INFO [section]|返回关于Redis服务器的各种信息和统计数值
+25|LASTSAVE|执行成功时返回UNIX时间戳
+26|MEMORY DOCTOR|列出 Redis 服务器遇到的不同类型的内存相关问题，并提供相应的解决建议
+27|MEMORY HELP|返回不同子命令的说明
+28|MEMORY MALLOC-STATS|提供内存分配情况的内部统计报表
+29|MEMORY PURGE|尝试清除脏页以便内存分配器回收使用
+30|MEMORY STATS|将服务器的内存使用情况以数组情况返回
+31|MEMORY USAGE key [SAMPLES count]|给出一个key和它值在RAM中占用的字节数
+32|MONITOR|返回服务器处理的每一个命令
+33|REPLICAOF host port|在线修改当前服务器的复制设置
+34|ROLE|返回主从实例所属的角色
+35|SAVE|同步保存数据到硬盘
+36|SHUTDOWN [NOSAVE] [SAVE]|异步保存数据到硬盘，并关闭服务器
+37|SLAVEOF host port|将当前服务器转变为指定服务器的从属服务器
+38|SLOWLOG subcommand [argument]|读取和重置Redis慢查询日志
+39|SYNC|用于复制功能(replication)的内部命令
+40|TIME|返回当前Unix时间戳和这一秒已经过去的微秒数
