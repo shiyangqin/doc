@@ -4,6 +4,7 @@
   + [算法](基础/算法/home.md)
   + [数据结构](基础/数据结构/home.md)
   + [设计模式](基础/设计模式/home.md)
+  + [代码大全](/基础/代码大全/代码大全.md)
   + [Git/Github](基础/Git.md)
   + [RESTful-API](基础/RESTful-API.md)
 
@@ -15,9 +16,6 @@
   + [事务](数据库/事务.md)
   + [使用er图设计数据库表结构](数据库/使用er图设计创建数据库.md)
   + [Redis命令](数据库/Redis命令.md)
-
-+ 编程思想
-  + [代码大全](编程思想/代码大全/代码大全.md)
 
 + Linux
   + [Python](Linux/Python.md)
