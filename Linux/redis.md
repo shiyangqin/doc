@@ -1,7 +1,7 @@
 # Redis
 
 + [使用docker部署Redis](#使用docker部署Redis)
-+ [redis命令](#redis命令)
++ [redis使用](#redis使用)
 
 ___
 
@@ -42,7 +42,7 @@ sh ./redis_deploy.sh
 rm -rf redis_deploy.sh
 ```
 
-### redis命令
+### redis使用
 
 + 进入redis
 
