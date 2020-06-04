@@ -11,6 +11,7 @@
 + [Sorted Set(有序集合)](#SortedSet)
 + [HyperLogLog](#HyperLogLog)
 + [Pub/Sub(发布订阅)](#PubSub)
++ [Transactions(事务)](#Transactions)
 
 ___
 
@@ -209,3 +210,26 @@ HyperLogLog 用来做基数统计的算法
 3|PFMERGE destkey sourcekey [sourcekey ...]<br>将多个 HyperLogLog 合并为一个 HyperLogLog|PFMERGE hll hll1 hll2
 
 ## PubSub
+
+发布订阅
+
+序号|命令|示例
+-|-|-
+1|PSUBSCRIBE pattern [pattern ...]<br>订阅给定的模式|PSUBSCRIBE mychannel
+2|PUBLISH channel message<br>向指定的 channel 发送message|PUBLISH mychannel "hello, i m here"
+3|PUBSUB subcommand [argument [argument ...]]<br>查看订阅与发布系统状态|PUBSUB CHANNELS
+4|PUNSUBSCRIBE [pattern [pattern ...]]<br>退订所有给定模式的频道|PUNSUBSCRIBE mychannel
+5|SUBSCRIBE channel [channel ...]<br>订阅给定的一个或多个频道的信息|SUBSCRIBE mychannel
+6|UNSUBSCRIBE [channel [channel ...]]<br>退订给定的一个或多个频道的信息|UNSUBSCRIBE mychannel
+
+## Transactions
+
+redis 事务
+
+序号|命令|描述
+-|-|-
+1|DISCARD|丢弃所有MULTI之后发的命令并将连接状态恢复到正常
+2|EXEC|执行所有事务块内的命令
+3|MULTI|标记一个事务块的开始
+4|UNWATCH|刷新一个事务中已被监视的所有key
+5|WATCH key [key ...]|监视一个(或多个) key ，如果在事务执行之前这个(或这些) key 被其他命令所改动，那么事务将被打断
