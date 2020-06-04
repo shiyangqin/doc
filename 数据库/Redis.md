@@ -9,6 +9,7 @@
 + [Lists(列表)](#Lists)
 + [Set(集合)](#Set)
 + [SortedSet(有序集合)](#SortedSet)
++ [HyperLogLog](#HyperLogLog)
 
 ___
 
@@ -195,3 +196,13 @@ Sorted Set 是string类型元素的集合,且不允许重复的元素
 22|ZUNIONSTORE destination numkeys key [key ...] [WEIGHTS weight] [SUM\|MIN\|MAX]<br>计算给定的numkeys个有序集合的并集，并且把结果放到destination中|ZUNIONSTORE out 2 zset1 zset2
 23|BZPOPMAX key [key ...] timeout<br>返回第一个非空key中分数最大的成员和对应的分数|BZPOPMAX zset1 zset2 0
 24|BZPOPMIN key [key ...] timeout<br>返回第一个非空key中分数最小的成员和对应的分数|BZPOPMIN zset1 zset2 0
+
+## HyperLogLog
+
+ HyperLogLog 用来做基数统计的算法
+
+序号|命令|示例
+-|-|-
+1|PFADD key element [element ...]<br>向HyperLogLog中添加基数|PFADD hll a b c d e f g
+2|PFCOUNT key [key ...]<br>返回给定 HyperLogLog 的基数估算值|PFCOUNT hll
+3|PFMERGE destkey sourcekey [sourcekey ...]<br>将多个 HyperLogLog 合并为一个 HyperLogLog|PFMERGE hll hll1 hll2
