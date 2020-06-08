@@ -85,3 +85,23 @@
 + [Chain of Responsibility Pattern](ChainOfResponsibilityPattern.md)
 
 + [Command Pattern](CommandPattern.md)
+
++ Interpreter Pattern
+
++ Iterator Pattern
+
++ Mediator Pattern
+
++ Memento Pattern
+
++ Observer Pattern
+
++ State Pattern
+
++ Null Object Pattern
+
++ Strategy Pattern
+
++ Template Pattern
+
++ Visitor Pattern
