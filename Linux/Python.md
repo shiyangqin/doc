@@ -1,7 +1,6 @@
 # Python
 
 + [Centos7安装Python3.7](#Centos7安装Python3.7)
-+ [pip安装psycopy2报错问题解决方案](#pip安装psycopy2报错问题解决方案)
 
 ___
 

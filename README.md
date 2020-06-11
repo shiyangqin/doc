@@ -7,6 +7,7 @@
   + [代码大全](/基础/代码大全/代码大全.md)
   + [Git/Github](基础/Git.md)
   + [RESTful-API](基础/RESTful-API.md)
+  + [YAML语法](基础/YAML语法.md)
 
 + python
   + [flask代码实践](https://github.com/shiyangqin/OA)
