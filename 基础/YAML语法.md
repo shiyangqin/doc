@@ -72,7 +72,7 @@ int:
     - 123
     - 0b1010_0111_0100_1010_1110    #二进制表示
 null:
-    nodeName: 'node'
+    nodeName: null #可以写成null
     parent: ~  #使用~表示null
 string:
     - 哈哈
