@@ -2,7 +2,7 @@
 
 ## 确定适用的Grafana和node_exporter版本
 
-打开[Grafana官网](https://grafana.com/grafana/dashboards?dataSource=prometheus&direction=asc&orderBy=name&search=node_exporter)，点击第一项Node Export...，并下载**json文件**
+打开[Grafana官网](https://grafana.com/grafana/dashboards?dataSource=prometheus&direction=asc&orderBy=name&search=node_exporter)，点击第一项Node Export...，确认Grafana和node_exporter版本并下载**json文件**
 
 <img src="img/Prometheus/Prometheus1.jpg" width=500 />
 
@@ -48,6 +48,8 @@ scrape_configs:
 
 ## docker部署
 
+注意修改镜像版本
+
 ```shell
 docker pull prom/prometheus:v2.19.0
 docker pull prom/node-exporter:v0.18.1
@@ -72,7 +74,7 @@ docker run -itd --network=prometheus-net --network-alias grafana -p 3000:3000 --
 
 点击左侧Configuration下的Data Sources
 
-<img src="img/Prometheus/Prometheus5.jpg" width=500 />
+<img src="img/Prometheus/Prometheus5.jpg" />
 
 点击Add data source按钮
 
@@ -92,7 +94,7 @@ docker run -itd --network=prometheus-net --network-alias grafana -p 3000:3000 --
 
 选择左侧Create下的Import
 
-<img src="img/Prometheus/Prometheus10.jpg" width=500 />
+<img src="img/Prometheus/Prometheus10.jpg" />
 
 点击Upload .json file按钮
 
@@ -108,7 +110,7 @@ docker run -itd --network=prometheus-net --network-alias grafana -p 3000:3000 --
 
 选择刷新数据时间
 
-<img src="img/Prometheus/Prometheus14.jpg" width=500 />
+<img src="img/Prometheus/Prometheus14.jpg" />
 
 少部分数据可能需要等一段时间才能够获取，到这里已经部署完成了
 
