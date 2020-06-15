@@ -27,5 +27,5 @@
   + [redis](Linux/redis.md)
   + [PostgreSQL](Linux/PostgreSQL.md)
   + [使用docker+supervisor+nginx+flask+gunicorn部署web项目](Linux/使用docker+supervisor+nginx+flask+gunicorn部署web项目.md)
-
+  + [Grafana+Prometheus监控服务器状态](Linux/Grafana+Prometheus监控服务器状态.md)
 + [个人日常所遇问题记录](problem.md)
