@@ -11,6 +11,7 @@
 + [Docker数据卷](#Docker数据卷)
 + [Docker网络](#Docker网络)
   + [使用Docker网络进行容器互联](#使用Docker网络进行容器互联)
++ [Docker-Compose](#Docker-Compose)
 
 ___
 
@@ -762,3 +763,138 @@ ping mc2
 在mc2中访问mc1中的服务(返回“Hello World[”表示成功)：
 curl mc1
 ```
+
+## Docker-Compose
+
+Compose是用于定义和运行多容器Docker应用程序的工具。通过Compose，您可以使用YAML文件来配置应用程序的服务。然后，使用一个命令，就可以从配置中创建并启动所有服务。
+
+[YAML文件语法](../基础/YAML语法.md)
+
+Compose文件包含4个部分：
+
+1. version: Compose文件版本
+2. services: 服务信息
+3. networks: 网络信息
+4. volumes: 数据卷信息
+
+官方文档：https://docs.docker.com/compose/compose-file/
+
+官方示例：
+
+```yml
+version: "3.8"
+services:
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379"
+    networks:
+      - frontend
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+
+  db:
+    image: postgres:9.4
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - backend
+    deploy:
+      placement:
+        constraints:
+          - "node.role==manager"
+
+  vote:
+    image: dockersamples/examplevotingapp_vote:before
+    ports:
+      - "5000:80"
+    networks:
+      - frontend
+    depends_on:
+      - redis
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+      restart_policy:
+        condition: on-failure
+
+  result:
+    image: dockersamples/examplevotingapp_result:before
+    ports:
+      - "5001:80"
+    networks:
+      - backend
+    depends_on:
+      - db
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+
+  worker:
+    image: dockersamples/examplevotingapp_worker
+    networks:
+      - frontend
+      - backend
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels: [APP=VOTING]
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 120s
+      placement:
+        constraints:
+          - "node.role==manager"
+
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    stop_grace_period: 1m30s
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints:
+          - "node.role==manager"
+
+networks:
+  frontend:
+  backend:
+
+volumes:
+  db-data:
+```
+
+### version配置
+
+Docker Compose文件版本，版本的对应关系查看官方文档
+
+```yml
+version: "3.8"
+```
+
+### services配置
+
+#### build
+
++ context
++ dockerfile
++ args
+
+### networks配置
+
+### volumes配置
