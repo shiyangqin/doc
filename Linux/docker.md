@@ -903,7 +903,7 @@ docker-compose --version
 
 ### docker compose命令
 
-```
+```txt
 build              Build or rebuild services
 config             Validate and view the Compose file
 create             Create services
