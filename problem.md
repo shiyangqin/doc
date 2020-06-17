@@ -31,7 +31,7 @@ ___
 151.101.108.133 avatars5.githubusercontent.com
 151.101.108.133 avatars6.githubusercontent.com
 151.101.108.133 avatars7.githubusercontent.com
-151.101.108.133 avatars8.githubusercontent.com 
+151.101.108.133 avatars8.githubusercontent.com
 # GitHub End
 ```
 
