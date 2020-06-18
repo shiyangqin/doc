@@ -28,4 +28,3 @@
 ## [实现](https://github.com/shiyangqin/DesignPatterns/tree/master/chain_of_responsibility_pattern)
 
 <img src="img/ChainOfResponsibilityPattern.jpg" />
- 

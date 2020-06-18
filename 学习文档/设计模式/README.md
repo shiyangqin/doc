@@ -1,12 +1,12 @@
-# 类关系
+# 设计模式
+
+文档主要参考了[w3c-设计模式](https://www.w3cschool.cn/shejimoshi/)和《设计模式-可复用面向对象软件的基础》
+
+## 类关系
 
 <img src="img/ClassRelationship.jpg" width=500 />
 
 类与类之间由弱到强关系：依赖<关联<聚合<组合
-
-# 设计模式
-
-文档主要参考了[w3c-设计模式](https://www.w3cschool.cn/shejimoshi/)和《设计模式-可复用面向对象软件的基础》
 
 ## 定义
 
