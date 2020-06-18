@@ -16,19 +16,16 @@
 
 + [YAML语法](学习文档/YAML语法.md)
 
-+ [SQL](学习文档/SQL.md)
++ 数据库
+  + [SQL](学习文档/SQL.md)
+  + [什么是事务？](学习文档/事务.md)
+  + [Redis命令](学习文档/Redis命令.md)
 
-+ [什么是事务？](学习文档/事务.md)
-
-+ [nginx](学习文档/nginx.md)
-
-+ [supervisor](学习文档/supervisor.md)
-
-+ [gunicorn](学习文档/gunicorn.md)
-
-+ [Redis](学习文档/Redis.md)
-
-+ [Docker](学习文档/Docker)
++ Linux
+  + [nginx](学习文档/nginx.md)
+  + [supervisor](学习文档/supervisor.md)
+  + [gunicorn](学习文档/gunicorn.md)
+  + [Docker](学习文档/Docker)
 
 ## 实践文档
 
