@@ -99,7 +99,7 @@ Dockerfile 是一个文本文件，其内包含了一条条的 指令(Instructio
 
 ```txt
 格式：ENTRYPOINT ["executable", "param1", "param2"]
-例：["supervisord", "-n", "-c", "/etc/supervisord.conf"]
+例：ENTRYPOINT ["supervisord", "-n", "-c", "/etc/supervisord.conf"]
 ```
 
 注：ENTRYPOINT和CMD的区别是ENTRYPOINT启动容器时可以设置额外参数

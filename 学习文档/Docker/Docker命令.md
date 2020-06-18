@@ -1,24 +1,21 @@
 # docker命令
 
-+ [docker容器和镜像命令](#docker容器和镜像命令)
-  + [info|version](#info|version)
-  + [镜像仓库](#镜像仓库)
-  + [本地镜像管理](#本地镜像管理)
-  + [容器生命周期管理](#容器生命周期管理)
-  + [容器操作](#容器操作)
+本文档命令并不全，想看详细的文档还是看官方文档较好
+
+官方命令文档：https://docs.docker.com/engine/reference/commandline/docker/
+
++ [info|version](#info|version)
++ [镜像仓库](#镜像仓库)
++ [本地镜像管理](#本地镜像管理)
++ [容器生命周期管理](#容器生命周期管理)
++ [容器操作](#容器操作)
 + [Docker数据卷](#Docker数据卷)
 + [Docker网络](#Docker网络)
   + [使用Docker网络进行容器互联](#使用Docker网络进行容器互联)
 
 ___
 
-## docker容器和镜像命令
-
-本文档命令并不全，想看详细的文档还是看官方文档较好
-
-官方命令文档：https://docs.docker.com/engine/reference/commandline/docker/
-
-### info|version
+## info|version
 
 ```txt
 version:显示 Docker 版本信息。
@@ -29,7 +26,7 @@ docker version
 docker info
 ```
 
-### 镜像仓库
+## 镜像仓库
 
 + login/logout
 
@@ -71,7 +68,7 @@ docker push:将本地的镜像上传到镜像仓库,要先登陆到镜像仓库
 docker push myCentos:v1
 ```
 
-### 本地镜像管理
+## 本地镜像管理
 
 + images
 
@@ -161,7 +158,7 @@ docker export centos > centos_export.tar
 docker import http://example.com/exampleimage.tgz
 ```
 
-### 容器生命周期管理
+## 容器生命周期管理
 
 + run
 
@@ -251,7 +248,7 @@ docker exec:在正在运行的容器中运行命令
 docker exec -it mycentos bash
 ```
 
-### 容器操作
+## 容器操作
 
 + ps
 
@@ -533,7 +530,7 @@ docker network rm my-net
 
 ### 使用Docker网络进行容器互联
 
-生成容器的镜像请查看[使用docker+supervisor+nginx+flask+gunicorn部署web项目](使用docker+supervisor+nginx+flask+gunicorn部署web项目.md)
+生成容器的镜像请查看[使用docker+supervisor+nginx+flask+gunicorn部署web项目](../../实践文档/使用docker+supervisor+nginx+flask+gunicorn部署web项目.md)
 
 + 创建网络
 
