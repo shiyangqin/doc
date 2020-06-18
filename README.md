@@ -2,13 +2,13 @@
 
 ## 学习文档
 
-+ [算法](学习文档/算法/README.md)
++ [算法](学习文档/算法)
 
-+ [数据结构](学习文档/数据结构/README.md)
++ [数据结构](学习文档/数据结构)
 
-+ [设计模式](学习文档/设计模式/README.md)
++ [设计模式](学习文档/设计模式)
 
-+ [代码大全（第二版）](学习文档/代码大全/README.md)
++ [代码大全（第二版）](学习文档/代码大全)
 
 + [Git](学习文档/Git.md)
 
@@ -28,7 +28,7 @@
 
 + [Redis](学习文档/Redis.md)
 
-+ [Docker](学习文档/Docker/README.md)
++ [Docker](学习文档/Docker)
 
 ## 实践文档
 
@@ -40,7 +40,7 @@
 
 + [docker部署Redis](实践文档/docker部署Redis.md)
 
-+ [Grafana+Prometheus监控服务器状态](实践文档/Grafana+Prometheus监控服务器状态/README.md)
++ [Grafana+Prometheus监控服务器状态](实践文档/Grafana+Prometheus监控服务器状态)
 
 + [使用docker+supervisor+nginx+flask+gunicorn部署web项目](实践文档/使用docker+supervisor+nginx+flask+gunicorn部署web项目.md)
 
