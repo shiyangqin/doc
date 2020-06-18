@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+
+  node_exporter:
+    image: prom/node-exporter:v0.18.1
+    container_name: node-exporter
+    restart: always
+    ports:
+      - "9100:9100"
+
+  alertmanager:
+    image: prom/alertmanager:v0.20.0
+    container_name: alertmanager
+    restart: always
+    volumes:
+      - ./config/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    networks:
+      prometheus-net:
+        aliases:
+          - alertmanager
+
+  prometheus:
+    image: prom/prometheus:v2.19.0
+    container_name: prometheus
+    restart: always
+    depends_on:
+      - node_exporter
+      - alertmanager
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./config/rules/:/etc/prometheus/rules/
+      - prometheus-data:/prometheus
+    networks:
+      prometheus-net:
+        aliases:
+          - prometheus
+
+  grafana:
+    image: grafana/grafana:7.0.1
+    container_name: grafana
+    restart: always
+    depends_on:
+      - prometheus
+    ports:
+      - "3000:3000"
+    networks:
+      prometheus-net:
+        aliases:
+          - grafana
+
+networks:
+  prometheus-net:
+    name: prometheus-net
+
+volumes:
+  prometheus-data:
+    name: prometheus-data

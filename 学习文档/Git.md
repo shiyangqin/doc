@@ -1,7 +1,4 @@
-# Git/GitHub
-
-+ [Git初始化设置](#Git初始化设置)
-+ [vscode中markdownlint插件语法规则](#vscode中markdownlint插件语法规则)
+# Git
 
 ## Git初始化设置
 
