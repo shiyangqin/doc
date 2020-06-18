@@ -1,8 +1,6 @@
-# docker-compose
+# docker-compose语法
 
 docker compose是用于定义和运行多容器Docker应用程序的工具。通过Compose，您可以使用YAML文件来配置应用程序的服务。然后，使用一个命令，就可以从配置中创建并启动所有服务。
-
-[YAML文件语法](../基础/YAML语法.md)
 
 一般情况下，Compose文件主要包含4个部分：
 
@@ -13,171 +11,7 @@ docker compose是用于定义和运行多容器Docker应用程序的工具。通
 
 官方文档：https://docs.docker.com/compose/compose-file/
 
-官方示例：
-
-```yml
-version: "3.8"
-services:
-
-  redis:
-    image: redis:alpine
-    ports:
-      - "6379"
-    networks:
-      - frontend
-    deploy:
-      replicas: 2
-      update_config:
-        parallelism: 2
-        delay: 10s
-      restart_policy:
-        condition: on-failure
-
-  db:
-    image: postgres:9.4
-    volumes:
-      - db-data:/var/lib/postgresql/data
-    networks:
-      - backend
-    deploy:
-      placement:
-        constraints:
-          - "node.role==manager"
-
-  vote:
-    image: dockersamples/examplevotingapp_vote:before
-    ports:
-      - "5000:80"
-    networks:
-      - frontend
-    depends_on:
-      - redis
-    deploy:
-      replicas: 2
-      update_config:
-        parallelism: 2
-      restart_policy:
-        condition: on-failure
-
-  result:
-    image: dockersamples/examplevotingapp_result:before
-    ports:
-      - "5001:80"
-    networks:
-      - backend
-    depends_on:
-      - db
-    deploy:
-      replicas: 1
-      update_config:
-        parallelism: 2
-        delay: 10s
-      restart_policy:
-        condition: on-failure
-
-  worker:
-    image: dockersamples/examplevotingapp_worker
-    networks:
-      - frontend
-      - backend
-    deploy:
-      mode: replicated
-      replicas: 1
-      labels: [APP=VOTING]
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 3
-        window: 120s
-      placement:
-        constraints:
-          - "node.role==manager"
-
-  visualizer:
-    image: dockersamples/visualizer:stable
-    ports:
-      - "8080:8080"
-    stop_grace_period: 1m30s
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-    deploy:
-      placement:
-        constraints:
-          - "node.role==manager"
-
-networks:
-  frontend:
-  backend:
-
-volumes:
-  db-data:
-```
-
-### 安装docker compose
-
-官方文档：https://docs.docker.com/compose/install/
-
-+ 下载
-
-```shell
- sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-```
-
-+ 修改权限
-
-```shell
-sudo chmod +x /usr/local/bin/docker-compose
-```
-
-+ 检查版本
-
-```shell
-docker-compose --version
-```
-
-### docker compose命令
-
-```txt
-build              Build or rebuild services
-config             Validate and view the Compose file
-create             Create services
-down               Stop and remove containers, networks, images, and volumes
-events             Receive real time events from containers
-exec               Execute a command in a running container
-help               Get help on a command
-images             List images
-kill               Kill containers
-logs               View output from containers
-pause              Pause services
-port               Print the public port for a port binding
-ps                 List containers
-pull               Pull service images
-push               Push service images
-restart            Restart services
-rm                 Remove stopped containers
-run                Run a one-off command
-scale              Set number of containers for a service
-start              Start services
-stop               Stop services
-top                Display the running processes
-unpause            Unpause services
-up                 Create and start containers
-version            Show the Docker-Compose version information
-```
-
-后台启动服务：
-
-```shell
-docker-compose up -d
-```
-
-显示容器列表：
-
-```shell
-docker-compose ps
-```
-
-### version配置
+## version配置
 
 Docker Compose文件版本，版本的对应关系查看官方文档
 
@@ -185,7 +19,7 @@ Docker Compose文件版本，版本的对应关系查看官方文档
 version: "3.8"
 ```
 
-### services配置
+## services配置
 
 + build：在build时的配置选项
   + context：包含Dockerfile的目录的路径，此目录也是Docker构建时的上下文路径
@@ -507,7 +341,7 @@ volumes:
   mydata:
 ```
 
-### volumes配置
+## volumes配置
 
 + driver：略
 + driver_opts：略
@@ -521,7 +355,7 @@ volumes:
     name: my-app-data
 ```
 
-### networks配置
+## networks配置
 
 + driver：略
 + driver_opts：略
@@ -563,4 +397,104 @@ volumes:
 
 ```shell
 docker-compose up -d
+```
+
+## 官方示例
+
+```yml
+version: "3.8"
+services:
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379"
+    networks:
+      - frontend
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+
+  db:
+    image: postgres:9.4
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - backend
+    deploy:
+      placement:
+        constraints:
+          - "node.role==manager"
+
+  vote:
+    image: dockersamples/examplevotingapp_vote:before
+    ports:
+      - "5000:80"
+    networks:
+      - frontend
+    depends_on:
+      - redis
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+      restart_policy:
+        condition: on-failure
+
+  result:
+    image: dockersamples/examplevotingapp_result:before
+    ports:
+      - "5001:80"
+    networks:
+      - backend
+    depends_on:
+      - db
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+
+  worker:
+    image: dockersamples/examplevotingapp_worker
+    networks:
+      - frontend
+      - backend
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels: [APP=VOTING]
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 120s
+      placement:
+        constraints:
+          - "node.role==manager"
+
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    stop_grace_period: 1m30s
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints:
+          - "node.role==manager"
+
+networks:
+  frontend:
+  backend:
+
+volumes:
+  db-data:
 ```
