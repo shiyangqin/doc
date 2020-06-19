@@ -12,9 +12,12 @@
 
 + [Git](学习文档/Git.md)
 
-+ [RESTful-API](学习文档/RESTful-API.md)
-
 + [YAML语法](学习文档/YAML语法.md)
+
++ web
+  + [RESTful-API](学习文档/RESTful-API.md)
+  + [gunicorn](学习文档/gunicorn.md)
+  + [nginx](学习文档/nginx.md)
 
 + 数据库
   + [SQL](学习文档/SQL.md)
@@ -22,9 +25,7 @@
   + [Redis命令](学习文档/Redis命令.md)
 
 + Linux
-  + [nginx](学习文档/nginx.md)
   + [supervisor](学习文档/supervisor.md)
-  + [gunicorn](学习文档/gunicorn.md)
   + [Docker](学习文档/Docker)
 
 ## 实践文档

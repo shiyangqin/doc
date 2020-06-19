@@ -66,7 +66,7 @@ def demo():
 使用gunicorn命令参数直接启动：
 
 ```shell
-/usr/local/python3/bin/gunicorn -k gevent -b 0.0.0.0:9000 -w 8 run:app 
+/usr/local/python3/bin/gunicorn -k gevent -b 0.0.0.0:9000 -w 8 run:app
 ```
 
 使用gunicorn配置文件启动：
