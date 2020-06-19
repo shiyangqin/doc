@@ -14,6 +14,8 @@
 
 + [YAML语法](学习文档/YAML语法.md)
 
++ [Python](学习文档/Python)
+
 + web
   + [RESTful-API](学习文档/RESTful-API.md)
   + [gunicorn](学习文档/gunicorn.md)
