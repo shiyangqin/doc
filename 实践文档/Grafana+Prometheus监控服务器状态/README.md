@@ -70,9 +70,7 @@ groups:
 
 ```
 
-+ 将整个文件夹上传至服务器，执行构建命令
-
-需先安装docker和docker compose
++ 将整个文件夹上传至服务器，执行构建命令（需先安装docker和docker compose）
 
 ```shell
 docker-compose up -d
