@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+
+  elasticsearch:
+    image: elasticsearch:7.8.0
+    container_name: elasticsearch
+    restart: always
+    environment:
+      discovery.type: single-node
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      log-net:
+        aliases:
+          - elasticsearch
+    volumes:
+      - log-data:/usr/share/elasticsearch/data
+
+  kibana:
+    image: kibana:7.8.0
+    container_name: kibana
+    restart: always
+    depends_on:
+      - elasticsearch
+    environment:
+      SERVER_NAME: kibana
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      XPACK_MONITORING_ENABLED: "true"
+    ports:
+      - "5601:5601"
+    networks:
+      log-net:
+        aliases:
+          - kibana
+
+networks:
+  log-net:
+    name: log-net
+
+volumes:
+  log-data:
+    name: log-data

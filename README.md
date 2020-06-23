@@ -40,9 +40,11 @@
 
 + [docker部署Redis](实践文档/docker部署Redis.md)
 
++ [使用docker+supervisor+nginx+flask+gunicorn部署web项目](实践文档/使用docker+supervisor+nginx+flask+gunicorn部署web项目.md)
+
 + [Grafana+Prometheus监控服务器状态](实践文档/Grafana+Prometheus监控服务器状态)
 
-+ [使用docker+supervisor+nginx+flask+gunicorn部署web项目](实践文档/使用docker+supervisor+nginx+flask+gunicorn部署web项目.md)
++ [Filebeat+Elasticsearch+Kibana日志服务器部署](实践文档/Filebeat+Elasticsearch+Kibana日志服务器部署)
 
 ## 日常记录
 
