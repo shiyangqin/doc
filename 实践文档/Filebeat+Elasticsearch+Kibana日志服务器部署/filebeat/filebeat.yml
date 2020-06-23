@@ -1,11 +1,15 @@
 filebeat.inputs:
-- type: log
-  enabled: true
-  paths:
-    - /opt/logs/*.log
-  fields:
-    IP: "服务器IP地址"
-  fields_under_root: true
-
-output.elasticsearch: 
-  hosts: ["10.255.175.224:9200"]
+  - type: log
+    enabled: true
+    paths:
+      - /opt/logs/*.log
+    fields:
+      IP: "服务器IP"
+    fields_under_root: true
+    multiline:
+      pattern: '^\d{4}-\d{2}-\d{2}'
+      negate: true
+      match: after
+  
+output.elasticsearch:
+  hosts: ["es服务器IP:9200"]

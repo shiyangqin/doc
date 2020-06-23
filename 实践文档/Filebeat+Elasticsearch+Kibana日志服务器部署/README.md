@@ -17,16 +17,21 @@ Kibana：为 Elasticsearch 设计的开源分析和可视化平台
 
 ```yml
 filebeat.inputs:
-- type: log
-  enabled: true
-  paths:
-    - /opt/logs/*.log  # 配置文件路径（容器内，在yml配置文件里做文件映射）
-  fields:
-    IP: "服务器IP地址"
-  fields_under_root: true
+  - type: log
+    enabled: true
+    paths:
+      - /opt/logs/*.log  #日志文件路径（容器内路径）
+    fields:
+      IP: "服务器IP"
+    fields_under_root: true
+    multiline:  # 多行日志合并，不以时间开头的行，合并至上一行
+      pattern: '^\d{4}-\d{2}-\d{2}'
+      negate: true
+      match: after
 
 output.elasticsearch:
-  hosts: ["10.255.175.224:9200"]  # es地址
+  hosts: ["es服务器IP:9200"]
+
 ```
 
 ## 部署
