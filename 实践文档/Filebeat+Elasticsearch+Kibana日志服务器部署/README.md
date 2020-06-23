@@ -13,7 +13,11 @@ Kibana：为 Elasticsearch 设计的开源分析和可视化平台
     + filebeat.yml：filebeat配置文件
     + docker-compose.yml：filebeat部署文件
 
-## Filebeat配置文件
+## 修改Filebeat配置文件
+
+打开filebeat文件夹下的filebeat.yml，修改其中的日志路径、服务器IP和es服务器IP
+
+修改日志路径的同时，记得修改docker-compose.yml中的文件映射
 
 ```yml
 filebeat.inputs:
