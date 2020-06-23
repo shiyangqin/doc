@@ -3,6 +3,9 @@ filebeat.inputs:
   enabled: true
   paths:
     - /opt/logs/*.log
+  fields:
+    IP: "服务器IP地址"
+  fields_under_root: true
 
 output.elasticsearch: 
   hosts: ["10.255.175.224:9200"]
