@@ -74,7 +74,7 @@ docker version
 
 进入地址https://cr.console.aliyun.com/
 
-点击左侧镜像加速器，复制下方代码，直接粘贴复制到centos执行即可
+点击左侧镜像加速器，先择对应系统，复制下方代码，直接粘贴复制执行即可
 
 ```shell
 sudo mkdir -p /etc/docker
