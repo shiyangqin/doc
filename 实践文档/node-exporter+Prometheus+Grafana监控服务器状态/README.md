@@ -1,9 +1,9 @@
-# Grafana+Prometheus监控服务器状态
+# node-exporter+Prometheus+Grafana监控服务器状态
 
 ## 文件结构
 
 + docker-compose.yml：docker compose文件
-+ node-exporter.json：Grafana图标模板
++ node-exporter.json：Grafana仪表盘json
 + config：配置文件
   + alertmanager.yml：alertmanager配置文件
   + prometheus.yml：prometheus配置文件

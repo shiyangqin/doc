@@ -42,7 +42,7 @@
 
 + [使用docker+supervisor+nginx+flask+gunicorn部署web项目](实践文档/使用docker+supervisor+nginx+flask+gunicorn部署web项目.md)
 
-+ [Grafana+Prometheus监控服务器状态](实践文档/Grafana+Prometheus监控服务器状态)
++ [node-exporter+Prometheus+Grafana监控服务器状态](实践文档/node-exporter+Prometheus+Grafana监控服务器状态)
 
 + [Filebeat+Elasticsearch+Kibana日志服务器部署](实践文档/Filebeat+Elasticsearch+Kibana日志服务器部署)
 
