@@ -12,6 +12,8 @@ Kibana：为 Elasticsearch 设计的开源分析和可视化平台
 
 为避免版本差异，谨慎修改软件版本
 
+## 文件结构
+
 + docker-compose.yml：Elasticsearch和Kibana部署文件
   + filebeat
     + filebeat.yml：filebeat配置文件
