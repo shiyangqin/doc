@@ -1,12 +1,16 @@
 # Filebeat+Elasticsearch+Kibana日志服务器部署
 
+功能：将多个服务器上的日志文件上传到es服务器，多行日志合并，通过 pipeline 对日志内容进行解析，将日志时间替换为上传时间，每部分内容放在独立的字段中，方便筛选
+
 Filebeat：日志收集器
 
 Elasticsearch：一个开源的分布式、RESTful 风格的搜索和数据分析引擎
 
 Kibana：为 Elasticsearch 设计的开源分析和可视化平台
 
-现阶段缺点：收集的日志输出的名称均为fieebeat+time
+所用镜像版本都为：7.8
+
+为避免版本差异，谨慎修改软件版本
 
 + docker-compose.yml：Elasticsearch和Kibana部署文件
   + filebeat
@@ -15,7 +19,7 @@ Kibana：为 Elasticsearch 设计的开源分析和可视化平台
 
 ## 修改Filebeat配置文件
 
-打开filebeat文件夹下的filebeat.yml，修改其中的日志路径、服务器IP和es服务器IP
+打开filebeat文件夹下的filebeat.yml，修改其中的日志路径、服务器IP、es服务器IP和自定义索引
 
 修改日志路径的同时，记得修改docker-compose.yml中的文件映射
 
@@ -32,10 +36,14 @@ filebeat.inputs:
       pattern: '^\d{4}-\d{2}-\d{2}'
       negate: true
       match: after
+    tags: ["log"]
 
 output.elasticsearch:
   hosts: ["es服务器IP:9200"]
-
+  indices:  # 自定义索引
+    - index: "log-%{[agent.version]}-%{+yyyy.MM.dd}"
+      when.contains:
+        tags: "log"
 ```
 
 ## 部署
