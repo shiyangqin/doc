@@ -8,6 +8,8 @@ GIL使无论有多少个cpu，python在执行时在同一时刻只允许一个�
 
 ## Lock
 
+当多个线程操作同一资源时，保证前一个线程操作完成，下一个才可以开始操作
+
 ```python
 # -*- coding:utf-8 -*-
 import threading
@@ -86,6 +88,101 @@ if __name__ == '__main__':
 4. 线程2尝试获取锁，成功，线程2继续执行
 
 ## RLock
+
+当获取一个资源需要先获取另一个资源时，保证一个线程获取其中一个资源的锁时，其他线程无法获取另外的锁，直到当前线程释放所有锁
+
+```python
+# -*- coding:utf-8 -*-
+import threading
+
+
+class ProblemDemo(object):
+    """死锁样例"""
+    _item_1 = 0
+    _item_2 = 0
+    _item_1_lock = threading.Lock()
+    _item_2_lock = threading.Lock()
+
+    @staticmethod
+    def run():
+        threading.Thread(target=ProblemDemo.__process_1).start()
+        threading.Thread(target=ProblemDemo.__process_2).start()
+
+    @staticmethod
+    def __process_1():
+        for _ in range(10):
+            with ProblemDemo._item_1_lock:
+                print("item_1 + 1")
+                ProblemDemo._item_1 += 1
+                with ProblemDemo._item_2_lock:
+                    print("item_2 + 1")
+                    ProblemDemo._item_2 += 1
+
+    @staticmethod
+    def __process_2():
+        for _ in range(10):
+            with ProblemDemo._item_2_lock:
+                print("item_2 + 1")
+                ProblemDemo._item_2 += 1
+                with ProblemDemo._item_1_lock:
+                    print("item_1 + 1")
+                    ProblemDemo._item_1 += 1
+
+
+if __name__ == '__main__':
+    ProblemDemo.run()
+
+```
+
+死锁步骤：
+
+1. 线程1拿到_item_1_lock，失去cpu
+2. 线程2拿到_item_2_lock，执行代码，尝试获取_item_1_lock
+3. 线程1执行代码，尝试获取_item_2_lock
+4. 2个线程各拿一个锁，互相等对方释放锁，达成死锁，代码执行停滞
+
+```python
+# -*- coding:utf-8 -*-
+import threading
+
+
+class RLockDemo(object):
+    """递归锁样例"""
+
+    _item_1 = 0
+    _item_2 = 0
+    _item_1_lock = _item_2_lock = threading.RLock()
+
+    @staticmethod
+    def run():
+        threading.Thread(target=RLockDemo.__process_1).start()
+        threading.Thread(target=RLockDemo.__process_2).start()
+
+    @staticmethod
+    def __process_1():
+        for _ in range(10):
+            with RLockDemo._item_1_lock:
+                print("item_1 + 1")
+                RLockDemo._item_1 += 1
+                with RLockDemo._item_2_lock:
+                    print("item_2 + 1")
+                    RLockDemo._item_2 += 1
+
+    @staticmethod
+    def __process_2():
+        for _ in range(10):
+            with RLockDemo._item_2_lock:
+                print("item_2 + 1")
+                RLockDemo._item_2 += 1
+                with RLockDemo._item_1_lock:
+                    print("item_1 + 1")
+                    RLockDemo._item_1 += 1
+
+
+if __name__ == '__main__':
+    RLockDemo.run()
+
+```
 
 ## Condition
 
