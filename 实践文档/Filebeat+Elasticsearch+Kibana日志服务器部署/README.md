@@ -6,7 +6,7 @@ Elasticsearch：一个开源的分布式、RESTful 风格的搜索和数据分�
 
 Kibana：为 Elasticsearch 设计的开源分析和可视化平台
 
-现阶段缺点：收集的日志输出的名称均为fieebeat+time，日志内容都放在了同一个标签message下
+现阶段缺点：收集的日志输出的名称均为fieebeat+time
 
 + docker-compose.yml：Elasticsearch和Kibana部署文件
   + filebeat
@@ -42,7 +42,7 @@ output.elasticsearch:
 
 需先安装docker和docker compose
 
-+ 部署Kibana和es
+### 部署Kibana和es
 
 将docker-compose.yml上传至服务器，在文件所在目录下执行docker compose命令
 
@@ -50,7 +50,62 @@ output.elasticsearch:
 docker-compose up -d
 ```
 
-+ 部署Filebeat
+### 配置pipeline
+
+通过 pipeline 对日志内容进行解析
+
+打开浏览器，输入地址：服务器IP:5601，打开 kibana
+
+<img src="img/kibana1.jpg" width=500 />
+
+打开 Manage spaces
+
+<img src="img/kibana2.jpg" />
+
+点击 Ingest Node Pipelines
+
+<img src="img/kibana9.jpg" />
+
+点击 Create a pipeline 按钮
+
+<img src="img/kibana10.jpg" width=500 />
+
+填写pipeline信息
+
+<img src="img/kibana11.jpg" width=500 />
+
+日志格式：
+
+```txt
+2020-06-22 11:32:37,413 services.db_pool 16392 DEBUG    30     >>>>>>pg_pool create success
+```
+
+对应的 Processors 信息：
+
+```json
+[
+  {
+    "grok": {
+      "field": "message",
+      "patterns": [
+        "(?<time>\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2},\\d{3})\\s*(?<name>\\S*)\\s*(?<pid>\\S*)\\s*(?<log_level>\\S*)\\s*(?<lineno>\\S*)\\s*(?<msg>[\\s\\S]*)"
+      ]
+    }
+  },
+  {
+    "date": {
+      "field": "time",
+      "formats": [
+        "yyyy-MM-dd HH:mm:ss,SSS"
+      ],
+      "timezone": "Asia/Shanghai",
+      "target_field": "@timestamp"
+    }
+  }
+]
+```
+
+### 部署Filebeat
 
 将filebeat文件夹上传至日志文件所在服务器，进入filebeat文件夹，修改好配置文件，执行docker compose命令
 
@@ -58,7 +113,7 @@ docker-compose up -d
 docker-compose up -d
 ```
 
-## 配置Kibana
+### 配置Kibana
 
 打开浏览器，输入地址：服务器IP:5601，打开 kibana
 

@@ -11,5 +11,13 @@ filebeat.inputs:
       negate: true
       match: after
   
+setup.template.name: "Log"
+setup.template.pattern: "Log"
+setup.template.overwrite: true
+setup.template.enabled: true
+setup.ilm.enabled: false
+
 output.elasticsearch:
   hosts: ["es服务器IP:9200"]
+  index: "Log"
+  pipeline: "log-pipeline"
