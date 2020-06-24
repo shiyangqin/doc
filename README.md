@@ -12,6 +12,8 @@
 
 + [Git](学习文档/Git.md)
 
++ [事务](学习文档/事务.md)
+
 + [YAML语法](学习文档/YAML语法.md)
 
 + [Python](学习文档/Python)
@@ -23,7 +25,6 @@
 
 + 数据库
   + [SQL](学习文档/SQL.md)
-  + [什么是事务？](学习文档/事务.md)
   + [Redis命令](学习文档/Redis命令.md)
 
 + Linux
