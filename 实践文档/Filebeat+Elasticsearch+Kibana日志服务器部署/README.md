@@ -28,15 +28,15 @@ filebeat.inputs:
   - type: log
     enabled: true
     paths:
-      - /opt/logs/*.log  #日志文件路径（容器内路径）
-    fields:
+      - /opt/logs/*.log  # 日志文件路径（容器内路径）
+    fields:  # 添加自定义字段，方便区分不同服务器
       IP: "服务器IP"
     fields_under_root: true
     multiline:  # 多行日志合并，不以时间开头的行，合并至上一行
       pattern: '^\d{4}-\d{2}-\d{2}'
       negate: true
       match: after
-    tags: ["log"]
+    tags: ["log"]  # 定义tags，用于自定义索引
 
 output.elasticsearch:
   hosts: ["es服务器IP:9200"]
