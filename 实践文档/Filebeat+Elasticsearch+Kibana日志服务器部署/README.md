@@ -154,3 +154,21 @@ docker-compose up -d
 修改筛选条件，查看日志内容
 
 <img src="img/kibana8.jpg" width=500 />
+
+## 修改索引中的@timestamp格式
+
+打开 Index patterns，点击要修改的索引
+
+<img src="img/kibana12.jpg" width=500 />
+
+点击 @timestamp 字段后面的编辑按钮
+
+<img src="img/kibana13.jpg" width=500 />
+
+修改Format为Date，填写想要的格式，保存
+
+<img src="img/kibana14.jpg" width=500 />
+
+修改成功
+
+<img src="img/kibana15.jpg" width=500 />
