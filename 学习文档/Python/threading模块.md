@@ -484,6 +484,43 @@ if __name__ == '__main__':
 
 <img src="img/threading7.jpg" />
 
+可call的类对象也可以使用
+
+```python
+# -*- coding:utf-8 -*-
+import threading
+import time
+
+
+class CallDemo(object):
+
+    def __init__(self, t_name, sleep_time):
+        self._t_name = t_name
+        self._sleep_time = sleep_time
+
+    def __call__(self):
+        self.run()
+
+    def run(self):
+        print(self._t_name + " run")
+        time.sleep(self._sleep_time)
+
+
+def thread_demo_3():
+    """线程创建示例3"""
+    for i in range(5):
+        t = threading.Thread(name="Thread-"+str(i), target=CallDemo("Thread-"+str(i), i))
+        print(t.getName() + " start")
+        t.start()
+
+
+if __name__ == '__main__':
+    thread_demo_3()
+
+```
+
+<img src="img/threading10.jpg" />
+
 ### 类创建多线程
 
 ```python
@@ -520,7 +557,7 @@ if __name__ == '__main__':
 定时器，Thread的子类，构造参数：
 
 + interval: 指定的时间
-+ function: 要执行的方法
++ function: 要执行的方法（同Thread一样，可call的类对象也可以）
 + args/kwargs: 方法的参数
 
 ```python
