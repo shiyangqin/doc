@@ -3,8 +3,8 @@
 + [Lock](#Lock)
 + [RLock](#RLock)
 + [Condition](#Condition)
-+ [Semaphore和BoundedSemaphore](#Semaphore和BoundedSemaphore)
 + [Event](#Event)
++ [Semaphore和BoundedSemaphore](#Semaphore和BoundedSemaphore)
 + [Barrier](#Barrier)
 + [Thread](#Thread)
 + [Timer](#Timer)
@@ -263,82 +263,9 @@ if __name__ == '__main__':
 
 调用get函数使队列元素减少时，唤醒正在等待的not_full，调用put函数添加元素时，唤醒正在等待的not_empty
 
-## Semaphore和BoundedSemaphore
-
-Semaphore：信号量，用于控制获取资源的线程数量，创建对象时初始化value，当调用acquire时value-1，当调用release时value+1，当value=0时，调用acquire将阻塞线程，当value达到初始值时，再次调用release仍会使value+1，不会报错
-
-BoundedSemaphore：Semaphore的子类，当value为初始值时，再次调用release抛出ValueError("Semaphore released too many times")异常
-
-```python
-# -*- coding:utf-8 -*-
-import datetime
-import threading
-import time
-
-
-class SemaphoreDemo(object):
-    """Semaphore样例"""
-
-    def __init__(self):
-        self._sleep_time = 2
-        self._available = threading.Semaphore(2)
-
-    def run(self):
-        for i in range(6):
-            threading.Thread(target=self.__process).start()
-
-    def __process(self):
-        with self._available:
-            print(datetime.datetime.now())
-            time.sleep(self._sleep_time)
-            self._available.release()
-
-
-if __name__ == '__main__':
-    SemaphoreDemo().run()
-
-```
-
-__process函数在最后再次执行了release函数，所以第一波拿到Semaphore的2个线程执行完后，Semaphore的value已经变成了4，所以执行结果是第一波打印2次时间，第二波打印4次
-
-<img src="img/lock2.jpg" />
-
-```python
-# -*- coding:utf-8 -*-
-import datetime
-import threading
-import time
-
-
-class BoundedSemaphoreDemo(object):
-    """BoundedSemaphore样例"""
-
-    def __init__(self):
-        self._sleep_time = 2
-        self._available = threading.BoundedSemaphore(2)
-
-    def run(self):
-        for i in range(6):
-            threading.Thread(target=self.__process).start()
-
-    def __process(self):
-        with self._available:
-            print(datetime.datetime.now())
-            time.sleep(self._sleep_time)
-
-
-if __name__ == '__main__':
-    BoundedSemaphoreDemo().run()
-
-```
-
-BoundedSemaphore额外执行release会报错，所以这次每一波都是2条线程，分3次打印
-
-<img src="img/lock3.jpg" />
-
 ## Event
 
-事件对象，用于线程间通讯，event对象中有一个flag，默认值为false，当调用set时，置为true，调用clear时置为false，调用wait，如果flag为false则阻塞，否则通过
+事件对象，用于线程间通讯，event对象中有一个flag，默认值为false，当调用set时，置为true，调用clear时置为false，调用wait时，如果flag为false则阻塞，否则通过
 
 ```python
 # -*- coding:utf-8 -*-
@@ -390,7 +317,116 @@ if __name__ == '__main__':
 
 第二种可能，一条线程先执行self._event_obj.clear()，第二条线程判定失败，继续等待
 
+## Semaphore和BoundedSemaphore
+
+Semaphore：信号量，用于控制获取资源的线程数量，创建对象时初始化value，当调用acquire时value-1，当调用release时value+1，当value=0时，调用acquire将阻塞线程，当value达到初始值时，再次调用release仍会使value+1，不会报错
+
+BoundedSemaphore：Semaphore的子类，当value为初始值时，再次调用release抛出ValueError("Semaphore released too many times")异常
+
+```python
+# -*- coding:utf-8 -*-
+import datetime
+import threading
+import time
+
+
+class SemaphoreDemo(object):
+    """Semaphore样例"""
+
+    def __init__(self):
+        self._sleep_time = 2
+        self._available = threading.Semaphore(2)
+
+    def run(self):
+        for i in range(6):
+            threading.Thread(target=self.__process).start()
+
+    def __process(self):
+        with self._available:
+            print(datetime.datetime.now())
+            time.sleep(self._sleep_time)
+            self._available.release()
+
+
+if __name__ == '__main__':
+    SemaphoreDemo().run()
+
+```
+
+__process函数在最后再次执行了release函数，所以第一波拿到Semaphore的2个线程执行完后，Semaphore的value已经变成了4，所以执行结果是第一波两条线程打印时间，第二波剩下的4条线程打印时间
+
+<img src="img/lock2.jpg" />
+
+```python
+# -*- coding:utf-8 -*-
+import datetime
+import threading
+import time
+
+
+class BoundedSemaphoreDemo(object):
+    """BoundedSemaphore样例"""
+
+    def __init__(self):
+        self._sleep_time = 2
+        self._available = threading.BoundedSemaphore(2)
+
+    def run(self):
+        for i in range(6):
+            threading.Thread(target=self.__process).start()
+
+    def __process(self):
+        with self._available:
+            print(datetime.datetime.now())
+            time.sleep(self._sleep_time)
+
+
+if __name__ == '__main__':
+    BoundedSemaphoreDemo().run()
+
+```
+
+BoundedSemaphore额外执行release会报错，所以这次每一波都是2条线程，分3次打印
+
+<img src="img/lock3.jpg" />
+
 ## Barrier
+
+栅栏对象，当调用wait对象时，线程阻塞，并记录已阻塞线程的数量，当阻塞线程线程数量达到指定值时才继续向下执行，或者阻塞线程等待时间超过等待时间参数，抛出threading.BrokenBarrierError错误
+
+```python
+# -*- coding:utf-8 -*-
+import threading
+import time
+import datetime
+
+
+class BarrierDemo(object):
+    """barrier样例"""
+
+    def __init__(self):
+        self._barrier_obj = threading.Barrier(2)
+
+    def run(self):
+        print(datetime.datetime.now())
+        for i in range(5):
+            threading.Thread(target=self.__process, args=(i,)).start()
+
+    def __process(self, sleep_time):
+        time.sleep(sleep_time)
+        try:
+            self._barrier_obj.wait(2)
+        except RuntimeError:
+            print('error')
+        print(datetime.datetime.now())
+
+
+if __name__ == '__main__':
+    BarrierDemo().run()
+
+```
+
+<img src="img/lock6.jpg" />
 
 ## Thread
 
