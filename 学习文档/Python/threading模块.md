@@ -49,7 +49,7 @@ if __name__ == '__main__':
 4. 线程2：ProblemDemo._item_list.remove('item')
 5. 当线程2执行remove时，_item_list中已经没有 item 了，抛出 ValueError: list.remove(x): x not in list
 
-<img src="img/lock1.jpg" width=500 />
+<img src="img/threading1.jpg" width=500 />
 
 解决方法：给代码块加锁
 
@@ -309,11 +309,11 @@ if __name__ == '__main__':
 
 执行结果有2种可能
 
-<img src="img/lock4.jpg" />
+<img src="img/threading4.jpg" />
 
 第一种可能：当event第一次被置为True时，2条线程都在对方调用self._event_obj.clear()之前已经完成判定，表现为同时输出时间
 
-<img src="img/lock5.jpg" />
+<img src="img/threading5.jpg" />
 
 第二种可能，一条线程先执行self._event_obj.clear()，第二条线程判定失败，继续等待
 
@@ -355,7 +355,7 @@ if __name__ == '__main__':
 
 __process函数在最后再次执行了release函数，所以第一波拿到Semaphore的2个线程执行完后，Semaphore的value已经变成了4，所以执行结果是第一波两条线程打印时间，第二波剩下的4条线程打印时间
 
-<img src="img/lock2.jpg" />
+<img src="img/threading2.jpg" />
 
 ```python
 # -*- coding:utf-8 -*-
@@ -388,7 +388,7 @@ if __name__ == '__main__':
 
 BoundedSemaphore额外执行release会报错，所以这次每一波都是2条线程，分3次打印
 
-<img src="img/lock3.jpg" />
+<img src="img/threading3.jpg" />
 
 ## Barrier
 
@@ -396,9 +396,9 @@ BoundedSemaphore额外执行release会报错，所以这次每一波都是2条�
 
 ```python
 # -*- coding:utf-8 -*-
+import datetime
 import threading
 import time
-import datetime
 
 
 class BarrierDemo(object):
@@ -426,8 +426,122 @@ if __name__ == '__main__':
 
 ```
 
-<img src="img/lock6.jpg" />
+<img src="img/threading6.jpg" />
 
 ## Thread
 
+线程对象
+
+主要参数说明：
+
++ target: 是函数名字，需要调用的函数。
+
++ name: 设置线程名字。
+
++ args: 函数需要的参数，元组形式
+
++ kwargs: 函数需要的参数，字典形式
+
+Thread 对象主要方法说明:
+
++ run(): 用以表示线程活动的方法。
+
++ start():启动线程活动。
+
++ join(): 等待至线程中止。
+
++ isAlive(): 返回线程是否活动的。
+
++ getName(): 返回线程名。
+
++ setName(): 设置线程名。
+
+### 函数创建多线程
+
+```python
+# -*- coding:utf-8 -*-
+import threading
+import time
+
+
+def run(t_name, sleep_time):
+    print(t_name + " run")
+    time.sleep(sleep_time)
+
+
+def thread_demo_1():
+    """线程创建示例1"""
+    for i in range(5):
+        t = threading.Thread(name="Thread-"+str(i), target=run, args=("Thread-"+str(i), i))
+        print(t.getName() + " start")
+        t.start()
+
+
+if __name__ == '__main__':
+    thread_demo_1()
+
+```
+
+<img src="img/threading7.jpg" />
+
+### 类创建多线程
+
+```python
+# -*- coding:utf-8 -*-
+import threading
+import time
+
+
+class ThreadDemo2(threading.Thread):
+    """Thread子类"""
+
+    def run(self) -> None:
+        print(self.getName() + " run")
+        time.sleep(self._args[0])
+
+
+def thread_demo_2():
+    """线程创建示例2"""
+    for i in range(5):
+        t = ThreadDemo2(name="Thread-"+str(i), args=(i,))
+        print(t.getName() + " start")
+        t.start()
+
+
+if __name__ == '__main__':
+    thread_demo_2()
+
+```
+
+<img src="img/threading8.jpg" />
+
 ## Timer
+
+定时器，Thread的子类，构造参数：
+
++ interval: 指定的时间
++ function: 要执行的方法
++ args/kwargs: 方法的参数
+
+```python
+# -*- coding:utf-8 -*-
+import threading
+
+
+def run(t_name):
+    print(t_name + " run")
+
+
+def timer_demo():
+    """定时器创建示例"""
+    for i in range(5):
+        t = threading.Timer(interval=i, function=run, args=("timer-" + str(i),))
+        t.start()
+
+
+if __name__ == '__main__':
+    timer_demo()
+
+```
+
+<img src="img/threading9.jpg" />
