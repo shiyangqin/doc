@@ -18,24 +18,23 @@ import threading
 class ProblemDemo(object):
     """问题样例"""
 
-    _item_list = ['item']
+    def __init__(self):
+        self._item_list = ['item']
 
-    @staticmethod
-    def run():
+    def run(self):
         for i in range(100):
-            threading.Thread(target=ProblemDemo.__process).start()
+            threading.Thread(target=self.__process).start()
 
-    @staticmethod
-    def __process():
+    def __process(self):
         for _ in range(10):
             print('remove item')
-            ProblemDemo._item_list.remove('item')
+            self._item_list.remove('item')
             print('add item')
-            ProblemDemo._item_list.append('item')
+            self._item_list.append('item')
 
 
 if __name__ == '__main__':
-    ProblemDemo.run()
+    ProblemDemo().run()
 
 ```
 
@@ -59,26 +58,25 @@ import threading
 class LockDemo(object):
     """加锁样例"""
 
-    _item_list = ['item']
-    _item_list_lock = threading.Lock()
+    def __init__(self):
+        self._item_list = ['item']
+        self._item_list_lock = threading.Lock()
 
-    @staticmethod
-    def run():
+    def run(self):
         for i in range(100):
-            threading.Thread(target=LockDemo.__process).start()
+            threading.Thread(target=self.__process).start()
 
-    @staticmethod
-    def __process():
+    def __process(self):
         for _ in range(10):
-            with LockDemo._item_list_lock:
+            with self._item_list_lock:
                 print('remove item')
-                LockDemo._item_list.remove('item')
+                self._item_list.remove('item')
                 print('add item')
-                LockDemo._item_list.append('item')
+                self._item_list.append('item')
 
 
 if __name__ == '__main__':
-    LockDemo.run()
+    LockDemo().run()
 
 ```
 
@@ -101,39 +99,37 @@ import threading
 class ProblemDemo(object):
     """死锁样例"""
 
-    _item_1 = 0
-    _item_2 = 0
-    _item_1_lock = threading.Lock()
-    _item_2_lock = threading.Lock()
+    def __init__(self):
+        self._item_1 = 0
+        self._item_2 = 0
+        self._item_1_lock = threading.Lock()
+        self._item_2_lock = threading.Lock()
 
-    @staticmethod
-    def run():
-        threading.Thread(target=ProblemDemo.__process_1).start()
-        threading.Thread(target=ProblemDemo.__process_2).start()
+    def run(self):
+        threading.Thread(target=self.__process_1).start()
+        threading.Thread(target=self.__process_2).start()
 
-    @staticmethod
-    def __process_1():
+    def __process_1(self):
         for _ in range(10):
-            with ProblemDemo._item_1_lock:
+            with self._item_1_lock:
                 print("item_1 + 1")
-                ProblemDemo._item_1 += 1
-                with ProblemDemo._item_2_lock:
+                self._item_1 += 1
+                with self._item_2_lock:
                     print("item_2 + 1")
-                    ProblemDemo._item_2 += 1
+                    self._item_2 += 1
 
-    @staticmethod
-    def __process_2():
+    def __process_2(self):
         for _ in range(10):
-            with ProblemDemo._item_2_lock:
+            with self._item_2_lock:
                 print("item_2 + 1")
-                ProblemDemo._item_2 += 1
-                with ProblemDemo._item_1_lock:
+                self._item_2 += 1
+                with self._item_1_lock:
                     print("item_1 + 1")
-                    ProblemDemo._item_1 += 1
+                    self._item_1 += 1
 
 
 if __name__ == '__main__':
-    ProblemDemo.run()
+    ProblemDemo().run()
 
 ```
 
@@ -152,42 +148,117 @@ import threading
 class RLockDemo(object):
     """递归锁样例"""
 
-    _item_1 = 0
-    _item_2 = 0
-    _item_1_lock = _item_2_lock = threading.RLock()
+    def __init__(self):
+        self._item_1 = 0
+        self._item_2 = 0
+        self._item_1_lock = self._item_2_lock = threading.RLock()
 
-    @staticmethod
-    def run():
-        threading.Thread(target=RLockDemo.__process_1).start()
-        threading.Thread(target=RLockDemo.__process_2).start()
+    def run(self):
+        threading.Thread(target=self.__process_1).start()
+        threading.Thread(target=self.__process_2).start()
 
-    @staticmethod
-    def __process_1():
+    def __process_1(self):
         for _ in range(10):
-            with RLockDemo._item_1_lock:
+            with self._item_1_lock:
                 print("item_1 + 1")
-                RLockDemo._item_1 += 1
-                with RLockDemo._item_2_lock:
+                self._item_1 += 1
+                with self._item_2_lock:
                     print("item_2 + 1")
-                    RLockDemo._item_2 += 1
+                    self._item_2 += 1
 
-    @staticmethod
-    def __process_2():
+    def __process_2(self):
         for _ in range(10):
-            with RLockDemo._item_2_lock:
+            with self._item_2_lock:
                 print("item_2 + 1")
-                RLockDemo._item_2 += 1
-                with RLockDemo._item_1_lock:
+                self._item_2 += 1
+                with self._item_1_lock:
                     print("item_1 + 1")
-                    RLockDemo._item_1 += 1
+                    self._item_1 += 1
 
 
 if __name__ == '__main__':
-    RLockDemo.run()
+    RLockDemo().run()
 
 ```
 
 ## Condition
+
+条件变量，一个操作需要满足一个条件才能执行，python中的Queue是一个很好的例子，可以看一看
+
+```python
+# -*- coding:utf-8 -*-
+import threading
+from collections import deque
+
+
+class ConditionDemo(object):
+    """信号样例(参考Queue)"""
+
+    def __init__(self, maxsize=0):
+        """初始化队列"""
+        self.maxsize = maxsize
+        self._queue = deque()
+        self.mutex = threading.Lock()
+        self.not_empty = threading.Condition(self.mutex)
+        self.not_full = threading.Condition(self.mutex)
+
+    def size(self):
+        """队列大小"""
+        return len(self._queue)
+
+    def is_full(self):
+        """队列是否已满"""
+        with self.mutex:
+            return 0 < self.maxsize <= self.size()
+
+    def is_empty(self):
+        """队列是否已空"""
+        with self.mutex:
+            return not self.size()
+
+    def put(self, item):
+        """向队列中添加元素，队列满时挂起，调用get函数时唤醒"""
+        print("put item")
+        with self.not_full:
+            if self.maxsize > 0:
+                while self.size() >= self.maxsize:
+                    print("put item wait")
+                    self.not_full.wait()
+            self._queue.append(item)
+            self.not_empty.notify()
+
+    def get(self):
+        """从队列中获取元素，队列空时挂起，调用put函数时唤醒"""
+        print("get item")
+        with self.not_empty:
+            while not self.size():
+                print("get item wait")
+                self.not_empty.wait()
+            item = self._queue.popleft()
+            self.not_full.notify()
+            return item
+
+
+if __name__ == '__main__':
+    demo = ConditionDemo(1)
+    print("size:" + str(demo.size()))
+    print("is_empty:" + str(demo.is_empty()))
+    print("is_full:" + str(demo.is_full()))
+
+    threading.Timer(1, function=demo.put, args=(1,)).start()
+    print(demo.get())
+
+    threading.Timer(2, function=demo.get).start()
+    demo.put(2)
+    demo.put(3)
+
+    print("size:" + str(demo.size()))
+    print("is_empty:" + str(demo.is_empty()))
+    print("is_full:" + str(demo.is_full()))
+
+```
+
+调用get函数使队列元素减少时，唤醒正在等待的not_full，调用put函数添加元素时，唤醒正在等待的not_empty
 
 ## Semaphore和BoundedSemaphore
 
