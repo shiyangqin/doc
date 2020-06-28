@@ -1,5 +1,14 @@
 # threading模块
 
++ [Lock](#Lock)
++ [RLock](#RLock)
++ [Condition](#Condition)
++ [Semaphore和BoundedSemaphore](#Semaphore和BoundedSemaphore)
++ [Event](#Event)
++ [Barrier](#Barrier)
++ [Thread](#Thread)
++ [Timer](#Timer)
+
 ## Lock
 
 当多个线程操作同一资源时，保证前一个线程操作完成，下一个才可以开始操作
@@ -330,3 +339,7 @@ BoundedSemaphore额外执行release会报错，所以这次每一波都是2条�
 ## Event
 
 ## Barrier
+
+## Thread
+
+## Timer
