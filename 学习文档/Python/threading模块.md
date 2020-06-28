@@ -338,6 +338,58 @@ BoundedSemaphore额外执行release会报错，所以这次每一波都是2条�
 
 ## Event
 
+事件对象，用于线程间通讯，event对象中有一个flag，默认值为false，当调用set时，置为true，调用clear时置为false，调用wait，如果flag为false则阻塞，否则通过
+
+```python
+# -*- coding:utf-8 -*-
+import datetime
+import threading
+
+
+class EventDemo(object):
+    """event样例"""
+
+    def __init__(self):
+        self._event_obj = threading.Event() 
+
+    def run(self):
+        threading.Thread(target=self.__process_1).start()
+        threading.Thread(target=self.__process_2).start()
+        threading.Timer(2, function=self._event_obj.set).start()
+        threading.Timer(4, function=self._event_obj.set).start()
+
+    def __process_1(self):
+        while not self._event_obj.is_set():
+            print("process_1 wait")
+            self._event_obj.wait()
+        else:
+            print("process_1:" + str(datetime.datetime.now()))
+            self._event_obj.clear()
+
+    def __process_2(self):
+        while not self._event_obj.is_set():
+            print("process_2 wait")
+            self._event_obj.wait()
+        else:
+            self._event_obj.clear()
+            print("process_2:" + str(datetime.datetime.now()))
+
+
+if __name__ == '__main__':
+    EventDemo().run()
+
+```
+
+执行结果有2种可能
+
+<img src="img/lock4.jpg" />
+
+第一种可能：当event第一次被置为True时，2条线程都在对方调用self._event_obj.clear()之前已经完成判定，表现为同时输出时间
+
+<img src="img/lock5.jpg" />
+
+第二种可能，一条线程先执行self._event_obj.clear()，第二条线程判定失败，继续等待
+
 ## Barrier
 
 ## Thread
