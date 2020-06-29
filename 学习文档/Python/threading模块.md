@@ -442,6 +442,8 @@ if __name__ == '__main__':
 
 + kwargs: 函数需要的参数，字典形式
 
++ daemon: 是否是守护线程
+
 Thread 对象主要方法说明:
 
 + run(): 用以表示线程活动的方法。
@@ -551,6 +553,40 @@ if __name__ == '__main__':
 ```
 
 <img src="img/threading8.jpg" />
+
+### 守护进程
+
+如果当前python线程是守护线程，那么意味着这个线程是“不重要”的，“不重要”意味着如果他的主进程结束了但该守护线程没有运行完，守护进程就会被强制结束。如果线程是非守护线程，那么父进程只有等到守护线程运行完毕后才能结束。
+
+```python
+# -*- coding:utf-8 -*-
+import threading
+import time
+
+class DaemonDemo(threading.Thread):
+    """守护线程样例"""
+
+    def run(self) -> None:
+        print(self.getName() + " run")
+        time.sleep(self._args[0])
+        print(self.getName() + " end")
+
+
+def daemon_demo():
+    """守护线程样例"""
+    t = DaemonDemo(name="Thread-daemon", args=(2,), daemon=True)
+    print(t.getName() + " start")
+    t.start()
+
+
+if __name__ == '__main__':
+    daemon_demo()
+
+```
+
+<img src="img/threading11.jpg" />
+
+主函数daemon_demo运行完成后，守护线程处于还在sleep，这时由于主线程结束，守护线程也被强制结束，所以没有打印出"Thread-daemon end"
 
 ## Timer
 
