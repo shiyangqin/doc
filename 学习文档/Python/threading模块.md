@@ -8,6 +8,7 @@
 + [Barrier](#Barrier)
 + [Thread](#Thread)
 + [Timer](#Timer)
++ [杂项](#杂项)
 
 ## Lock
 
@@ -448,15 +449,9 @@ Thread 对象主要方法说明:
 
 + run(): 用以表示线程活动的方法。
 
-+ start():启动线程活动。
++ start(): 启动线程活动。
 
 + join(): 等待至线程中止。
-
-+ isAlive(): 返回线程是否活动的。
-
-+ getName(): 返回线程名。
-
-+ setName(): 设置线程名。
 
 ### 函数创建多线程
 
@@ -651,3 +646,25 @@ if __name__ == '__main__':
 ```
 
 输出结果是一样的
+
+## 杂项
+
++ active_count：返回当前存活的线程类 Thread 对象。返回的计数等于 enumerate() 返回的列表长度。
+
++ current_thread：返回当前对应调用者的控制线程的 Thread 对象。如果调用者的控制线程不是利用 threading 创建，会返回一个功能受限的虚拟线程对象。
+
++ enumerate：以列表形式返回当前所有存活的 Thread 对象。 该列表包含守护线程，current_thread() 创建的虚拟线程对象和主线程。它不包含已终结的线程和尚未开始的线程。
+
++ get_ident：返回当前线程的 “线程标识符”。它是一个非零的整数。它的值没有直接含义，主要是用作 magic cookie，比如作为含有线程相关数据的字典的索引。线程标识符可能会在线程退出，新线程创建时被复用。
+
++ local：一个代表线程本地数据的类。
+
++ main_thread：返回主 Thread 对象。一般情况下，主线程是Python解释器开始时创建的线程。
+
++ TIMEOUT_MAX：阻塞函数（ Lock.acquire(), RLock.acquire(), Condition.wait(), ...）中形参 timeout 允许的最大值。传入超过这个值的 timeout 会抛出 OverflowError 异常。
+
++ setprofile：为所有 threading 模块开始的线程设置性能测试函数。在每个线程的 run() 方法被调用前，func 会被传递给 sys.setprofile() 。
+
++ settrace：为所有 threading 模块开始的线程设置追踪函数。在每个线程的 run() 方法被调用前，func 会被传递给 sys.settrace() 。
+
++ stack_size：返回创建线程时用的堆栈大小。可选参数 size 指定之后新建的线程的堆栈大小，而且一定要是0（根据平台或者默认配置）或者最小是32,768(32KiB)的一个正整数。如果 size 没有指定，默认是0。如果不支持改变线程堆栈大小，会抛出 RuntimeError 错误。如果指定的堆栈大小不合法，会抛出 ValueError 错误并且不会修改堆栈大小。32KiB是当前最小的能保证解释器有足够堆栈空间的堆栈大小。需要注意的是部分平台对于堆栈大小会有特定的限制，例如要求大于32KiB的堆栈大小或者需要根据系统内存页面的整数倍进行分配 - 应当查阅平台文档有关详细信息（4KiB页面比较普遍，在没有更具体信息的情况下，建议的方法是使用4096的倍数作为堆栈大小）。适用于: Windows，具有 POSIX 线程的系统。
