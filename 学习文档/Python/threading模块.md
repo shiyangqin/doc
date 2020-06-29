@@ -278,7 +278,7 @@ class EventDemo(object):
     """event样例"""
 
     def __init__(self):
-        self._event_obj = threading.Event() 
+        self._event_obj = threading.Event()
 
     def run(self):
         threading.Thread(target=self.__process_1).start()
