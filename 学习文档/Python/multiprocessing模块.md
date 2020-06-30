@@ -305,15 +305,9 @@ def func(v, a):
 def value_demo():
     v = multiprocessing.Value('d', 0)
     a = multiprocessing.Array('i', range(10))
-    p1 = multiprocessing.Process(target=func, args=(v, a))
-    p2 = multiprocessing.Process(target=func, args=(v, a))
-    p3 = multiprocessing.Process(target=func, args=(v, a))
-    p1.start()
-    p2.start()
-    p3.start()
-    p1.join()
-    p2.join()
-    p3.join()
+    p_list = [multiprocessing.Process(name="Process-" + str(i), target=func, args=(v, a)) for i in range(3)]
+    [p.start() for p in p_list]
+    [p.join() for p in p_list]
     print("-----------------------------------")
     print(v.value)
     print(a[:])
