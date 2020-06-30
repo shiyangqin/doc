@@ -332,7 +332,21 @@ Value和Array构造参数第一个需要传typecode_or_type
 
 ## Manager
 
-Manager提供了一种创建共享数据的方法，可以创建的对象包括：Queue、JoinableQueue、Event、Lock、RLock、Semaphore、BoundedSemaphore、Condition、Barrier、Pool、list、dict、Value、Array、Namespace、Iterator、AsyncResult
+Manager提供了一种创建共享数据的方法，可以创建的对象包括：
+
++ Barrier
++ BoundedSemaphore
++ Condition
++ Event
++ Lock
++ Namespace
++ Queue
++ RLock
++ Semaphore
++ Array
++ Value
++ dict
++ list
 
 注意，Manager在主进程创建共享数据，主进程结束时会被清理，所以创建子进程时，一定要调用join，等待所有子进程结束后再结束主进程
 
@@ -341,13 +355,13 @@ Manager提供了一种创建共享数据的方法，可以创建的对象包括�
 import multiprocessing
 
 
-def func(list, lock):
+def func(arr, l_lock):
     for _ in range(100):
-        with lock:
+        with l_lock:
             print('remove item')
-            list.remove('item')
+            arr.remove('item')
             print('add item')
-            list.append('item')
+            arr.append('item')
 
 
 if __name__ == '__main__':
@@ -355,8 +369,14 @@ if __name__ == '__main__':
     l_list = manager.list()
     l_list.append('item')
     l_list_lock = manager.Lock()
-    p_list = [multiprocessing.Process(target=func, args=(l_list, l_list_lock)) for _ in range(2)]
-    [i.start() for i in p_list]
-    [i.join() for i in p_list]
+    # p_list = [multiprocessing.Process(target=func, args=(l_list, l_list_lock)) for _ in range(3)]
+    # [i.start() for i in p_list]
+    # [i.join() for i in p_list]
+    pool = multiprocessing.pool.Pool(3)
+    pool.starmap_async(func, ((l_list, l_list_lock),))
+    pool.starmap_async(func, ((l_list, l_list_lock),))
+    pool.starmap_async(func, ((l_list, l_list_lock),))
+    pool.close()
+    pool.join()
 
 ```
