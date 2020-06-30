@@ -4,12 +4,11 @@
 
 + [Process](#Process)
 + [Pool](#Pool)
-+ [Pipe](#Pipe)
-+ [Queue](#Queue)
-+ [Value](#Value)
-+ [Array](#Array)
-+ [Manager](#Manager)
-+ 同步(以下类从multiprocessing模块导入，使用方法参考[threading模块](threading模块.md))
++ 数据共享
+  + [Pipe](#Pipe)
+  + [Queue](#Queue)
+  + [Value和Array](#Value和Array)
++ 多线程同步(以下类从multiprocessing模块导入，使用方法参考[threading模块](threading模块.md))
   + Lock
   + RLock
   + Condition
@@ -17,6 +16,7 @@
   + Semaphore
   + BoundedSemaphore
   + Barrier
++ [Manager](#Manager)
 
 ## Process
 
@@ -284,8 +284,79 @@ if __name__ == '__main__':
 
 <img src="img/multiprocessing3.jpg" />
 
-## Value
+## Value和Array
 
-## Array
+共享内存，在主线程创建共享内存，即Value和Array变量，在多个子进程中使用，只能在本机共享时使用
+
+```python
+# -*- coding:utf-8 -*-
+import multiprocessing
+
+
+def func(v, a):
+    while v.value < 5:
+        v.value += 1
+        print(v.value)
+        for k, i in enumerate(a):
+            a[k] = i + 1
+        print(a[:])
+
+
+def value_demo():
+    v = multiprocessing.Value('d', 0)
+    a = multiprocessing.Array('i', range(10))
+    p1 = multiprocessing.Process(target=func, args=(v, a))
+    p2 = multiprocessing.Process(target=func, args=(v, a))
+    p3 = multiprocessing.Process(target=func, args=(v, a))
+    p1.start()
+    p2.start()
+    p3.start()
+    p1.join()
+    p2.join()
+    p3.join()
+    print("-----------------------------------")
+    print(v.value)
+    print(a[:])
+
+
+if __name__ == '__main__':
+    value_demo()
+
+```
+
+### typecode_or_type
+
+Value和Array构造参数第一个需要传typecode_or_type
+
+<img src="img/multiprocessing4.jpg" />
 
 ## Manager
+
+Manager提供了一种创建共享数据的方法，可以创建的对象包括：Queue、JoinableQueue、Event、Lock、RLock、Semaphore、BoundedSemaphore、Condition、Barrier、Pool、list、dict、Value、Array、Namespace、Iterator、AsyncResult
+
+注意，Manager在主进程创建共享数据，主进程结束时会被清理，所以创建子进程时，一定要调用join，等待所有子进程结束后再结束主进程
+
+```python
+# -*- coding:utf-8 -*-
+import multiprocessing
+
+
+def func(list, lock):
+    for _ in range(100):
+        with lock:
+            print('remove item')
+            list.remove('item')
+            print('add item')
+            list.append('item')
+
+
+if __name__ == '__main__':
+    manager = multiprocessing.Manager()
+    l_list = manager.list()
+    l_list.append('item')
+    l_list_lock = manager.Lock()
+    p_list = [multiprocessing.Process(target=func, args=(l_list, l_list_lock)) for _ in range(2)]
+    [i.start() for i in p_list]
+    [i.join() for i in p_list]
+
+```
