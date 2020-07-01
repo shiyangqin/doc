@@ -13,3 +13,5 @@ GIL使无论有多少个cpu，python在执行时在同一时刻只允许一个�
 + [threading模块](threading模块.md)
 
 + [multiprocessing模块](multiprocessing模块.md)
+
++ [concurrent模块](concurrent模块.md)
