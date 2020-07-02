@@ -1,6 +1,6 @@
 # Python
 
-Python官方文档：https://docs.python.org/zh-cn/3.8/
+Python官方文档：[https://docs.python.org/zh-cn/]
 
 + [queue模块](queue模块.md)
 
