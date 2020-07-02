@@ -2,7 +2,7 @@ filebeat.inputs:
   - type: log
     enabled: true
     paths:
-      - /opt/logs/*.log
+      - /opt/logs/**/*.log
     fields:
       IP: "服务器IP"
     fields_under_root: true
@@ -11,6 +11,7 @@ filebeat.inputs:
       negate: true
       match: after
       tags: ["log"]
+    symlinks: true
 
 output.elasticsearch:
   hosts: ["es服务器IP:9200"]
