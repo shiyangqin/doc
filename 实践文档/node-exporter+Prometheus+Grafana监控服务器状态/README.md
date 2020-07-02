@@ -161,3 +161,9 @@ docker-compose up -d
 <img src="img/Prometheus19.jpg" width=500 />
 
 邮件内容是可配置的，具体配置方法暂未研究
+
+## Prometheus数据查询接口
+
+url: http://Prometheus服务器IP:9090/api/v1/query?query=查询语句
+
+method: GET

@@ -18,6 +18,8 @@
 
 + [Python](学习文档/Python)
 
++ [cpu密集型任务和io密集型任务](学习文档/cpu密集型任务和io密集型任务.md)
+
 + web
   + [RESTful-API](学习文档/RESTful-API.md)
   + [gunicorn](学习文档/gunicorn.md)
