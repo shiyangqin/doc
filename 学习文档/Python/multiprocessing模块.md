@@ -1,5 +1,7 @@
 # multiprocessing模块
 
+多进程模块
+
 由于multiprocessing模块和threading模块有部分内容非常相似，先学习threading模块能够更快更好的学习multiprocessing模块
 
 + [Process](#Process)
