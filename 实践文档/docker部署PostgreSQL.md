@@ -15,7 +15,7 @@ ENV POSTGRES_USER postgres
 ENV POSTGRES_PASSWORD postgres
 ENV POSTGRES_DB oa_data
 
-ADD ./pg.sql /docker-entrypoint-initdb.d/
+ADD ./pg.sql /docker-entrypoint-initdb.d/pg.sql
 
 EXPOSE 5432
 ```
