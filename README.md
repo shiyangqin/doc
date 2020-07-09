@@ -8,15 +8,15 @@
 
 + [代码大全（第二版）](学习文档/代码大全)
 
-+ [Git](学习文档/Git.md)
-
 + [事务](学习文档/事务.md)
+
++ [cpu密集型任务和io密集型任务](学习文档/cpu密集型任务和io密集型任务.md)
 
 + [YAML语法](学习文档/YAML语法.md)
 
-+ [Python](学习文档/Python)
++ [Git](学习文档/Git.md)
 
-+ [cpu密集型任务和io密集型任务](学习文档/cpu密集型任务和io密集型任务.md)
++ [Python](学习文档/Python)
 
 + web
   + [RESTful-API](学习文档/RESTful-API.md)
