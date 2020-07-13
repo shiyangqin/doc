@@ -24,7 +24,7 @@ yum install -y yum-utils device-mapper-persistent-data lvm2
 + 设置稳定的仓库
 
 ```shell
-yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 ```
 
 + 安装 Docker Engine-Community
@@ -60,7 +60,7 @@ yum remove docker \
            docker-logrotate \
            docker-engine
 yum install -y yum-utils device-mapper-persistent-data lvm2
-yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 yum install -y docker-ce docker-ce-cli containerd.io
 systemctl start docker
 systemctl enable docker

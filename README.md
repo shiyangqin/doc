@@ -47,6 +47,8 @@
 
 + [Filebeat+Elasticsearch+Kibana日志服务器部署](实践文档/Filebeat+Elasticsearch+Kibana日志服务器部署)
 
++ [使用kubeadm部署Kubernetes](实践文档/使用kubeadm部署Kubernetes.md)
+
 ## 日常记录
 
 + [GitHub图片无法显示问题解决](日常记录/GitHub图片无法显示问题解决.md)
