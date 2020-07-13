@@ -2,14 +2,6 @@
 
 ## 准备
 
-+ 设置主机名映射
-
-```shell
-echo "10.255.175.41 master" >> /etc/hosts
-echo "10.255.175.90 node1" >> /etc/hosts
-echo "10.255.175.97 node2" >> /etc/hosts
-```
-
 + 设置系统时区、同步时间（可选）
 
 ```shell
