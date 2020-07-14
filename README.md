@@ -2,35 +2,35 @@
 
 ## 学习文档
 
-+ [算法](学习文档/算法)
++ [算法](算法)
 
-+ [设计模式](学习文档/设计模式)
++ [设计模式](设计模式)
 
-+ [代码大全（第二版）](学习文档/代码大全)
++ [代码大全（第二版）](代码大全)
 
-+ [事务](学习文档/事务.md)
++ [事务](事务.md)
 
-+ [cpu密集型任务和io密集型任务](学习文档/cpu密集型任务和io密集型任务.md)
++ [cpu密集型任务和io密集型任务](cpu密集型任务和io密集型任务.md)
 
-+ [YAML语法](学习文档/YAML语法.md)
++ [YAML语法](YAML语法.md)
 
-+ [Git](学习文档/Git.md)
++ [Git](Git.md)
 
-+ [Python](学习文档/Python)
++ [Python](Python)
 
 + web
-  + [RESTful-API](学习文档/RESTful-API.md)
-  + [gunicorn](学习文档/gunicorn.md)
-  + [nginx](学习文档/nginx.md)
+  + [RESTful-API](RESTful-API.md)
+  + [gunicorn](gunicorn.md)
+  + [nginx](nginx.md)
 
 + 数据库
-  + [SQL](学习文档/SQL.md)
-  + [Redis命令](学习文档/Redis命令.md)
+  + [SQL](SQL.md)
+  + [Redis命令](Redis命令.md)
 
 + Linux
-  + [supervisor](学习文档/supervisor.md)
-  + [Docker](学习文档/Docker)
-  + [Kubernetes](学习文档/Kubernetes)
+  + [supervisor](supervisor.md)
+  + [Docker](Docker)
+  + [Kubernetes](Kubernetes)
 
 ## 实践文档
 
