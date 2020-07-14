@@ -34,19 +34,19 @@
 
 ## 实践文档
 
-+ [使用er图设计数据库表结构](实践文档/使用er图设计创建数据库.md)
++ [使用er图设计数据库表结构](使用er图设计创建数据库.md)
 
-+ [Centos7安装python3](实践文档/Centos7安装python3.md)
++ [Centos7安装python3](Centos7安装python3.md)
 
-+ [docker部署PostgreSQL](实践文档/docker部署PostgreSQL.md)
++ [docker部署PostgreSQL](docker部署PostgreSQL.md)
 
-+ [docker部署Redis](实践文档/docker部署Redis.md)
++ [docker部署Redis](docker部署Redis.md)
 
-+ [使用docker+supervisor+nginx+flask+gunicorn部署web项目](实践文档/使用docker+supervisor+nginx+flask+gunicorn部署web项目.md)
++ [使用docker+supervisor+nginx+flask+gunicorn部署web项目](使用docker+supervisor+nginx+flask+gunicorn部署web项目.md)
 
-+ [node-exporter+Prometheus+Grafana监控服务器状态](实践文档/node-exporter+Prometheus+Grafana监控服务器状态)
++ [node-exporter+Prometheus+Grafana监控服务器状态](node-exporter+Prometheus+Grafana监控服务器状态)
 
-+ [Filebeat+Elasticsearch+Kibana日志服务器部署](实践文档/Filebeat+Elasticsearch+Kibana日志服务器部署)
++ [Filebeat+Elasticsearch+Kibana日志服务器部署](Filebeat+Elasticsearch+Kibana日志服务器部署)
 
 ## 日常记录
 
