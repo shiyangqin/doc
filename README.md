@@ -27,8 +27,8 @@
 + Linux
   + [supervisor](supervisor.md)
   + [Docker](Docker)
-  + [node-exporter+Prometheus+Grafana监控服务器状态](node-exporter+Prometheus+Grafana监控服务器状态)
-  + [Filebeat+Elasticsearch+Kibana日志服务器部署](Filebeat+Elasticsearch+Kibana日志服务器部署)
+  + [Prometheus服务器监控系统](Prometheus服务器监控系统)
+  + [EFK日志服务器部署](EFK日志服务器部署)
   + [Kubernetes](Kubernetes)
 
 ## 记录

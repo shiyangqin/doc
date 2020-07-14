@@ -1,4 +1,4 @@
-# node-exporter+Prometheus+Grafana监控服务器状态
+# Prometheus服务器监控系统
 
 功能：监控服务器各种状态，设置告警，当某项状态值出现异常时通过邮件进行告警
 
