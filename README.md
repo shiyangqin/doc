@@ -27,7 +27,7 @@
 + Linux
   + [supervisor](supervisor.md)
   + [Docker](Docker)
-  + [Prometheus服务器监控系统](Prometheus服务器监控系统)
+  + [Prometheus服务器监控系统部署](Prometheus服务器监控系统部署)
   + [EFK日志服务器部署](EFK日志服务器部署)
   + [Kubernetes](Kubernetes)
 
