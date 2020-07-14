@@ -1,6 +1,6 @@
 # Doc
 
-## 学习文档
++ [Git](Git.md)
 
 + [算法](算法)
 
@@ -14,8 +14,6 @@
 
 + [YAML语法](YAML语法.md)
 
-+ [Git](Git.md)
-
 + [Python](Python)
 
 + web
@@ -24,29 +22,18 @@
   + [nginx](nginx.md)
 
 + 数据库
-  + [SQL](SQL.md)
-  + [Redis命令](Redis命令.md)
+  + [PostgreSQL](PostgreSQL)
+  + [Redis](Redis)
 
 + Linux
   + [supervisor](supervisor.md)
   + [Docker](Docker)
   + [Kubernetes](Kubernetes)
 
-## 实践文档
-
-+ [使用er图设计数据库表结构](使用er图设计创建数据库.md)
-
-+ [Centos7安装python3](Centos7安装python3.md)
-
-+ [docker部署PostgreSQL](docker部署PostgreSQL.md)
-
-+ [docker部署Redis](docker部署Redis.md)
-
-+ [使用docker+supervisor+nginx+flask+gunicorn部署web项目](使用docker+supervisor+nginx+flask+gunicorn部署web项目.md)
-
-+ [node-exporter+Prometheus+Grafana监控服务器状态](node-exporter+Prometheus+Grafana监控服务器状态)
-
-+ [Filebeat+Elasticsearch+Kibana日志服务器部署](Filebeat+Elasticsearch+Kibana日志服务器部署)
++ 实践文档
+  + [使用docker+supervisor+nginx+flask+gunicorn部署web项目](使用docker+supervisor+nginx+flask+gunicorn部署web项目.md)
+  + [node-exporter+Prometheus+Grafana监控服务器状态](node-exporter+Prometheus+Grafana监控服务器状态)
+  + [Filebeat+Elasticsearch+Kibana日志服务器部署](Filebeat+Elasticsearch+Kibana日志服务器部署)
 
 ## 日常记录
 
