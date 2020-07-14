@@ -30,6 +30,7 @@
 + Linux
   + [supervisor](学习文档/supervisor.md)
   + [Docker](学习文档/Docker)
+  + [Kubernetes](学习文档/Kubernetes)
 
 ## 实践文档
 
@@ -46,8 +47,6 @@
 + [node-exporter+Prometheus+Grafana监控服务器状态](实践文档/node-exporter+Prometheus+Grafana监控服务器状态)
 
 + [Filebeat+Elasticsearch+Kibana日志服务器部署](实践文档/Filebeat+Elasticsearch+Kibana日志服务器部署)
-
-+ [使用kubeadm部署Kubernetes](实践文档/使用kubeadm部署Kubernetes.md)
 
 ## 日常记录
 
