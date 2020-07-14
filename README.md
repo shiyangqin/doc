@@ -33,10 +33,10 @@
 
 ## 记录
 
-+ [GitHub图片无法显示问题解决](日常记录/GitHub图片无法显示问题解决.md)
++ [GitHub图片无法显示问题解决](记录/GitHub图片无法显示问题解决.md)
 
-+ [pip安装psycopy2报错问题解决方案](日常记录/pip安装psycopy2报错问题解决方案.md)
++ [pip安装psycopy2报错问题解决方案](记录/pip安装psycopy2报错问题解决方案.md)
 
-+ [在Windows上编写的shell文件上传到linux下执行报错](日常记录/在Windows上编写的shell文件上传到linux下执行报错.md)
++ [在Windows上编写的shell文件上传到linux下执行报错](记录/在Windows上编写的shell文件上传到linux下执行报错.md)
 
-+ [python3调用kafka包报错](日常记录/python3调用kafka包报错.md)
++ [python3调用kafka包报错](记录/python3调用kafka包报错.md)
