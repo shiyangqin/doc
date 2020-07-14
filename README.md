@@ -8,7 +8,7 @@
 
 + [Python](Python)
 
-+ 基础
++ 杂项
   + [Git](Git.md)
   + [代码大全（第二版）](代码大全)
   + [事务](事务.md)
@@ -27,9 +27,9 @@
 + Linux
   + [supervisor](supervisor.md)
   + [Docker](Docker)
-  + [Kubernetes](Kubernetes)
   + [node-exporter+Prometheus+Grafana监控服务器状态](node-exporter+Prometheus+Grafana监控服务器状态)
   + [Filebeat+Elasticsearch+Kibana日志服务器部署](Filebeat+Elasticsearch+Kibana日志服务器部署)
+  + [Kubernetes](Kubernetes)
 
 ## 记录
 
