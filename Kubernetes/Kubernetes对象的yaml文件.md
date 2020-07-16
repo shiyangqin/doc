@@ -12,6 +12,8 @@ metadata:                           # Deployment的元数据
   name: redis-deploy                # 名称
   labels:                           # 标签
     label-1: redis-deploy
+  annotations:                      # 注解
+    annotations-1: redis-annotations
 spec:                               # Deployment详细定义
   replicas: 2                       # 运行2个pod
   selector:                         # 选择器
