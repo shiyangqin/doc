@@ -32,7 +32,7 @@ spec:                               # Deployment详细定义
 
 注：
 
-1. pod模板和创建Pod的yaml文件相同，只是不需要再写apiVersion和kind，因为会创建多个pod，所以metadata.name字段会自动生成，无法自定义
+1. pod模板和创建Pod的yaml文件相同，只是不需要再写 apiVersion、kind、metadata.name
 2. Always：默认值，当容器失效时，由kubelet自动重启该容器；Never：不重新启动；OnFailure：当容器终止运行且退出码不为0时，由kubelet自动重启该容器
 
 ## Service
@@ -41,8 +41,8 @@ spec:                               # Deployment详细定义
 apiVersion: v1                      # 指定api版本
 kind: Service                       # 指定创建资源的类型为Service
 metadata:                           # Service的元数据
-  name: service-name                      # 名称
-  namespace: default                 # 命名空间,默认为default
+  name: service-name                # 名称
+  namespace: default                # 命名空间,默认为default
   labels:                           # 标签
     labels-1: service-label
   annotations:                      # 注解
