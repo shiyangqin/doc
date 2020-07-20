@@ -3,6 +3,8 @@
 + 安装
   + [Centos7安装python3](Centos7安装python3.md)
 
++ [Python垃圾回收机制](Python垃圾回收机制.md)
+
 + 模块学习，Python官方文档：https://docs.python.org/zh-cn/
   + [queue](queue.md)
   + [threading](threading.md)
