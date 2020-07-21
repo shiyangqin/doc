@@ -146,3 +146,21 @@ if __name__ == '__main__':
     print(func.class_method())  # Subclass.average(Subclass.X, Subclass.Y) = 2.66666666666
 
 ```
+
+### dict 的key和value有什么要求
+
+key必须是可hash的，值没有要求
+
+### list set dict 的插入、删除和修改
+
++ list
+
+python的列表内部实现是数组，因此就有组数的特点。超过容量会增加更多的容量，通过角标查找是O(1)O(1)，插入删除是O(n)
+
++ dict
+
+python字典是通过哈希表实现的，插入删除查找都是O(1)，最坏情况下是O(n)
+
++ set
+
+Python中集合和字典非常相似，都是用哈希表实现的，插入删除查找都是O(1)，最坏情况下是O(n)
