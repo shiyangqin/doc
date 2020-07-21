@@ -4,4 +4,4 @@
 
 + [数据结构](DataStructures.md)
 
-+ [排序算法](排序算法.md)
++ [排序算法](sort.md)
