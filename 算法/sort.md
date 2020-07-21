@@ -52,6 +52,25 @@
 代码实践：
 
 ```python
+# -*- coding: utf-8 -*-
+
+
+def bubble_sort(arr):
+    """冒泡排序"""
+    length = len(arr)
+    for i in range(length - 1):
+        swapped = False
+        for j in range(length - 1 - i):
+            if arr[j + 1] < arr[j]:
+                swapped = True
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+        if not swapped:
+            break
+    return arr
+
+
+if __name__ == '__main__':
+    print(bubble_sort([0, -11, 13, -5, 7]))
 
 ```
 
@@ -74,6 +93,24 @@ n个记录的直接选择排序可经过n-1趟直接选择排序得到有序结�
 代码实践：
 
 ```python
+# -*- coding: utf-8 -*-
+
+
+def selection_sort(arr):
+    """选择排序"""
+    length = len(arr)
+    for i in range(length - 1):
+        least = i
+        for j in range(i + 1, length):
+            if arr[j] < arr[i]:
+                least = j
+        if i != least:
+            arr[i], arr[least] = arr[least], arr[i]
+    return arr
+
+
+if __name__ == '__main__':
+    print(selection_sort([0, -11, 13, -5, 7]))
 
 ```
 
@@ -99,6 +136,21 @@ n个记录的直接选择排序可经过n-1趟直接选择排序得到有序结�
 代码实践：
 
 ```python
+# -*- coding: utf-8 -*-
+
+
+def insertion_sort(arr):
+    """插入排序"""
+    for index in range(1, len(arr)):
+        insertion_index = index
+        while 0 < insertion_index and arr[insertion_index - 1] > arr[insertion_index]:
+            arr[insertion_index - 1], arr[insertion_index] = arr[insertion_index], arr[insertion_index - 1]
+            insertion_index -= 1
+    return arr
+
+
+if __name__ == '__main__':
+    print(insertion_sort([0, -11, 13, -5, 7]))
 
 ```
 
@@ -121,6 +173,23 @@ n个记录的直接选择排序可经过n-1趟直接选择排序得到有序结�
 代码实践：
 
 ```python
+# -*- coding: utf-8 -*-
+
+
+def shell_sort(arr):
+    """希尔排序"""
+    gaps = [701, 301, 132, 57, 23, 10, 4, 1]
+    for gap in gaps:
+        for i in range(gap, len(arr)):
+            j = i
+            while gap <= j and arr[j] < arr[j - gap]:
+                arr[j], arr[j-gap] = arr[j-gap], arr[j]
+                j -= gap
+    return arr
+
+
+if __name__ == '__main__':
+    print(shell_sort([0, -11, 13, -5, 7, 134, -144, 1333, -1029]))
 
 ```
 
@@ -141,6 +210,27 @@ n个记录的直接选择排序可经过n-1趟直接选择排序得到有序结�
 代码实践：
 
 ```python
+# -*- coding: utf-8 -*-
+
+
+def merge_sort(arr):
+    """归并排序"""
+
+    def merge(left, right):
+        """归并两个有序数组"""
+        result = []
+        while left and right:
+            result.append((left if left[0] < right[0] else right).pop(0))
+        return result + left + right
+
+    if len(arr) == 1:
+        return arr
+    mid = len(arr) // 2
+    return merge(merge_sort(arr[:mid]), merge_sort(arr[mid:]))
+
+
+if __name__ == '__main__':
+    print(merge_sort([0, -11, 13, -5, 7, 134, -144, 1333, -1029]))
 
 ```
 
@@ -163,6 +253,26 @@ n个记录的直接选择排序可经过n-1趟直接选择排序得到有序结�
 代码实践：
 
 ```python
+# -*- coding: utf-8 -*-
+
+
+def quick_sort(arr):
+    """快速排序"""
+    if len(arr) <= 1:
+        return arr
+    else:
+        left = []
+        right = []
+        for i in range(1, len(arr)):
+            if arr[0] <= arr[i]:
+                right.append(arr[i])
+            else:
+                left.append(arr[i])
+        return quick_sort(left) + [arr[0]] + quick_sort(right)
+
+
+if __name__ == '__main__':
+    print(quick_sort([0, -11, 13, -5, 7, 134, -144, 1333, -1029]))
 
 ```
 
@@ -183,6 +293,36 @@ n个记录的直接选择排序可经过n-1趟直接选择排序得到有序结�
 代码实践：
 
 ```python
+# -*- coding: utf-8 -*-
+
+
+def heap_sort(arr):
+    """堆排序"""
+
+    def heapify(heap, index, heap_size):
+        """调整堆节点"""
+        largest = index
+        left_index = 2 * index + 1
+        right_index = 2 * index + 2
+        if left_index < heap_size and heap[largest] < heap[left_index]:
+            largest = left_index
+        if right_index< heap_size and heap[largest] < heap[right_index]:
+            largest = right_index
+        if largest != index:
+            heap[largest], heap[index] = heap[index], heap[largest]
+            heapify(heap, largest, heap_size)
+
+    length = len(arr)
+    for i in range(length // 2 - 1, -1, -1):
+        heapify(arr, i, length)
+    for i in range(length - 1, 0, -1):
+        arr[0], arr[i] = arr[i], arr[0]
+        heapify(arr, 0, i)
+    return arr
+
+
+if __name__ == '__main__':
+    print(heap_sort([0, -11, 13, -5, 7, 134, -144, 1333, -1029]))
 
 ```
 
