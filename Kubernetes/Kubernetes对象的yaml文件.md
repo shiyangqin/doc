@@ -2,6 +2,8 @@
 
 + [Deployment](#Deployment)
 + [Service](#Service)
++ [Namespace](#Namespace)
++ [ConfigMap](#ConfigMap)
 
 ## Deployment
 
@@ -62,4 +64,19 @@ spec:                               # Service详细定义
       protocol: TCP                 # 端口协议，支持TCP和UDP，默认TCP
       port: 80                      # 服务器监听端口
       targetPort: 9000              # 需要转发到pod的端口
+```
+
+## Namespace
+
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: new-namespace
+```
+
+## ConfigMap
+
+```yaml
+
 ```
