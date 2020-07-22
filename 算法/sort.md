@@ -358,7 +358,7 @@ if __name__ == '__main__':
 3. 对每个不是空的桶进行排序；
 4. 从不是空的桶里把排好序的数据拼接起来。 
 
-动图演示：
+图片展示：
 
 <img src="img/sort/BucketSort.jpg" width=600 />
 
