@@ -7,6 +7,7 @@
 
 + 模块学习，Python官方文档：https://docs.python.org/zh-cn/
   + [python内置函数](python内置函数.md)
+  + [python内置类型](python内置类型.md)
   + [queue](queue.md)
   + [threading](threading.md)
   + [multiprocessing](multiprocessing.md)
