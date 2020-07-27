@@ -111,7 +111,7 @@ delattr(x, 'foobar') 等价于 del x.foobar
 
 + enumerate(iterable, start=0)
 
-返回一个枚举对象。iterable 必须是一个序列，或 iterator，或其他支持迭代的对象。 enumerate() 返回的迭代器的 __next__() 方法返回一个元组，里面包含一个计数值（从 start 开始，默认为 0）和通过迭代 iterable 获得的值。
+返回一个枚举对象。iterable 必须是一个序列，或 iterator，或其他支持迭代的对象。 enumerate() 返回的迭代器的 \_\_next\_\_() 方法返回一个元组，里面包含一个计数值（从 start 开始，默认为 0）和通过迭代 iterable 获得的值。
 
 + eval()
 
@@ -267,7 +267,7 @@ expression 参数会作为一个 Python 表达式（从技术上说是一个条�
 
 + reversed(seq)
 
-返回一个反向的 iterator。 seq 必须是一个具有 __reversed__() 方法的对象或者是支持该序列协议（具有从 0 开始的整数类型参数的 __len__() 方法和 __getitem__() 方法）。
+返回一个反向的 iterator。 seq 必须是一个具有 \_\_reversed\_\_() 方法的对象或者是支持该序列协议（具有从 0 开始的整数类型参数的 \_\_len\_\_() 方法和 \_\_getitem\_\_() 方法）。
 
 + round(number[, ndigits])
 
