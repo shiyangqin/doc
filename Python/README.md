@@ -6,6 +6,7 @@
 + [Python垃圾回收机制](Python垃圾回收机制.md)
 
 + 模块学习，Python官方文档：https://docs.python.org/zh-cn/
+  + [python内置函数](python内置函数.md)
   + [queue](queue.md)
   + [threading](threading.md)
   + [multiprocessing](multiprocessing.md)
