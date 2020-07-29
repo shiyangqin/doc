@@ -10,12 +10,15 @@ filebeat.inputs:
       pattern: '^\d{4}-\d{2}-\d{2}'
       negate: true
       match: after
-      tags: ["log"]
+    tags: ["log"]
     symlinks: true
 
 output.elasticsearch:
   hosts: ["es服务器IP:9200"]
-  pipeline: "log-pipeline"
+  pipelines:
+    - pipeline: "log-pipeline"
+      when.contains:
+        tags: "log"
   indices:
     - index: "log-%{[agent.version]}-%{+yyyy.MM.dd}"
       when.contains:

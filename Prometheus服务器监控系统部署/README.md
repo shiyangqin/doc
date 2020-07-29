@@ -2,7 +2,7 @@
 
 功能：监控服务器各种状态，设置告警，当某项状态值出现异常时通过邮件进行告警
 
-docker-compose：向prometheus提供服务器状态信息
+node-exporter：向prometheus提供服务器状态信息
 
 prometheus：接收并存储服务器状态信息，设置告警
 

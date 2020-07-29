@@ -2,7 +2,6 @@
 
 + [Deployment](#Deployment)
 + [Service](#Service)
-+ [Namespace](#Namespace)
 + [ConfigMap](#ConfigMap)
 
 ## Deployment
@@ -32,6 +31,12 @@ spec:                               # Deployment详细定义
           image: redis:latest       # 容器镜像
           ports:                    # 容器暴露端口
             - containerPort: 5432   # 容器端口
+          volumeMounts:             # 数据卷
+            - mountPath: /data      # 容器路径
+              name: redis-data      # volumes name
+      volumes:                      # volumes
+        - name: redis-data
+          emptyDir: {}
 ```
 
 注：
@@ -66,17 +71,226 @@ spec:                               # Service详细定义
       targetPort: 9000              # 需要转发到pod的端口
 ```
 
-## Namespace
+## ConfigMap
+
+有些配置文件特别长，所以对于ConfigMap，我的建议时从文件导入创建
+
+```shell
+kubectl create configmap web --from-file=sap.ini -o yaml
+```
 
 ```yaml
 apiVersion: v1
-kind: Namespace
+kind: ConfigMap
 metadata:
-  name: new-namespace
+  creationTimestamp: "2020-07-28T01:58:40Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:data:
+        .: {}
+        f:sap.ini: {}
+    manager: kubectl
+    operation: Update
+    time: "2020-07-28T01:58:40Z"
+  name: web
+  namespace: default
+  resourceVersion: "1823372"
+  selfLink: /api/v1/namespaces/default/configmaps/web
+  uid: 531d949d-9e09-4abd-9685-4d16cecdfc8e
+data:
+  sap.ini: |
+    [LOG]
+    file_name = flask.log
+    level = NOSET
+
+    [PG]
+    host = pg-server
+    port = 5432
+    user = postgres
+    pwd = postgres
+    name = flask_data
+
+    [REDIS]
+    host = redis-server
+    port = 6379
+    pwd = redis
 ```
 
-## ConfigMap
+## 测试
+
+deployments.yaml
 
 ```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-server
+  labels:
+    server: flask
+spec:
+  selector:
+    matchLabels:
+      server: flask
+  template:
+    metadata:
+      labels:
+        server: flask
+    spec:
+      containers:
+        - name: flask-server
+          image: flask-server:1.0
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: config
+              mountPath: /opt/FlaskTest/sap.ini
+              subPath: opt/FlaskTest/sap.ini
+      volumes:
+        - name: config
+          configMap:
+            name: web
+            items:
+              - key: sap.ini
+                path: opt/FlaskTest/sap.ini
+      nodeSelector:
+        server: flask
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pg-server
+  labels:
+    server: pg
+spec:
+  selector:
+    matchLabels:
+      server: pg
+  template:
+    metadata:
+      labels:
+        server: pg
+    spec:
+      containers:
+        - name: pg-server
+          image: postgres:12.2
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: postgres
+            - name: POSTGRES_DB
+              value: flask_data
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: pg-data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: pg-data
+          hostPath:
+            path: /opt/k8s/data/pg
+      nodeSelector:
+        server: pg
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-server
+  labels:
+    server: redis
+spec:
+  selector:
+    matchLabels:
+      server: redis
+  template:
+    metadata:
+      labels:
+        server: redis
+    spec:
+      containers:
+        - name: redis-server
+          image: redis:6.0
+          command:
+            - redis-server
+            - --requirepass
+            - redis
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - name: redis-data
+              mountPath: /data
+      volumes:
+        - name: redis-data
+          hostPath:
+            path: /opt/k8s/data/redis
+      nodeSelector:
+        server: redis
+```
+
+services.yaml
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-server
+  labels:
+    server: flask
+spec:
+  type: NodePort
+  clusterIP: 10.20.1.1
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30000
+  selector:
+    server: flask
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pg-server
+  labels:
+    server: pg
+spec:
+  clusterIP: 10.20.1.2
+  ports:
+  - port: 5432
+    targetPort: 5432
+  selector:
+    server: pg
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-server
+  labels:
+    server: redis
+spec:
+  clusterIP: 10.20.1.3
+  ports:
+  - port: 6379
+    targetPort: 6379
+  selector:
+    server: redis
+```
+
+```shell
+kubectl delete deployment flask-server
+kubectl delete deployment pg-server
+kubectl delete deployment redis-server
+
+kubectl delete service flask-server
+kubectl delete service pg-server
+kubectl delete service redis-server
+
+kubectl get all
+
+kubectl create -f flask-server.yaml
+
+rm -rf flask-server.yaml
+vim flask-server.yaml
 
 ```
