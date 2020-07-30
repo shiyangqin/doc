@@ -28,6 +28,6 @@ Kubernetes 是一个用于容器集群的自动化部署、扩容以及运维的
 
 先了解集群的搭建，master节点，node节点，节点间通讯
 
-然后了解deployment、pod、servie等概念
+然后了解deployment、DaemonSet、pod、servie等概念
 
-然后了解配置管理（configMap），持久化存储（PV），服务暴漏（？？）等操作
+然后了解配置管理（configMap），持久化数据（PV），服务暴漏（NodePort？）等操作
