@@ -27,6 +27,7 @@
   + [Redis](Redis)
 
 + Linux
+  + [鸟哥的Linux私房菜-基础学习篇](鸟哥的Linux私房菜)
   + [supervisor](supervisor.md)
   + [Docker](Docker)
   + [Prometheus服务器监控系统部署](Prometheus服务器监控系统部署)
