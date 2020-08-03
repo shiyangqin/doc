@@ -114,10 +114,10 @@ kubeadm init \
         --apiserver-advertise-address 0.0.0.0 \
         --apiserver-bind-port 6443 \
         --cert-dir /etc/kubernetes/pki \
-        --control-plane-endpoint 10.255.175.41 \
+        --control-plane-endpoint 10.255.175.224 \
         --image-repository registry.cn-hangzhou.aliyuncs.com/google_containers \
         --kubernetes-version 1.18.2 \
-        --node-name 10.255.175.41 \
+        --node-name 10.255.175.224 \
         --pod-network-cidr 10.11.0.0/16 \
         --service-cidr 10.20.0.0/16 \
         --service-dns-domain cluster.local \
@@ -243,6 +243,21 @@ NAME            STATUS   ROLES    AGE     VERSION
 10.255.175.41   Ready    master   3m24s   v1.18.5
 10.255.175.90   Ready    <none>   31s     v1.18.5
 10.255.175.97   Ready    <none>   14s     v1.18.5
+```
+
+## 重复安装时清理网络
+
+```shell
+kubeadm reset
+systemctl stop kubelet
+systemctl stop docker
+rm -rf /var/lib/cni/ /var/lib/kubelet/* /etc/cni/
+ifconfig cni0 down
+ifconfig flannel.1 down
+ifconfig docker0 down
+ip link delete cni0
+ip link delete flannel.1
+systemctl start docker
 ```
 
 ## 卸载清理
