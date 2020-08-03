@@ -120,7 +120,7 @@ data:
 
 ## 测试
 
-deployments.yaml
+flask.yaml
 
 ```yaml
 apiVersion: apps/v1
@@ -128,15 +128,15 @@ kind: Deployment
 metadata:
   name: flask-server
   labels:
-    server: flask
+    server: flask-deploy
 spec:
   selector:
     matchLabels:
-      server: flask
+      server: flask-pod
   template:
     metadata:
       labels:
-        server: flask
+        server: flask-pod
     spec:
       containers:
         - name: flask-server
@@ -157,20 +157,40 @@ spec:
       nodeSelector:
         server: flask
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-server
+  labels:
+    server: flask-ser
+spec:
+  type: NodePort
+  clusterIP: 10.20.1.1
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30000
+  selector:
+    server: flask-pod
+```
+
+pg.yaml
+
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pg-server
   labels:
-    server: pg
+    server: pg-deploy
 spec:
   selector:
     matchLabels:
-      server: pg
+      server: pg-pod
   template:
     metadata:
       labels:
-        server: pg
+        server: pg-pod
     spec:
       containers:
         - name: pg-server
@@ -194,20 +214,38 @@ spec:
       nodeSelector:
         server: pg
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pg-server
+  labels:
+    server: pg-ser
+spec:
+  clusterIP: 10.20.1.2
+  ports:
+  - port: 5432
+    targetPort: 5432
+  selector:
+    server: pg-pod
+```
+
+redis.yaml
+
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis-server
   labels:
-    server: redis
+    server: redis-deploy
 spec:
   selector:
     matchLabels:
-      server: redis
+      server: redis-pod
   template:
     metadata:
       labels:
-        server: redis
+        server: redis-pod
     spec:
       containers:
         - name: redis-server
@@ -227,54 +265,20 @@ spec:
             path: /opt/k8s/data/redis
       nodeSelector:
         server: redis
-```
-
-services.yaml
-
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: flask-server
-  labels:
-    server: flask
-spec:
-  type: NodePort
-  clusterIP: 10.20.1.1
-  ports:
-  - port: 80
-    targetPort: 80
-    nodePort: 30000
-  selector:
-    server: flask
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: pg-server
-  labels:
-    server: pg
-spec:
-  clusterIP: 10.20.1.2
-  ports:
-  - port: 5432
-    targetPort: 5432
-  selector:
-    server: pg
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: redis-server
   labels:
-    server: redis
+    server: redis-ser
 spec:
   clusterIP: 10.20.1.3
   ports:
   - port: 6379
     targetPort: 6379
   selector:
-    server: redis
+    server: redis-pod
 ```
 
 ```shell
@@ -288,7 +292,9 @@ kubectl delete service redis-server
 
 kubectl get all
 
-kubectl create -f flask-server.yaml
+kubectl create -f flask.yaml
+kubectl create -f pg.yaml
+kubectl create -f redis.yaml
 
 rm -rf flask-server.yaml
 vim flask-server.yaml

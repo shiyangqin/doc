@@ -244,3 +244,22 @@ NAME            STATUS   ROLES    AGE     VERSION
 10.255.175.90   Ready    <none>   31s     v1.18.5
 10.255.175.97   Ready    <none>   14s     v1.18.5
 ```
+
+## 卸载清理
+
+```shell
+kubeadm reset -f
+modprobe -r ipip
+lsmod
+rm -rf ~/.kube/
+rm -rf /etc/kubernetes/
+rm -rf /etc/systemd/system/kubelet.service.d
+rm -rf /etc/systemd/system/kubelet.service
+rm -rf /usr/bin/kube*
+rm -rf /etc/cni
+rm -rf /opt/cni
+rm -rf /var/lib/etcd
+rm -rf /var/etcd
+yum clean all
+yum remove kube*
+```
