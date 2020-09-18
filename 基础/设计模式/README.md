@@ -6,8 +6,6 @@
 
 <img src="img/ClassRelationship.jpg" width=500 />
 
-类与类之间由弱到强关系：依赖<关联<聚合<组合
-
 ## 定义
 
 设计模式是软件开发人员在软件开发过程中面临的一般问题的解决方案。这些解决方案是众多软件开发人员经过相当长的一段时间的试验和错误总结出来的。
@@ -86,22 +84,22 @@
 
 + [Command Pattern](CommandPattern.md)
 
-+ Interpreter Pattern
++ [Interpreter Pattern](InterpreterPattern.md)
 
-+ Iterator Pattern
++ [Iterator Pattern](IteratorPattern.md)
 
-+ Mediator Pattern
++ [Mediator Pattern](MediatorPattern.md)
 
-+ Memento Pattern
++ [Memento Pattern](MementoPattern.md)
 
-+ Observer Pattern
++ [Observer Pattern](ObserverPattern.md)
 
-+ State Pattern
++ [State Pattern](StatePattern.md)
 
-+ Null Object Pattern
++ [Null Object Pattern](NullObjectPattern.md)
 
-+ Strategy Pattern
++ [Strategy Pattern](StrategyPattern.md)
 
-+ Template Pattern
++ [Template Pattern](TemplatePattern.md)
 
-+ Visitor Pattern
++ [Visitor Pattern](VisitorPattern.md)
