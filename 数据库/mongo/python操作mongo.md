@@ -22,7 +22,16 @@ class MongoDemo(object):
         data = {
             "name": "mongo1",
             "type": "test",
-            "num": 1
+            "num": 1,
+            "tags": [
+                "demo1",
+                "demo2"
+            ],
+            "info": {
+                "field1": {
+                    "value": 1
+                }
+            }
         }
         data_id = self.col.insert_one(data)
         print(data_id.inserted_id)
@@ -31,8 +40,7 @@ class MongoDemo(object):
                 "_id": 2,
                 "name": "mongo2",
                 "type": "test",
-                "num": 2,
-                "tags": "demo"
+                "num": 2
             },
             {
                 "_id": 3,
@@ -74,7 +82,7 @@ class MongoDemo(object):
         self.insert()
         self.find()
         self.update()
-        self.delete()
+        # self.delete()
 
 
 def main():
@@ -84,4 +92,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 ```
