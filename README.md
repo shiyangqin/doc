@@ -16,6 +16,9 @@
   + [Python](语言/Python)
   + [SQL](语言/SQL.md)
 
++ 消息中间件
+  + [kafka](消息中间件/kafka)
+
 + 数据库
   + [mysql](数据库/mysql)
   + [PostgreSQL](数据库/PostgreSQL)
@@ -25,7 +28,7 @@
 
 + 服务器
   + [Linux](服务器/Linux)
-  + [Docker](服务器/Doceker)
+  + [Docker](服务器/Docker)
   + [Kubernetes](服务器/Kubernetes)
   + [Supervisor](服务器/Supervisor.md)
 
