@@ -36,5 +36,7 @@
   + [Nginx](web/Nginx.md)
   + [RESTful-API](web/RESTful-API.md)
 
++ [Manjaro](Manjaro.md)
+
 + [EFK](EFK)
 + [Prometheus](Prometheus)
