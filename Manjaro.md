@@ -81,6 +81,12 @@ export XMODIFIERS="@im=fcitx"
 sudo pacman -S google-chrome
 ```
 
++ yay
+
+```shell
+sudo pacman -S yay base-devel
+```
+
 + 网易云音乐
 
 ```shell
@@ -106,13 +112,7 @@ sudo pacman -S visual-studio-code-bin
 sudo pacman -S git
 ```
 
-+ yay
-
-```shell
-sudo pacman -S yay base-devel
-```
-
-+ wechat和tim
++ wechat
 
 ```shell
 
@@ -123,6 +123,10 @@ sudo pacman -S yay base-devel
 ```shell
 sudo pacman -S gimp
 ```
+
++ 百度网盘
+
+在软件管理中直接搜索 baidunetdisk-bin，然后安装即可
 
 ## 编程环境安装
 

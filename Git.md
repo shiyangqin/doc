@@ -18,6 +18,7 @@ ssh-keygen -t rsa -C '邮箱'
 
 命令执行后，多次按回车至完成
 Windows生成位置：C:\Users\系统登陆账户名\.ssh
+Linux生成位置：/root/.ssh
 ```
 
 + 配置
