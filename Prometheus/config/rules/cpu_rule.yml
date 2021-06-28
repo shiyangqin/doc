@@ -1,8 +1,0 @@
-groups:
-  - name: CPU预警
-    rules:
-    - alert: CPU预警
-      expr: (1 - avg(irate(node_cpu_seconds_total{instance=~"10.255.175.224:9100",mode="idle"}[5m])) by (instance))*100 > 2
-      for: 15s
-      annotations:
-        summary: "CPU总使用率超过2%！"
